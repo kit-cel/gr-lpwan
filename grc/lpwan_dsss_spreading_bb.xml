@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS Spreading</name>
+  <key>lpwan_dsss_spreading_bb</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_spreading_bb($len_tag, $spread_factor, $seed, $reset_per_symbol, $code_index, $log_sf)</make>
+
+  <param>
+    <name>Length tag</name>
+    <key>len_tag</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Spreading Faktor</name>
+    <key>spread_factor</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Goldcode Seed</name>
+    <key>seed</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Reset per symbol</name>
+    <key>reset_per_symbol</key>
+    <type>enum</type>
+    <option>
+      <name>True</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>False</name>
+      <key>False</key>
+    </option>
+  </param>
+  <param>
+    <name>OVSF Code Index</name>
+    <key>code_index</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>OVSF Log2 SF</name>
+    <key>log_sf</key>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS Filter CRC-failed packets</name>
+  <key>lpwan_dsss_filter_crc_packets</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_filter_crc_packets()</make>
+
+  <sink>
+    <name>in_hard</name>
+    <type>message</type>
+  </sink>
+  <sink>
+    <name>in_hard_crc_ok</name>
+    <type>message</type>
+  </sink>
+  <sink>
+    <name>in_soft</name>
+    <type>message</type>
+  </sink>
+
+  <source>
+    <name>out_soft</name>
+    <type>message</type>
+  </source>
+
+</block>

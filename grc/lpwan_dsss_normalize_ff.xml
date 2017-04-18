@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<block>
+  <name>Normalize</name>
+  <key>lpwan_dsss_normalize_ff</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_normalize_ff($len_tag)</make>
+
+  <param>
+    <name>Length Tag</name>
+    <key>len_tag</key>
+    <type>string</type>
+  </param>
+
+
+  <sink>
+    <name>in</name>
+    <type>float</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+</block>

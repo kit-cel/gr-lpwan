@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<block>
+  <name>Message Counter</name>
+  <key>lpwan_message_counter</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.message_counter($interval, $scale)</make>
+
+  <param>
+    <name>Interval(s)</name>
+    <key>interval</key>
+    <value>0</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Scale</name>
+    <key>scale</key>
+    <value>1</value>
+    <type>float</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+</block>

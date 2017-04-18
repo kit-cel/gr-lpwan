@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS Preamble Demod BF</name>
+  <key>lpwan_dsss_preamble_demod_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_preamble_demod_cc($sf, $sps, $preamble_length)</make>
+
+  <param>
+    <name>Spread Factor</name>
+    <key>sf</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Samples per Symbol</name>
+    <key>sps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Preamble Length</name>
+    <key>preamble_length</key>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

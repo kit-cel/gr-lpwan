@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS Packet Despreading</name>
+  <key>lpwan_dsss_despread_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_despread_cc($sf, $seed, $ovsf_code_index, $ovsf_log_sf, $sps,
+    $psdu_len, $modulation, $chiprate, $reset_per_symbol, $dll_active,
+    $dll_delta,$dll_gain, $dll_error_reset, $dll_cmp)</make>
+
+  <param>
+    <name>Spreading Factor</name>
+    <key>sf</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Goldcode Seed</name>
+    <key>seed</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>OVSF Code Index</name>
+    <key>ovsf_code_index</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>OVSF Log Spreading Factor</name>
+    <key>ovsf_log_sf</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Samples Per Symbol</name>
+    <key>sps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>PSDU Length</name>
+    <key>psdu_len</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Chiprate</name>
+    <key>chiprate</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Reset per symbol</name>
+    <key>reset_per_symbol</key>
+    <type>enum</type>
+    <option>
+      <name>True</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>False</name>
+      <key>False</key>
+    </option>
+  </param>
+  <param>
+    <name>Modulation</name>
+    <key>modulation</key>
+    <type>enum</type>
+    <option>
+      <name>BPSK</name>
+      <key>0</key>
+    </option>
+    <option>
+      <name>OQPSK</name>
+      <key>1</key>
+    </option>
+  </param>
+
+  <param>
+    <name>DLL Active</name>
+    <key>dll_active</key>
+    <type>enum</type>
+    <option>
+      <name>True</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>False</name>
+      <key>False</key>
+    </option>
+  </param>
+  <param>
+    <name>DLL Sample Delta</name>
+    <key>dll_delta</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>DLL Loop Gain</name>
+    <key>dll_gain</key>
+    <value>0.05</value>
+    <type>real</type>
+  </param>
+  <param>
+    <name>DLL Error Reset Gain</name>
+    <key>dll_error_reset</key>
+    <value>0.8</value>
+    <type>real</type>
+  </param>
+  <param>
+    <name>DLL Error Compare</name>
+    <key>dll_cmp</key>
+    <value>0.5</value>
+    <type>real</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+
+  <!--<source>-->
+    <!--<name>dll_error</name>-->
+    <!--<type>float</type>-->
+  <!--</source>-->
+  <!--<source>-->
+    <!--<name>dll_prompt</name>-->
+    <!--<type>float</type>-->
+  <!--</source>-->
+
+</block>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS Diff Decoding</name>
+  <key>lpwan_dsss_diff_decoding_ff</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_diff_decoding_ff($len_tag)</make>
+
+  <param>
+    <name>Length tag</name>
+    <key>len_tag</key>
+    <type>string</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

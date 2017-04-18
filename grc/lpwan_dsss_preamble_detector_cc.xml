@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS Preamble Detector</name>
+  <key>lpwan_dsss_preamble_detector_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_preamble_detector_cc($freqs, $shr_len, $sf, $sps, $chiprate, $filt_taps)</make>
+
+  <param>
+    <name>Frequency Hypothesis</name>
+    <key>freqs</key>
+    <type>real_vector</type>
+  </param>
+  <param>
+    <name>SHR Length</name>
+    <key>shr_len</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spreading Factor</name>
+    <key>sf</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Samples per Symbol</name>
+    <key>sps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Chiprate</name>
+    <key>chiprate</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Filter Taps</name>
+    <key>filt_taps</key>
+    <type>real_vector</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <sink>
+    <name>power</name>
+    <type>float</type>
+  </sink>
+
+  <sink>
+    <name>in_corr</name>
+    <type>complex</type>
+    <nports>len($freqs)</nports>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

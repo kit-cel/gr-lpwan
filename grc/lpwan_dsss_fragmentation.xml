@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS Fragmentation Sublayer</name>
+  <key>lpwan_dsss_fragmentation</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_fragmentation($psdu_size, $frak_policy_tx, $frak_tx_timeout_ms,$frak_rx_timeout_ms,
+    $frame_max_retry, $fics_size_tx, $device_addr, $is_coord, $psdu_tx_duration, $dest_addr, $verbose)</make>
+
+  <param>
+    <name>Device Addr 16bit</name>
+    <key>device_addr</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Dest Addr 16bit</name>
+    <key>dest_addr</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>PSDU Length</name>
+    <key>psdu_size</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Frak Policy</name>
+    <key>frak_policy_tx</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Ack Timeout Tx(ms)</name>
+    <key>frak_tx_timeout_ms</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Ack Timeout Rx(ms)</name>
+    <key>frak_rx_timeout_ms</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>PSDU TX duration (ms)</name>
+    <key>psdu_tx_duration</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Fragment max retry</name>
+    <key>frame_max_retry</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>FICS (CRC) Length</name>
+    <key>fics_size_tx</key>
+    <type>enum</type>
+    <option>
+      <name>CRC16</name>
+      <key>2</key>
+    </option>
+    <option>
+      <name>CRC32</name>
+      <key>4</key>
+    </option>
+  </param>
+
+
+  <param>
+    <name>Coordinator</name>
+    <key>is_coord</key>
+    <type>enum</type>
+    <option>
+      <name>True</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>False</name>
+      <key>False</key>
+    </option>
+  </param>
+
+  <param>
+    <name>Verbose</name>
+    <key>verbose</key>
+    <type>enum</type>
+    <option>
+      <name>True</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>False</name>
+      <key>False</key>
+    </option>
+  </param>
+
+  <sink>
+    <name>in_mac</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+  <sink>
+    <name>in_phy</name>
+    <type>message</type>
+    <optional>1</optional>
+  </sink>
+
+  <source>
+    <name>out_mac</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+  <source>
+    <name>out_phy</name>
+    <type>message</type>
+    <optional>1</optional>
+  </source>
+
+</block>

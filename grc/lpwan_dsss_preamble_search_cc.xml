@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<block>
+    <name>LECIM DSSS Preamble Search</name>
+    <key>lpwan_dsss_preamble_search_cc</key>
+    <category>[LPWAN]</category>
+    <import>import lpwan</import>
+    <make>lpwan.dsss_preamble_search_cc($sf, $seed, $ovsf_code_index, $ovsf_log_sf, $freqs, $preamble_length, $sfd_present,
+        $sps, $debug_out, $chiprate, $modulation, $filt_taps)
+    </make>
+
+    <param>
+        <name>Spread Factor</name>
+        <key>sf</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Goldcode Seed</name>
+        <key>seed</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>OVSF Code Index</name>
+        <key>ovsf_code_index</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>OVSF Log Spread Factor</name>
+        <key>ovsf_log_sf</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Frequency-Vector(Hz)</name>
+        <key>freqs</key>
+        <type>real_vector</type>
+    </param>
+    <param>
+        <name>Preamble Length</name>
+        <key>preamble_length</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>SFD Present</name>
+        <key>sfd_present</key>
+        <value>False</value>
+        <type>bool</type>
+    </param>
+    <param>
+        <name>Samples Per Symbol</name>
+        <key>sps</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Preamble Corr Debug</name>
+        <key>debug_out</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Chiprate</name>
+        <key>chiprate</key>
+        <type>int</type>
+    </param>
+
+    <param>
+        <name>Modulation</name>
+        <key>modulation</key>
+        <type>enum</type>
+        <option>
+            <name>BPSK</name>
+            <key>"bpsk"</key>
+        </option>
+        <option>
+            <name>OQPSK</name>
+            <key>"oqpsk"</key>
+        </option>
+    </param>
+    <param>
+        <name>Filter Taps</name>
+        <key>filt_taps</key>
+        <type>real_vector</type>
+    </param>
+
+
+
+    <sink>
+        <name>in</name>
+        <type>complex</type>
+    </sink>
+
+    <source>
+        <name>out</name>
+        <type>complex</type>
+    </source>
+
+    <source>
+        <name>debug correlator</name>
+        <type>complex</type>
+        <optional>1</optional>
+    </source>
+
+
+</block>

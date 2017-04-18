@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS SNR Estimator</name>
+  <key>lpwan_dsss_snr_estimator</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_snr_estimator($psdu_size, $sf)</make>
+
+  <param>
+    <name>PSDU length</name>
+    <key>psdu_size</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Spreading Factor</name>
+    <key>sf</key>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in_hard_fec_enc</name>
+    <type>message</type>
+  </sink>
+  <sink>
+    <name>in_hard</name>
+    <type>message</type>
+  </sink>
+  <sink>
+    <name>in_hard_fec_dec</name>
+    <type>message</type>
+  </sink>
+  <sink>
+    <name>in_soft</name>
+    <type>message</type>
+  </sink>
+
+  <source>
+    <name>out_snr_est</name>
+    <type>message</type>
+  </source>
+
+
+
+</block>

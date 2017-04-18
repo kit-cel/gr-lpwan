@@ -1,0 +1,9 @@
+build/*
+*.pyc
+.cproject
+.project
+*.npy
+*~
+*.npy
+.idea/*
+**/.DS_Store

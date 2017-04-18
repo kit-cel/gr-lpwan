@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<block>
+  <name>LECIM DSSS Tx gain sweep</name>
+  <key>lpwan_dsss_tx_gain_sweep</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.dsss_tx_gain_sweep($sf, $usrp_tx_gains, $packet_len, $num_sweeps)</make>
+
+  <param>
+    <name>spread factor</name>
+    <key>sf</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>USRP Gains</name>
+    <key>usrp_tx_gains</key>
+    <type>float_vector</type>
+  </param>
+
+  <param>
+    <name>packet length</name>
+    <key>packet_len</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>num of sweeps</name>
+    <key>num_sweeps</key>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+
+
+  <source>
+    <name>out</name>
+    <type>message</type>
+  </source>
+  <source>
+    <name>usrp_command</name>
+    <type>message</type>
+  </source>
+
+</block>
