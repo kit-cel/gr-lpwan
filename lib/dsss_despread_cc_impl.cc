@@ -178,8 +178,6 @@ namespace gr {
 #endif
             }
 
-            //TODO: implement a DLL, for now just despread and assume no time offset drift
-
             //iterate through despreading queue
             for (int i = 0; i < d_packets.size(); ++i) {
                 s_packet_despread &s = d_packets[i];

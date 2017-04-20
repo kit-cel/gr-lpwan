@@ -74,6 +74,7 @@
     <name>DLL Active</name>
     <key>dll_active</key>
     <type>enum</type>
+    <hide>part</hide>
     <option>
       <name>True</name>
       <key>True</key>
@@ -82,30 +83,39 @@
       <name>False</name>
       <key>False</key>
     </option>
+    <tab>DLL</tab>
   </param>
   <param>
     <name>DLL Sample Delta</name>
     <key>dll_delta</key>
     <value>1</value>
     <type>int</type>
+    <hide>part</hide>
+    <tab>DLL</tab>
   </param>
   <param>
     <name>DLL Loop Gain</name>
     <key>dll_gain</key>
     <value>0.05</value>
     <type>real</type>
+    <hide>part</hide>
+    <tab>DLL</tab>
   </param>
   <param>
     <name>DLL Error Reset Gain</name>
     <key>dll_error_reset</key>
     <value>0.8</value>
     <type>real</type>
+    <hide>part</hide>
+    <tab>DLL</tab>
   </param>
   <param>
     <name>DLL Error Compare</name>
     <key>dll_cmp</key>
     <value>0.5</value>
     <type>real</type>
+    <hide>part</hide>
+    <tab>DLL</tab>
   </param>
 
   <sink>

@@ -92,15 +92,10 @@ namespace gr {
 
             memcpy(out, in_rx, noutput_items * sizeof(gr_complex));
 
-            //calculate threshold from sigma factor
-            float sigma = 8;
+            //calculate threshold from sigma factor, rayleigh distributed
+            float sigma = 4;
             //squared because volk mag square is faster
-            float threshold = static_cast<float>(pow(sigma * in_power[0] * d_sf * std::sqrt(1.f * d_shr_len), 2))*d_threshold_factor;
-            //debug
-            //static int d=0;
-            //if(d++%1000==0){
-            //    printf("Compare_VAL: %.1f, in_power: %f.1\n", std::sqrt(threshold), in_power[0]);
-            //}
+            float threshold = pow(sigma * 2 * in_power[0] * d_sf * std::sqrt(1.f * d_shr_len), 2) * d_threshold_factor;
 
             /*
              * Algo: Divide correlation output into slots. In every slot only one peak above the threshold is detected for
@@ -126,7 +121,7 @@ namespace gr {
                 for (int f = 0; f < flen; f++) {
                     uint16_t pos;
                     gr_complex *in = (gr_complex *) input_items[2 + f];
-                    volk_32fc_magnitude_squared_32f_u(d_volk_buffer, in + n * d_samples_per_peak_slot,
+                    volk_32fc_magnitude_squared_32f(d_volk_buffer, in + n * d_samples_per_peak_slot,
                                                       d_samples_per_peak_slot);
                     volk_32f_index_max_16u(&pos, d_volk_buffer, d_samples_per_peak_slot);
                     if (d_volk_buffer[pos] > max_abs) {

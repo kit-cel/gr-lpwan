@@ -9,7 +9,7 @@
     </make>
 
     <param>
-        <name>Spread Factor</name>
+        <name>Spreading Factor</name>
         <key>sf</key>
         <type>int</type>
     </param>
@@ -24,7 +24,7 @@
         <type>int</type>
     </param>
     <param>
-        <name>OVSF Log Spread Factor</name>
+        <name>OVSF Log Spreading Factor</name>
         <key>ovsf_log_sf</key>
         <type>int</type>
     </param>
@@ -53,6 +53,7 @@
         <name>Preamble Corr Debug</name>
         <key>debug_out</key>
         <type>int</type>
+        <hide>part</hide>
     </param>
     <param>
         <name>Chiprate</name>
@@ -77,6 +78,7 @@
         <name>Filter Taps</name>
         <key>filt_taps</key>
         <type>real_vector</type>
+        <hide>part</hide>
     </param>
 
 
