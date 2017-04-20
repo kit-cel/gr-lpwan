@@ -49,6 +49,7 @@ namespace gr {
              *
              * @param sf gold code spreading factor
              * @param seed seed of the cold gode generator for the data payload
+             * @param preamble_seed seed of the cold gode generator for the preamble, assumed reset_per_symbol = true
              * @param ovsf_code_index ovsf code index [0, 2^ovsf_log_sf-1]
              * @param ovsf_log_sf ovsf spreading factor [0, 8]
              * @param sps samples per symbol, interpolation factor
@@ -64,7 +65,7 @@ namespace gr {
              * @return
              */
             static sptr
-            make(int sf, int seed, int ovsf_code_index, int ovsf_log_sf, int sps, int psdu_len, int modulation,
+            make(int sf, int seed, int preamble_seed, int ovsf_code_index, int ovsf_log_sf, int sps, int psdu_len, int modulation,
                  int chiprate, bool reset_per_symbol, bool dll_active, int dll_delta, float dll_gain,
                  float dll_error_reset, float dll_cmp);
         };

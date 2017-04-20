@@ -45,9 +45,11 @@ namespace gr {
        * \brief Return a shared_ptr to a new instance of lpwan::dsss_diff_decoding_ff.
        *
        * @param len_tag length tag key
+       * @param phase_ref additional phase reference symbol from preamble is in input stream
+       * @param shr_len length of the SHR, not needed if phase_ref == false
        * @return
        */
-      static sptr make(std::string len_tag);
+      static sptr make(std::string len_tag, bool phase_ref, int shr_len);
     };
 
   } // namespace lpwan

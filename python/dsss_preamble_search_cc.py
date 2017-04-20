@@ -62,12 +62,12 @@ class dsss_preamble_search_cc(gr.hier_block2):
 
         #delayed signal to detector
         if mod == "bpsk":
-            self.rx_delay = sf*sps-3
+            self.rx_delay = sf*sps-3 + sf*sps
             detector = dsss_preamble_detector_cc_make(freqs, shr_len, sf, sps, chiprate, filt_taps)
             delay_sig = gnuradio.blocks.delay(gr.sizeof_gr_complex, self.rx_delay)
             print "Filterbank for BPSK"
         else:
-            self.rx_delay = sf*sps/2-3
+            self.rx_delay = sf*sps/2 - 3  + sf*sps/2
             detector = dsss_preamble_detector_cc_make(freqs, shr_len, sf, sps/2, chiprate, filt_taps)
             delay_sig = gnuradio.blocks.delay(gr.sizeof_gr_complex, self.rx_delay)
             print "Filterbank for OQPSK"
@@ -94,7 +94,7 @@ class dsss_preamble_search_cc(gr.hier_block2):
                 filt = filter.fft_filter_ccc(1, np.conj(np.flipud(taps).tolist()))
                 conj_mult = conj_multiply_delay_ccc_make(sf*sps/2)
                 demod = dsss_preamble_demod_cc_make(sf, sps/2, preamble_length, sfd_present)
-            self.connect(self, rot, filt, conj_mult, demod, (detector,i+2))
+            self.connect(self, rot, filt, conj_mult, demod, (detector, i+2))
             #debug output
             if debug_out == i:
                 self.connect(demod,(self,1))

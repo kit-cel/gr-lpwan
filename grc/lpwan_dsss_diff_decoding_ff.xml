@@ -4,12 +4,32 @@
   <key>lpwan_dsss_diff_decoding_ff</key>
   <category>[LPWAN]</category>
   <import>import lpwan</import>
-  <make>lpwan.dsss_diff_decoding_ff($len_tag)</make>
+  <make>lpwan.dsss_diff_decoding_ff($len_tag, $phase_ref, $shr_len)</make>
 
   <param>
     <name>Length tag</name>
     <key>len_tag</key>
     <type>string</type>
+  </param>
+
+  <param>
+    <name>Phase Reference</name>
+    <key>phase_ref</key>
+    <type>enum</type>
+    <option>
+      <name>True</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>False</name>
+      <key>False</key>
+    </option>
+  </param>
+
+  <param>
+    <name>SHR Length</name>
+    <key>shr_len</key>
+    <type>int</type>
   </param>
 
   <sink>

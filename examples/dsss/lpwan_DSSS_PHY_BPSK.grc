@@ -353,7 +353,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(992, 312)</value>
+      <value>(992, 328)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -408,7 +408,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(328, 292)</value>
+      <value>(328, 308)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -445,6 +445,49 @@
     <param>
       <key>vector</key>
       <value>shr.tolist()</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(752, 192)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>burst_tag</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Burst Tag (for USRP)</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>string</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>"burst"</value>
     </param>
   </block>
   <block>
@@ -584,7 +627,7 @@
     </param>
     <param>
       <key>burst_tag</key>
-      <value>"burst"</value>
+      <value>burst_tag</value>
     </param>
     <param>
       <key>comment</key>
@@ -600,7 +643,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1192, 296)</value>
+      <value>(1192, 312)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -702,7 +745,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(152, 380)</value>
+      <value>(152, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -952,15 +995,19 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(664, 496)</value>
+      <value>(664, 552)</value>
     </param>
     <param>
       <key>_rotation</key>
       <value>0</value>
     </param>
     <param>
-      <key>seed</key>
+      <key>seed_payload</key>
       <value>data_seed_rx</value>
+    </param>
+    <param>
+      <key>seed_preamble</key>
+      <value>data_seed_tx</value>
     </param>
     <param>
       <key>id</key>
@@ -1023,7 +1070,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 388)</value>
+      <value>(552, 404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1066,7 +1113,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(552, 308)</value>
+      <value>(552, 324)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1109,7 +1156,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 588)</value>
+      <value>(944, 572)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1130,6 +1177,14 @@
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>phase_ref</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>shr_len</key>
+      <value>len(shr)</value>
     </param>
   </block>
   <block>
@@ -1152,7 +1207,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(344, 388)</value>
+      <value>(344, 404)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1246,11 +1301,11 @@
     </param>
     <param>
       <key>freqs</key>
-      <value>[-3000, 0 , 3000]</value>
+      <value>freq_vec</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 528)</value>
+      <value>(360, 560)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1325,7 +1380,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(752, 352)</value>
+      <value>(752, 368)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1388,7 +1443,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(752, 272)</value>
+      <value>(752, 288)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1490,7 +1545,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(144, 316)</value>
+      <value>(144, 332)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1646,7 +1701,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1416, 324)</value>
+      <value>(1416, 340)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1818,7 +1873,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(24, 388)</value>
+      <value>(24, 404)</value>
     </param>
     <param>
       <key>_rotation</key>

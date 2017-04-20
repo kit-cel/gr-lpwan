@@ -132,10 +132,10 @@ namespace gr {
             }
 
 
-            int n = d_codebits_len-1;
+            int n = d_codebits_len;
 
-            std::valarray<float> rx(&soft[1], n);
-            std::valarray<float> tx(&hard_float[1], n);
+            std::valarray<float> rx(&soft[0], n);
+            std::valarray<float> tx(&hard_float[0], n);
 
             //delete corresponing vectors
             d_hard_bits_unchecked.pop_front();

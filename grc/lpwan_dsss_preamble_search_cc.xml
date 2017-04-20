@@ -13,21 +13,7 @@
         <key>sf</key>
         <type>int</type>
     </param>
-    <param>
-        <name>Goldcode Seed</name>
-        <key>seed</key>
-        <type>int</type>
-    </param>
-    <param>
-        <name>OVSF Code Index</name>
-        <key>ovsf_code_index</key>
-        <type>int</type>
-    </param>
-    <param>
-        <name>OVSF Log Spreading Factor</name>
-        <key>ovsf_log_sf</key>
-        <type>int</type>
-    </param>
+
     <param>
         <name>Frequency-Vector(Hz)</name>
         <key>freqs</key>
@@ -49,12 +35,7 @@
         <key>sps</key>
         <type>int</type>
     </param>
-    <param>
-        <name>Preamble Corr Debug</name>
-        <key>debug_out</key>
-        <type>int</type>
-        <hide>part</hide>
-    </param>
+
     <param>
         <name>Chiprate</name>
         <key>chiprate</key>
@@ -74,13 +55,37 @@
             <key>"oqpsk"</key>
         </option>
     </param>
+
+    <param>
+        <name>Goldcode Seed Preamble</name>
+        <key>seed</key>
+        <type>int</type>
+        <hide>part</hide>
+    </param>
+    <param>
+        <name>OVSF Code Index</name>
+        <key>ovsf_code_index</key>
+        <type>int</type>
+        <hide>part</hide>
+    </param>
+    <param>
+        <name>OVSF Log Spreading Factor</name>
+        <key>ovsf_log_sf</key>
+        <type>int</type>
+        <hide>part</hide>
+    </param>
     <param>
         <name>Filter Taps</name>
         <key>filt_taps</key>
         <type>real_vector</type>
         <hide>part</hide>
     </param>
-
+    <param>
+        <name>Preamble Corr Debug</name>
+        <key>debug_out</key>
+        <type>int</type>
+        <hide>part</hide>
+    </param>
 
 
     <sink>

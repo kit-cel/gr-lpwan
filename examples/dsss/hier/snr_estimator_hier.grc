@@ -18,7 +18,7 @@
     </param>
     <param>
       <key>comment</key>
-      <value></value>
+      <value>Good estimations only in pure AWGN enviroment</value>
     </param>
     <param>
       <key>description</key>
@@ -262,6 +262,49 @@
     </param>
     <param>
       <key>tailbiting</key>
+      <value>fec_tailbiting</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(592, 16)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fec_tailbiting</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>FEC Tailbiting</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>type</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
       <value>True</value>
     </param>
   </block>
@@ -328,7 +371,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(352, 20)</value>
+      <value>(336, 16)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -543,7 +586,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 20)</value>
+      <value>(216, 16)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -586,7 +629,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(496, 24)</value>
+      <value>(448, 16)</value>
     </param>
     <param>
       <key>_rotation</key>

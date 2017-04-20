@@ -29,13 +29,14 @@ namespace gr {
     class dsss_diff_decoding_ff_impl : public dsss_diff_decoding_ff
     {
      private:
-      // Nothing to declare in this block.
+      bool d_phase_ref;
+        int d_shr_len;
 
      protected:
       int calculate_output_stream_length(const gr_vector_int &ninput_items);
 
      public:
-      dsss_diff_decoding_ff_impl(std::string len_tag);
+      dsss_diff_decoding_ff_impl(std::string len_tag, bool phase_ref, int shr_len);
       ~dsss_diff_decoding_ff_impl();
 
       // Where all the action really happens

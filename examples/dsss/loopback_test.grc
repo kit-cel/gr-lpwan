@@ -434,7 +434,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(704, 296)</value>
+      <value>(704, 304)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -454,7 +454,7 @@
     </param>
     <param>
       <key>noise_voltage</key>
-      <value>8</value>
+      <value>2</value>
     </param>
     <param>
       <key>seed</key>
@@ -644,6 +644,10 @@
       <value></value>
     </param>
     <param>
+      <key>burst_tag</key>
+      <value>"burst"</value>
+    </param>
+    <param>
       <key>chiprate</key>
       <value>1000000</value>
     </param>
@@ -743,6 +747,10 @@
       <value></value>
     </param>
     <param>
+      <key>burst_tag</key>
+      <value>"burst"</value>
+    </param>
+    <param>
       <key>chiprate</key>
       <value>2000000</value>
     </param>
@@ -764,7 +772,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(664, 48)</value>
+      <value>(664, 44)</value>
     </param>
     <param>
       <key>_rotation</key>

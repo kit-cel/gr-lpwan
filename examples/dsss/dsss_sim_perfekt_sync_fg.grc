@@ -1340,7 +1340,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 428)</value>
+      <value>(800, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1360,6 +1360,14 @@
     </param>
     <param>
       <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>phase_ref</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>shr_len</key>
       <value>0</value>
     </param>
   </block>

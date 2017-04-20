@@ -34,6 +34,7 @@ namespace gr {
             //general
             int d_sf;
             int d_seed;
+            int d_preamble_seed;
             int d_ovsf_code_index;
             int d_ovsf_log_sf;
             int d_sps;
@@ -41,7 +42,8 @@ namespace gr {
             int d_chiprate;
             int d_modulation;
             bool d_reset_per_symbol;
-            std::vector<float> d_code;
+            std::vector<float> d_code_payload;
+            std::vector<float> d_code_preamble;
 
             //buffers
             gr_complex *d_volk_buffer;
@@ -69,8 +71,8 @@ namespace gr {
                 gr_complex early=0, late=0;
                 float dll_error = 0;
                 float dll_prompt= 0;
-                std::vector<float> dll_error_debug;
-                std::vector<float> dll_prompt_debug;
+//                std::vector<float> dll_error_debug;
+//                std::vector<float> dll_prompt_debug;
 
                 float freq;
                 gr_complex phase;
@@ -84,7 +86,7 @@ namespace gr {
             std::deque<s_packet_despread> d_packets;
 
         public:
-            dsss_despread_cc_impl(int sf, int seed, int ovsf_code_index, int ovsf_log_sf, int sps, int psdu_len,
+            dsss_despread_cc_impl(int sf, int seed, int preamble_seed, int ovsf_code_index, int ovsf_log_sf, int sps, int psdu_len,
                                   int modulation, int chiprate, bool reset_per_symbol, bool dll_active, int dll_delta,
                                   float dll_gain, float dll_error_reset, float dll_cmp);
 

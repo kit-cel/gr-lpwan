@@ -121,7 +121,7 @@ namespace gr {
                 for (int f = 0; f < flen; f++) {
                     uint16_t pos;
                     gr_complex *in = (gr_complex *) input_items[2 + f];
-                    volk_32fc_magnitude_squared_32f(d_volk_buffer, in + n * d_samples_per_peak_slot,
+                    volk_32fc_magnitude_squared_32f_u(d_volk_buffer, in + n * d_samples_per_peak_slot,
                                                       d_samples_per_peak_slot);
                     volk_32f_index_max_16u(&pos, d_volk_buffer, d_samples_per_peak_slot);
                     if (d_volk_buffer[pos] > max_abs) {

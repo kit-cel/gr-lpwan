@@ -4,7 +4,7 @@
   <key>lpwan_dsss_despread_cc</key>
   <category>[LPWAN]</category>
   <import>import lpwan</import>
-  <make>lpwan.dsss_despread_cc($sf, $seed, $ovsf_code_index, $ovsf_log_sf, $sps,
+  <make>lpwan.dsss_despread_cc($sf, $seed_payload, $seed_preamble, $ovsf_code_index, $ovsf_log_sf, $sps,
     $psdu_len, $modulation, $chiprate, $reset_per_symbol, $dll_active,
     $dll_delta,$dll_gain, $dll_error_reset, $dll_cmp)</make>
 
@@ -13,21 +13,7 @@
     <key>sf</key>
     <type>int</type>
   </param>
-  <param>
-    <name>Goldcode Seed</name>
-    <key>seed</key>
-    <type>int</type>
-  </param>
-  <param>
-    <name>OVSF Code Index</name>
-    <key>ovsf_code_index</key>
-    <type>int</type>
-  </param>
-  <param>
-    <name>OVSF Log Spreading Factor</name>
-    <key>ovsf_log_sf</key>
-    <type>int</type>
-  </param>
+
   <param>
     <name>Samples Per Symbol</name>
     <key>sps</key>
@@ -69,7 +55,30 @@
       <key>1</key>
     </option>
   </param>
-
+  <param>
+    <name>Goldcode Seed Payload</name>
+    <key>seed_payload</key>
+    <type>int</type>
+    <hide>part</hide>
+  </param>
+  <param>
+    <name>Goldcode Seed Preamble</name>
+    <key>seed_preamble</key>
+    <type>int</type>
+    <hide>part</hide>
+  </param>
+  <param>
+    <name>OVSF Code Index</name>
+    <key>ovsf_code_index</key>
+    <type>int</type>
+    <hide>part</hide>
+  </param>
+  <param>
+    <name>OVSF Log Spreading Factor</name>
+    <key>ovsf_log_sf</key>
+    <type>int</type>
+    <hide>part</hide>
+  </param>
   <param>
     <name>DLL Active</name>
     <key>dll_active</key>
