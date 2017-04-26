@@ -76,7 +76,7 @@ class qa_dsss_preamble_search_cc (gr_unittest.TestCase):
         tags = self.snk_data.tags()
         searched_positions = np.array([])
         for i in range(len(tags)):
-            searched_positions = np.append(searched_positions,tags[i].offset)
+            searched_positions = np.append(searched_positions,tags[i].offset + sf)
 
         found = np.in1d(positions, searched_positions.astype(int))
         self.assertTrue(np.all(found))
@@ -123,7 +123,7 @@ class qa_dsss_preamble_search_cc (gr_unittest.TestCase):
         tags = self.snk_data.tags()
         searched_positions = np.array([])
         for i in range(len(tags)):
-            searched_positions = np.append(searched_positions,tags[i].offset)
+            searched_positions = np.append(searched_positions,tags[i].offset + sf)
 
         found = np.in1d(positions, searched_positions.astype(int))
         self.assertTrue(np.all(found))
@@ -175,7 +175,7 @@ class qa_dsss_preamble_search_cc (gr_unittest.TestCase):
         tags = self.snk_data.tags()
         searched_positions = np.array([])
         for i in range(len(tags)):
-            searched_positions = np.append(searched_positions,tags[i].offset)
+            searched_positions = np.append(searched_positions,tags[i].offset + sf)
         found = np.in1d(positions, searched_positions.astype(int))
         self.assertTrue(np.all(found))
 
@@ -235,7 +235,7 @@ class qa_dsss_preamble_search_cc (gr_unittest.TestCase):
         tags = self.snk_data.tags()
         searched_positions = np.array([])
         for i in range(len(tags)):
-            searched_positions = np.append(searched_positions,tags[i].offset)
+            searched_positions = np.append(searched_positions,tags[i].offset + sf)
         found = np.in1d(positions, searched_positions.astype(int))
         self.assertTrue(np.all(found))
 
@@ -294,7 +294,7 @@ class qa_dsss_preamble_search_cc (gr_unittest.TestCase):
         tags = self.snk_data.tags()
         searched_positions = np.array([])
         for i in range(len(tags)):
-            searched_positions = np.append(searched_positions,tags[i].offset)
+            searched_positions = np.append(searched_positions,tags[i].offset + sf)
         found = np.in1d(positions, searched_positions.astype(int))
         self.assertTrue(np.all(found))
 
@@ -353,7 +353,7 @@ class qa_dsss_preamble_search_cc (gr_unittest.TestCase):
         tags = self.snk_data.tags()
         searched_positions = np.array([])
         for i in range(len(tags)):
-            searched_positions = np.append(searched_positions,tags[i].offset)
+            searched_positions = np.append(searched_positions,tags[i].offset + sf)
         found = np.in1d(positions, searched_positions.astype(int))
         self.assertTrue(np.all(found))
 
