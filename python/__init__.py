@@ -19,7 +19,6 @@ from dsss_phy import physical_layer as dsss_phy
 from dsss_const import *
 from dsss_preamble_search_cc import dsss_preamble_search_cc
 from message_counter import message_counter
-from dsss_tx_gain_sweep import dsss_tx_gain_sweep
 
 
 
