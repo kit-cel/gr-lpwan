@@ -83,7 +83,6 @@
     <name>DLL Active</name>
     <key>dll_active</key>
     <type>enum</type>
-    <hide>part</hide>
     <option>
       <name>True</name>
       <key>True</key>

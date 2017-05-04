@@ -102,7 +102,7 @@ intlvr_seq_512 = np.array(
 
 
 
-def gen_freq_hypo_vec(sf, chiprate, maxfreq, corr_treshold=1/np.sqrt(2)):
+def gen_freq_hypo_vec(sf, chiprate, maxfreq, corr_treshold=1./2):
     """
     Generates a vector with frequency hyptothesis to search the preamble.
     :param sf: Spreading factor
