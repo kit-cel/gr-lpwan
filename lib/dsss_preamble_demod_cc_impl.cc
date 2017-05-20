@@ -81,25 +81,11 @@ namespace gr {
             const gr_complex *in = (const gr_complex *) input_items[0];
             gr_complex *out = (gr_complex *) output_items[0];
 
-//            float ref;
-//            gr_complex m;
-
             for (int n = 0; n < noutput_items; n++) {
                 out[n] = 0;
-
-//                ref = 0;
-//                m = 0;
-//                for (int i = 1; i < d_shr_length; i++) {
-//                    m += in[n + i * d_sps * d_sf];
-//                }
-//                m = m / (float)d_shr_length;
-//                for (int i = 1; i < d_shr_length; i++) {
-//                    ref += pow(abs(in[n + i * d_sps * d_sf] - m), 2);
-//                }
                 for (int i = 1; i < d_shr_length; i++) {
                     out[n] -= (in[n + i * d_sps * d_sf]) * d_shr[i];
                 }
-//                out[n] /= sqrt(ref * d_shr_length);
             }
             return noutput_items;
         }

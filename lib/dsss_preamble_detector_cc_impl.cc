@@ -100,8 +100,6 @@ namespace gr {
             /*
              * Algo: Divide correlation output into slots. In every slot only one peak above the threshold is detected for
              * all frequency hyptothesis. This is due to too many detected packets in high SNR environment.
-             * TODO: Take care of slot boundaries. A peak there could be detected twice!
-             * TODO: better peak finding algorithm? correlation coefficient? cell-averaging CFAR?
              */
             int slots = noutput_items / d_samples_per_peak_slot;
             int flen = d_freqs.size();
