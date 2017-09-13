@@ -11,8 +11,8 @@ author:
   - Kristian Maier <kristian.maier@gmx.de>
 copyright_owner:
   - Kristian Maier
-license:
-#repo: # Put the URL of the repository here, or leave blank for default
+license: GPLv3
+repo: https://github.com/kit-cel/gr-lpwan.git
 #website: <module_website>
 #icon: <icon_url>
 ---
