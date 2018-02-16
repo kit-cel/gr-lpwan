@@ -33,7 +33,7 @@ namespace gr {
      * \ingroup lpwan
      *
      */
-    class lpwan_API conj_multiply_delay_ccc : virtual public gr::sync_block
+    class LPWAN_API conj_multiply_delay_ccc : virtual public gr::sync_block
     {
      public:
       typedef boost::shared_ptr<conj_multiply_delay_ccc> sptr;

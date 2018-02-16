@@ -42,7 +42,7 @@ namespace gr {
      * \brief mac frame
      *
      */
-    class lpwan_API mac_field_frame : protected mac_field
+    class LPWAN_API mac_field_frame : protected mac_field
     {
     public:
 

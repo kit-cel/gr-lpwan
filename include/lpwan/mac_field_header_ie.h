@@ -42,7 +42,7 @@ namespace gr {
      * \brief header ie base class
      *
      */
-    class lpwan_API mac_field_header_ie : private mac_field
+    class LPWAN_API mac_field_header_ie : private mac_field
     {
     public:
 

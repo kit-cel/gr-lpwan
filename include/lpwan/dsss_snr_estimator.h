@@ -36,7 +36,7 @@ namespace gr {
      * \ingroup lpwan
      *
      */
-    class lpwan_API dsss_snr_estimator : virtual public gr::sync_block
+    class LPWAN_API dsss_snr_estimator : virtual public gr::sync_block
     {
      public:
       typedef boost::shared_ptr<dsss_snr_estimator> sptr;

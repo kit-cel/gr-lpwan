@@ -31,7 +31,7 @@ namespace gr {
          * \brief generates the codes needed in PHY
          *
          */
-        class lpwan_API dsss_codes {
+        class LPWAN_API dsss_codes {
         public:
             static const std::vector<int> intlvr_seq256;
             static const std::vector<int> intlvr_seq384;

@@ -44,7 +44,7 @@ namespace gr {
 
         } address_info;
 
-        class lpwan_API mac_format {
+        class LPWAN_API mac_format {
 
             public:
 

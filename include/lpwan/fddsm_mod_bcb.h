@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /* 
- * Copyright 2016 Kristian Maier <kristian.maier@gmx.de>.
+ * Copyright 2018 <+YOU OR YOUR COMPANY+>.
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,41 +19,39 @@
  */
 
 
-#ifndef INCLUDED_LPWAN_DSSS_DIFF_DECODING_FF_H
-#define INCLUDED_LPWAN_DSSS_DIFF_DECODING_FF_H
+#ifndef INCLUDED_LPWAN_FDDSM_MOD_BCB_H
+#define INCLUDED_LPWAN_FDDSM_MOD_BCB_H
 
 #include <lpwan/api.h>
-#include <gnuradio/tagged_stream_block.h>
+#include <gnuradio/block.h>
 
 namespace gr {
   namespace lpwan {
 
     /*!
-     * \brief Differential Decoding for LECIM DSSS Phy.
-     *
-     * This tagged stream block performs differential decoding described in Std 23.2.5.
-     *
+     * \brief Modulates a bit stream using Full Diversity Differential Spatial Modulation (FD-DSM). Input are unpacked
+     * bits, output are a stream of antenna indices (0/1) and corresponding complex constellation symbols.
      * \ingroup lpwan
      *
      */
-    class LPWAN_API dsss_diff_decoding_ff : virtual public gr::tagged_stream_block
+    class LPWAN_API fddsm_mod_bcb : virtual public gr::block
     {
      public:
-      typedef boost::shared_ptr<dsss_diff_decoding_ff> sptr;
+      typedef boost::shared_ptr<fddsm_mod_bcb> sptr;
 
       /*!
-       * \brief Return a shared_ptr to a new instance of lpwan::dsss_diff_decoding_ff.
+       * \brief Return a shared_ptr to a new instance of lpwan::fddsm_mod_bcb.
        *
-       * @param len_tag length tag key
-       * @param phase_ref additional phase reference symbol from preamble is in input stream
-       * @param shr_len length of the SHR, not needed if phase_ref == false
-       * @return
+       * To avoid accidental use of raw pointers, lpwan::fddsm_mod_bcb's
+       * constructor is in a private implementation
+       * class. lpwan::fddsm_mod_bcb::make is the public interface for
+       * creating new instances.
        */
-      static sptr make(std::string len_tag, bool phase_ref, int shr_len);
+      static sptr make(int bps, int packet_len_bytes);
     };
 
   } // namespace lpwan
 } // namespace gr
 
-#endif /* INCLUDED_LPWAN_DSSS_DIFF_DECODING_FF_H */
+#endif /* INCLUDED_LPWAN_FDDSM_MOD_BCB_H */
 

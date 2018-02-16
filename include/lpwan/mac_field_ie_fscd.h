@@ -62,7 +62,7 @@ namespace gr {
      * \brief fscd header ie
      *
      */
-    class lpwan_API mac_field_ie_fscd : public mac_field_header_ie
+    class LPWAN_API mac_field_ie_fscd : public mac_field_header_ie
     {
     public:
 

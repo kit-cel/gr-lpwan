@@ -37,7 +37,7 @@ namespace gr {
          * \ingroup lpwan
          *
          */
-        class lpwan_API dsss_deinterleaver_ff : virtual public gr::tagged_stream_block {
+        class LPWAN_API dsss_deinterleaver_ff : virtual public gr::tagged_stream_block {
         public:
             typedef boost::shared_ptr<dsss_deinterleaver_ff> sptr;
 

@@ -36,7 +36,7 @@ namespace gr {
      * \ingroup lpwan
      *
      */
-    class lpwan_API dsss_spreading_bb : virtual public gr::sync_interpolator
+    class LPWAN_API dsss_spreading_bb : virtual public gr::sync_interpolator
     {
      public:
       typedef boost::shared_ptr<dsss_spreading_bb> sptr;

@@ -43,7 +43,7 @@ namespace gr {
          * \ingroup lpwan
          *
          */
-        class lpwan_API dsss_fragmentation : virtual public gr::block {
+        class LPWAN_API dsss_fragmentation : virtual public gr::block {
         public:
             typedef boost::shared_ptr<dsss_fragmentation> sptr;
 

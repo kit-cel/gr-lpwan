@@ -32,7 +32,7 @@ namespace gr {
      * \brief frak packet status field
      *
      */
-    class lpwan_API mac_field_frag_status : private mac_field
+    class LPWAN_API mac_field_frag_status : private mac_field
     {
     public:
 

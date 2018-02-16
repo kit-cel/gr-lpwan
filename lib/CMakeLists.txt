@@ -44,7 +44,8 @@ list(APPEND lpwan_sources
     mac_field_ie_fscd.cc
     mac_field_fragment.cc
     mac_field_frak.cc
-    dsss_filter_crc_packets_impl.cc )
+    dsss_filter_crc_packets_impl.cc
+    fddsm_mod_bcb_impl.cc    )
 
 list(APPEND lpwan_libs
     ${Boost_LIBRARIES}
