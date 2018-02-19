@@ -23,6 +23,8 @@
 
 #include <lpwan/fddsm_mod_bcb.h>
 
+#include <vector>
+
 namespace gr {
   namespace lpwan {
 
@@ -30,7 +32,14 @@ namespace gr {
     {
      private:
       int d_bps;
+      int d_L;
       int d_packet_len_bytes;
+
+      char d_q_prev_state;
+      std::vector<gr_complex> d_s_prev;
+
+      std::vector<  std::vector<char>  > d_antenna_indices;
+      std::vector<  std::vector<gr_complex>  > d_constellation_symbols;
 
      public:
       fddsm_mod_bcb_impl(int bps, int packet_len_bytes);
