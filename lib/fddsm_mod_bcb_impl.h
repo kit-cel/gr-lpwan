@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /* 
- * Copyright 2018 <+YOU OR YOUR COMPANY+>.
+ * Copyright 2018 Felix Wunsch <felix.wunsch@kit.edu>.
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,9 +35,10 @@ namespace gr {
       int d_L;
       int d_packet_len_bytes;
 
+      int d_packet_len_symbols;
+      std::vector<char> d_q;
       char d_q_prev_state;
       std::vector<gr_complex> d_s_prev;
-
       std::vector<  std::vector<char>  > d_antenna_indices;
       std::vector<  std::vector<gr_complex>  > d_constellation_symbols;
 
@@ -45,13 +46,12 @@ namespace gr {
       fddsm_mod_bcb_impl(int bps, int packet_len_bytes);
       ~fddsm_mod_bcb_impl();
 
-      // Where all the action really happens
-      void forecast (int noutput_items, gr_vector_int &ninput_items_required);
+      void forecast(int noutput_items, gr_vector_int &ninput_items_required);
 
       int general_work(int noutput_items,
-           gr_vector_int &ninput_items,
-           gr_vector_const_void_star &input_items,
-           gr_vector_void_star &output_items);
+                       gr_vector_int &ninput_items,
+                       gr_vector_const_void_star &input_items,
+                       gr_vector_void_star &output_items);
     };
 
   } // namespace lpwan

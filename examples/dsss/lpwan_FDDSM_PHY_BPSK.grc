@@ -353,7 +353,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1096, 768)</value>
+      <value>(1272, 768)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -463,7 +463,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 460)</value>
+      <value>(912, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -518,7 +518,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 540)</value>
+      <value>(912, 540)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -867,7 +867,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1264, 740)</value>
+      <value>(1440, 740)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -965,7 +965,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1290,49 +1290,6 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(600, 692)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>lpwan_dsss_diff_coding_bb_0</value>
-    </param>
-    <param>
-      <key>len_tag</key>
-      <value>len_tag_var</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-  </block>
-  <block>
-    <key>lpwan_dsss_diff_coding_bb</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
@@ -1427,7 +1384,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1604,7 +1561,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 628)</value>
+      <value>(976, 628)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1708,6 +1665,53 @@
     <param>
       <key>spread_factor</key>
       <value>spread_factor</value>
+    </param>
+  </block>
+  <block>
+    <key>lpwan_fddsm_mod_bcb</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(608, 464)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lpwan_fddsm_mod_bcb_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>bps</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>packet_len_bytes</key>
+      <value>32</value>
     </param>
   </block>
   <block>
@@ -1968,7 +1972,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1264, 476)</value>
+      <value>(1440, 476)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2011,7 +2015,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1264, 604)</value>
+      <value>(1440, 604)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2215,6 +2219,92 @@
     </param>
   </block>
   <block>
+    <key>pad_sink</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(720, 592)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pad_sink_3</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>byte</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>antenna_index</value>
+    </param>
+    <param>
+      <key>num_streams</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>optional</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>pad_sink</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(712, 684)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pad_sink_4</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>constellation_symbols</value>
+    </param>
+    <param>
+      <key>num_streams</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>optional</key>
+      <value>False</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>pad_source</key>
     <param>
       <key>comment</key>
@@ -2222,7 +2312,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2689,7 +2779,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 564)</value>
+      <value>(1176, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2760,7 +2850,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1000, 436)</value>
+      <value>(1176, 436)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3013,6 +3103,12 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>lpwan_dsss_interleaver_bb_0</source_block_id>
+    <sink_block_id>lpwan_fddsm_mod_bcb_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>lpwan_dsss_normalize_ff_0</source_block_id>
     <sink_block_id>dsss_fec_dec_fb_0</sink_block_id>
     <source_key>0</source_key>
@@ -3040,6 +3136,18 @@
     <source_block_id>lpwan_dsss_spreading_bb_0_0</source_block_id>
     <sink_block_id>digital_chunks_to_symbols_xx_0</sink_block_id>
     <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>lpwan_fddsm_mod_bcb_0</source_block_id>
+    <sink_block_id>pad_sink_3</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>lpwan_fddsm_mod_bcb_0</source_block_id>
+    <sink_block_id>pad_sink_4</sink_block_id>
+    <source_key>1</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>

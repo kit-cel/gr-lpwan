@@ -5,13 +5,15 @@
   <import>import lpwan</import>
   <make>lpwan.fddsm_mod_bcb($bps, $packet_len_bytes)</make>
   <param>
-    <name>Bps</name>
+    <name>bits per symbol matrix (2x2)</name>
     <key>bps</key>
+    <value>2</value>
     <type>int</type>
   </param>
   <param>
-    <name>Packet_len_bytes</name>
+    <name>packet length (bytes)</name>
     <key>packet_len_bytes</key>
+    <value>32</value>
     <type>int</type>
   </param>
   <sink>
@@ -19,11 +21,11 @@
     <type>byte</type>
   </sink>
   <source>
-    <name>out</name>
+    <name>ant_out</name>
     <type>byte</type>
   </source>
   <source>
-    <name>out</name>
+    <name>sym_out</name>
     <type>complex</type>
   </source>
 </block>

@@ -23,7 +23,7 @@
 #define INCLUDED_LPWAN_FDDSM_MOD_BCB_H
 
 #include <lpwan/api.h>
-#include <gnuradio/block.h>
+#include <gnuradio/tagged_stream_block.h>
 
 namespace gr {
   namespace lpwan {
