@@ -39,6 +39,8 @@
 #include "lpwan/fddsm_mod_bcb.h"
 %}
 
+%include "lpwan/dsss_codes.h"
+
 %include "lpwan/dsss_interleaver_bb.h"
 GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_interleaver_bb);
 %include "lpwan/dsss_codes.h"

@@ -54,10 +54,10 @@ namespace gr {
 
             static std::vector<unsigned char> invert_code_uc(const std::vector<unsigned char> &code);
 
-        private:
             static std::vector<float> byte_to_float_vector(std::vector<unsigned char> bytevec);
-            dsss_codes();
-            ~dsss_codes();
+
+            dsss_codes(){};
+            ~dsss_codes(){};
         };
 
     } // namespace lpwan
