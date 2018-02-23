@@ -30,6 +30,10 @@
 namespace gr {
     namespace lpwan {
 
+        dsss_codes::dsss_codes() {}
+
+        dsss_codes::~dsss_codes() {}
+
 
         /**
          * Generates the goldcode sequence. See 23.2.6.1

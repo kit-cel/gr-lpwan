@@ -49,7 +49,7 @@ namespace gr {
               d_packet_len_symbols(d_packet_len_bytes * 8 / bps)
     {
       d_L = 1 << (bps-1); // 1 bit is encoded into the antenna information
-      if(d_L > 8){ throw std::runtime_error("L > 0 is not supported.");}
+      if(d_L > 8){ throw std::runtime_error("L > 8 is not supported.");}
 
       // Generate lookup tables for Aq and Vl
       d_antenna_indices = {{0,1}, {1,0}};
