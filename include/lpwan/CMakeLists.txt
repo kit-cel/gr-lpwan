@@ -40,6 +40,6 @@ install(FILES
     mac_field_fragment.h
     mac_field_frak.h
     dsss_filter_crc_packets.h
-    DESTINATION ${GR_INCLUDE_DIR}/gnuradio/lpwan
+    partial_repeat_cc.h DESTINATION ${GR_INCLUDE_DIR}/gnuradio/lpwan
     COMPONENT "lpwan_devel"
 )

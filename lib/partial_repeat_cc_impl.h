@@ -1,6 +1,6 @@
 /* -*- c++ -*- */
 /* 
- * Copyright 2017 Kristian Maier <kristian.maier@gmx.de>.
+ * Copyright 2018 <+YOU OR YOUR COMPANY+>.
  * 
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,35 +18,35 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifndef INCLUDED_LPWAN_PARTIAL_REPEAT_CC_IMPL_H
+#define INCLUDED_LPWAN_PARTIAL_REPEAT_CC_IMPL_H
 
-#ifndef INCLUDED_LPWAN_DSSS_FILTER_CRC_PACKETS_H
-#define INCLUDED_LPWAN_DSSS_FILTER_CRC_PACKETS_H
-
-#include <lpwan/api.h>
-#include <gnuradio/sync_block.h>
+#include <lpwan/partial_repeat_cc.h>
 
 namespace gr {
   namespace lpwan {
 
-    /*!
-     * \brief Filters out packets with unsuccessful CRC check.
-     * \ingroup lpwan
-     *
-     */
-    class LPWAN_API dsss_filter_crc_packets : virtual public gr::sync_block
+    class partial_repeat_cc_impl : public partial_repeat_cc
     {
-     public:
-      typedef boost::shared_ptr<dsss_filter_crc_packets> sptr;
+     private:
+      int d_overlap;
+      int d_total;
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of lpwan::dsss_filter_crc_packets.
-       *
-       */
-      static sptr make();
+     public:
+      partial_repeat_cc_impl(int len_overlap, int len_total);
+      ~partial_repeat_cc_impl();
+
+      // Where all the action really happens
+      void forecast (int noutput_items, gr_vector_int &ninput_items_required);
+
+      int general_work(int noutput_items,
+           gr_vector_int &ninput_items,
+           gr_vector_const_void_star &input_items,
+           gr_vector_void_star &output_items);
     };
 
   } // namespace lpwan
 } // namespace gr
 
-#endif /* INCLUDED_LPWAN_DSSS_FILTER_CRC_PACKETS_H */
+#endif /* INCLUDED_LPWAN_PARTIAL_REPEAT_CC_IMPL_H */
 

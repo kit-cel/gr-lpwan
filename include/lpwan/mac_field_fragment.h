@@ -40,7 +40,7 @@ namespace gr {
          * \brief fragment packet
          *
          */
-        class lpwan_API mac_field_fragment : public mac_field {
+        class LPWAN_API mac_field_fragment : public mac_field {
         public:
 
             std::vector<uint8_t> get_data();

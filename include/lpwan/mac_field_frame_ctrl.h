@@ -56,7 +56,7 @@ namespace gr {
      * \brief frame control field
      *
      */
-    class lpwan_API mac_field_frame_ctrl : private mac_field
+    class LPWAN_API mac_field_frame_ctrl : private mac_field
     {
 
     public:

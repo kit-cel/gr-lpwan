@@ -1,0 +1,25 @@
+<block>
+  <name>Partial Repeat</name>
+  <key>lpwan_partial_repeat_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.partial_repeat_cc($len_overlap, $len_total)</make>
+  <param>
+    <name>Length overlap</name>
+    <key>len_overlap</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Length total</name>
+    <key>len_total</key>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

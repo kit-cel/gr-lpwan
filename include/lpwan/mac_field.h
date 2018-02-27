@@ -31,7 +31,7 @@ namespace gr {
      * \brief base class for fragmentation bitfields
      *
      */
-    class lpwan_API mac_field
+    class LPWAN_API mac_field
     {
     public:
         virtual std::vector<uint8_t> get_data() = 0;

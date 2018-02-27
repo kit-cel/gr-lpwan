@@ -32,7 +32,7 @@ namespace gr {
      * \brief calculation of CRC
      *
      */
-    class lpwan_API mac_crc
+    class LPWAN_API mac_crc
     {
     public:
         void append_crc(std::vector<uint8_t> &data);

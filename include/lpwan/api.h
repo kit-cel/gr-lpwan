@@ -20,9 +20,9 @@
 #include <gnuradio/attributes.h>
 
 #ifdef gnuradio_lpwan_EXPORTS
-#  define lpwan_API __GR_ATTR_EXPORT
+#  define LPWAN_API __GR_ATTR_EXPORT
 #else
-#  define lpwan_API __GR_ATTR_IMPORT
+#  define LPWAN_API __GR_ATTR_IMPORT
 #endif
 
 #endif /* INCLUDED_LPWAN_API_H */

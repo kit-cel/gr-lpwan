@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#define lpwan_API
+#define LPWAN_API
 
 %include <gnuradio.i>
 
@@ -36,6 +36,7 @@
 #include "lpwan/dsss_snr_estimator.h"
 #include "lpwan/dsss_fragmentation.h"
 #include "lpwan/dsss_filter_crc_packets.h"
+#include "lpwan/partial_repeat_cc.h"
 %}
 
 %include "lpwan/dsss_interleaver_bb.h"
@@ -68,3 +69,5 @@ GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_fragmentation);
 %include "lpwan/dsss_filter_crc_packets.h"
 GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_filter_crc_packets);
 
+%include "lpwan/partial_repeat_cc.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, partial_repeat_cc);

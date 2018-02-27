@@ -56,3 +56,4 @@ GR_ADD_TEST(qa_dsss_despread_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}
 GR_ADD_TEST(qa_dsss_normalize_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_normalize_ff.py)
 GR_ADD_TEST(qa_dsss_fragmentation ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_fragmentation.py)
 GR_ADD_TEST(qa_dsss_snr_estimator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_snr_estimator.py)
+GR_ADD_TEST(qa_partial_repeat_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_partial_repeat_cc.py)
