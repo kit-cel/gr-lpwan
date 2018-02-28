@@ -29,22 +29,24 @@ namespace gr {
   namespace lpwan {
 
     partial_repeat_cc::sptr
-    partial_repeat_cc::make(int len_overlap, int len_total)
+    partial_repeat_cc::make(int stepsize, int len_total)
     {
       return gnuradio::get_initial_sptr
-        (new partial_repeat_cc_impl(len_overlap, len_total));
+        (new partial_repeat_cc_impl(stepsize, len_total));
     }
 
     /*
      * The private constructor
      */
-    partial_repeat_cc_impl::partial_repeat_cc_impl(int len_overlap, int len_total)
+    partial_repeat_cc_impl::partial_repeat_cc_impl(int stepsize, int len_total)
       : gr::block("partial_repeat_cc",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(gr_complex))),
-        d_overlap(len_overlap),
+        d_stepsize(stepsize),
         d_total(len_total)
-    {}
+    {
+      set_output_multiple(d_total);
+    }
 
     /*
      * Our virtual destructor.
@@ -70,7 +72,7 @@ namespace gr {
 
       memcpy(out, in, sizeof(gr_complex) * d_total);
 
-      consume_each (d_overlap);
+      consume_each (d_stepsize);
 
       // Tell runtime system how many output items we produced.
       return d_total;

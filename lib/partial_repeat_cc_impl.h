@@ -29,11 +29,11 @@ namespace gr {
     class partial_repeat_cc_impl : public partial_repeat_cc
     {
      private:
-      int d_overlap;
+      int d_stepsize;
       int d_total;
 
      public:
-      partial_repeat_cc_impl(int len_overlap, int len_total);
+      partial_repeat_cc_impl(int stepsize, int len_total);
       ~partial_repeat_cc_impl();
 
       // Where all the action really happens

@@ -3,10 +3,10 @@
   <key>lpwan_partial_repeat_cc</key>
   <category>[LPWAN]</category>
   <import>import lpwan</import>
-  <make>lpwan.partial_repeat_cc($len_overlap, $len_total)</make>
+  <make>lpwan.partial_repeat_cc($stepsize, $len_total)</make>
   <param>
-    <name>Length overlap</name>
-    <key>len_overlap</key>
+    <name>Step size</name>
+    <key>stepsize</key>
     <type>int</type>
   </param>
   <param>

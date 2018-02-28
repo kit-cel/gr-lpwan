@@ -71,3 +71,4 @@ GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_filter_crc_packets);
 
 %include "lpwan/partial_repeat_cc.h"
 GR_SWIG_BLOCK_MAGIC2(lpwan, partial_repeat_cc);
+

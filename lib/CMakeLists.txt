@@ -45,7 +45,8 @@ list(APPEND lpwan_sources
     mac_field_fragment.cc
     mac_field_frak.cc
     dsss_filter_crc_packets_impl.cc
-    partial_repeat_cc_impl.cc )
+    partial_repeat_cc_impl.cc
+    )
 
 list(APPEND lpwan_libs
     ${Boost_LIBRARIES}

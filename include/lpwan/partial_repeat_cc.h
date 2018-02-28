@@ -29,7 +29,7 @@ namespace gr {
   namespace lpwan {
 
     /*!
-     * \brief Returns chunks of length len_total of the incoming stream with overlap len_overlap.
+     * \brief Returns chunks of length len_total of the incoming stream and proceeds by stepsize items each time.
      * \ingroup lpwan
      *
      */
@@ -46,7 +46,7 @@ namespace gr {
        * class. lpwan::partial_repeat_cc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int len_overlap, int len_total);
+      static sptr make(int stepsize, int len_total);
     };
 
   } // namespace lpwan
