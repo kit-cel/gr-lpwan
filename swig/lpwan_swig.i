@@ -37,6 +37,7 @@
 #include "lpwan/dsss_fragmentation.h"
 #include "lpwan/dsss_filter_crc_packets.h"
 #include "lpwan/fddsm_mod_bcb.h"
+#include "lpwan/fddsm_soft_demod_bpsk_cf.h"
 %}
 
 %include "lpwan/dsss_codes.h"
@@ -72,4 +73,5 @@ GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_fragmentation);
 GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_filter_crc_packets);
 %include "lpwan/fddsm_mod_bcb.h"
 GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_mod_bcb);
-
+%include "lpwan/fddsm_soft_demod_bpsk_cf.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_soft_demod_bpsk_cf);

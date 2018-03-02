@@ -1,0 +1,25 @@
+<block>
+  <name>FD-DSM Soft Demodulator (BPSK)</name>
+  <key>lpwan_fddsm_soft_demod_bpsk_cf</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.fddsm_soft_demod_bpsk_cf($packet_len_coded_bits, $len_tag)</make>
+  <param>
+    <name>Packet length (coded bits)</name>
+    <key>packet_len_coded_bits</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Length tag</name>
+    <key>len_tag</key>
+    <type>string</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>float</type>
+  </source>
+</block>
