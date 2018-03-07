@@ -22,6 +22,7 @@
 #define INCLUDED_LPWAN_FDDSM_MOD_BCB_IMPL_H
 
 #include <lpwan/fddsm_mod_bcb.h>
+#include <lpwan/fddsm_modulator_kernel.h>
 
 #include <vector>
 
@@ -32,15 +33,10 @@ namespace gr {
     {
      private:
       int d_bps;
-      int d_L;
       int d_packet_len_bytes;
 
+      std::unique_ptr<fddsm_modulator_kernel> d_mod_kernel;
       int d_packet_len_symbols;
-      std::vector<char> d_q;
-      char d_q_prev_state;
-      std::vector<gr_complex> d_s_prev;
-      std::vector<  std::vector<char>  > d_antenna_indices;
-      std::vector<  std::vector<gr_complex>  > d_constellation_symbols;
 
      public:
       fddsm_mod_bcb_impl(int bps, int packet_len_bytes);

@@ -46,7 +46,8 @@ list(APPEND lpwan_sources
     mac_field_frak.cc
     dsss_filter_crc_packets_impl.cc
     fddsm_mod_bcb_impl.cc
-    fddsm_soft_demod_bpsk_cf_impl.cc    )
+    fddsm_soft_demod_bpsk_cf_impl.cc
+    fddsm_modulator_kernel.cc )
 
 list(APPEND lpwan_libs
     ${Boost_LIBRARIES}
