@@ -36,14 +36,14 @@ namespace gr {
     class LPWAN_API fddsm_modulator_kernel
     {
     public:
-      fddsm_modulator_kernel(int bps);
+      fddsm_modulator_kernel(unsigned int bps);
       ~fddsm_modulator_kernel();
 
       void modulate(gr_complex *dst_symbols, char *dst_antenna, const char *src_bits, unsigned long num_bits);
 
     private:
-      int d_bps;
-      int d_L;
+      unsigned int d_bps;
+      unsigned int d_L;
 
       std::vector<char> d_q;
       std::vector<  std::vector<char>  > d_antenna_indices;

@@ -32,14 +32,14 @@ namespace gr {
     class fddsm_mod_bcb_impl : public fddsm_mod_bcb
     {
      private:
-      int d_bps;
-      int d_packet_len_bytes;
+      unsigned int d_bps;
+      unsigned int d_packet_len_bytes;
 
       std::unique_ptr<fddsm_modulator_kernel> d_mod_kernel;
-      int d_packet_len_symbols;
+      unsigned int d_packet_len_symbols;
 
      public:
-      fddsm_mod_bcb_impl(int bps, int packet_len_bytes);
+      fddsm_mod_bcb_impl(unsigned int bps, unsigned int packet_len_bytes);
       ~fddsm_mod_bcb_impl();
 
       void forecast(int noutput_items, gr_vector_int &ninput_items_required);

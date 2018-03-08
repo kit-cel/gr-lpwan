@@ -30,11 +30,10 @@
 namespace gr {
   namespace lpwan {
 
-    fddsm_modulator_kernel::fddsm_modulator_kernel(int bps)
+    fddsm_modulator_kernel::fddsm_modulator_kernel(unsigned int bps) :
+    d_bps(bps),
+    d_L(1 << (d_bps -1))
     {
-      d_bps = bps;
-      d_L = 1 << (d_bps-1);
-
       if(d_L > 8){ throw std::runtime_error("L > 8 is not supported.");}
 
       // Generate lookup tables for Aq and Vl

@@ -47,7 +47,7 @@ namespace gr {
        * class. lpwan::fddsm_mod_bcb::make is the public interface for
        * creating new instances.
        */
-      static sptr make(int bps, int packet_len_bytes);
+      static sptr make(unsigned int bps, unsigned int packet_len_bytes);
     };
 
   } // namespace lpwan

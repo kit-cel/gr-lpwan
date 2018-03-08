@@ -29,7 +29,7 @@ namespace gr {
   namespace lpwan {
 
     fddsm_mod_bcb::sptr
-    fddsm_mod_bcb::make(int bps, int packet_len_bytes)
+    fddsm_mod_bcb::make(unsigned int bps, unsigned int packet_len_bytes)
     {
       return gnuradio::get_initial_sptr
         (new fddsm_mod_bcb_impl(bps, packet_len_bytes));
@@ -38,7 +38,7 @@ namespace gr {
     /*
      * The private constructor
      */
-    fddsm_mod_bcb_impl::fddsm_mod_bcb_impl(int bps, int packet_len_bytes)
+    fddsm_mod_bcb_impl::fddsm_mod_bcb_impl(unsigned int bps, unsigned int packet_len_bytes)
       : gr::block("fddsm_mod_bcb",
               gr::io_signature::make(1, 1, sizeof(char)),
               gr::io_signature::make2(2, 2, sizeof(char), sizeof(gr_complex))),
