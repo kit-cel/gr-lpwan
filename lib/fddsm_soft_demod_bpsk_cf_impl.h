@@ -22,6 +22,9 @@
 #define INCLUDED_LPWAN_FDDSM_SOFT_DEMOD_BPSK_CF_IMPL_H
 
 #include <lpwan/fddsm_soft_demod_bpsk_cf.h>
+#include <lpwan/fddsm_demodulator_kernel.h>
+
+#include <memory>
 
 namespace gr {
   namespace lpwan {
@@ -29,15 +32,14 @@ namespace gr {
     class fddsm_soft_demod_bpsk_cf_impl : public fddsm_soft_demod_bpsk_cf
     {
      private:
-      static constexpr auto d_L = 2;
-      static constexpr auto d_omega = gr_complex(0, 1);
-      int d_packet_len; // packet len in coded bits
+      unsigned int d_packet_len; // packet len in coded bits
+      std::unique_ptr<fddsm_demodulator_kernel> d_demod_kernel;
 
      protected:
       int calculate_output_stream_length(const gr_vector_int &ninput_items);
 
      public:
-      fddsm_soft_demod_bpsk_cf_impl(int packet_len_coded_bits, std::string len_tag);
+      fddsm_soft_demod_bpsk_cf_impl(unsigned int packet_len_coded_bits, std::string len_tag);
       ~fddsm_soft_demod_bpsk_cf_impl();
 
       // Where all the action really happens

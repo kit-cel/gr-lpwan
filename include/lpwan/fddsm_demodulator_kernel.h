@@ -19,38 +19,34 @@
  */
 
 
-#ifndef INCLUDED_LPWAN_FDDSM_SOFT_DEMOD_BPSK_CF_H
-#define INCLUDED_LPWAN_FDDSM_SOFT_DEMOD_BPSK_CF_H
+#ifndef INCLUDED_LPWAN_FDDSM_DEMODULATOR_KERNEL_H
+#define INCLUDED_LPWAN_FDDSM_DEMODULATOR_KERNEL_H
 
 #include <lpwan/api.h>
-#include <gnuradio/tagged_stream_block.h>
 
 namespace gr {
   namespace lpwan {
 
     /*!
-     * \brief <+description of block+>
-     * \ingroup lpwan
+     * \brief Kernel for demodulating FD-DSM signals to soft bits (LLRs).
+     * Every block of symbols is assumed to represent an entire frame after which the demodulator is reset.
+     * The parameter bps refers to the bits per space-time symbol, i.e., log2(2*L).
      *
      */
-    class LPWAN_API fddsm_soft_demod_bpsk_cf : virtual public gr::tagged_stream_block
+    class LPWAN_API fddsm_demodulator_kernel
     {
-     public:
-      typedef boost::shared_ptr<fddsm_soft_demod_bpsk_cf> sptr;
+    public:
+      fddsm_demodulator_kernel(unsigned int bps);
+      ~fddsm_demodulator_kernel();
 
-      /*!
-       * \brief Return a shared_ptr to a new instance of lpwan::fddsm_soft_demod_bpsk_cf.
-       *
-       * To avoid accidental use of raw pointers, lpwan::fddsm_soft_demod_bpsk_cf's
-       * constructor is in a private implementation
-       * class. lpwan::fddsm_soft_demod_bpsk_cf::make is the public interface for
-       * creating new instances.
-       */
-      static sptr make(unsigned int packet_len_coded_bits, std::string len_tag);
+      void demodulate_soft(float* dst_softbits, const gr_complex* src_symbols, unsigned long num_bits);
+
+    private:
+        unsigned int d_bps;
     };
 
   } // namespace lpwan
 } // namespace gr
 
-#endif /* INCLUDED_LPWAN_FDDSM_SOFT_DEMOD_BPSK_CF_H */
+#endif /* INCLUDED_LPWAN_FDDSM_DEMODULATOR_KERNEL_H */
 
