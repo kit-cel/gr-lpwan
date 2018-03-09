@@ -28,13 +28,15 @@
 namespace gr {
   namespace lpwan {
 
-    fddsm_demodulator_kernel::fddsm_demodulator_kernel(unsigned int bps) :
-    d_bps(bps)
+    fddsm_demodulator_kernel::fddsm_demodulator_kernel(unsigned int bps, bool reset_after_each_call) :
+    d_bps(bps),
+    d_reset_after_each_call(reset_after_each_call)
     {
       if(d_bps != 2)
       {
         throw std::runtime_error("Invalid choice of bps. Only bps=2 (L=2, BPSK) is implemented so far.");
       }
+      this->reset();
     }
 
     fddsm_demodulator_kernel::~fddsm_demodulator_kernel()
@@ -43,7 +45,7 @@ namespace gr {
 
     void
     fddsm_demodulator_kernel::demodulate_soft(float *dst_softbits, const gr_complex *src_symbols,
-                                              unsigned long num_bits)
+                                              unsigned long num_bits, unsigned int stepsize)
     {
       if(num_bits % d_bps)
       {
@@ -51,25 +53,28 @@ namespace gr {
       }
 
       // initialize Y(t-1) = I, allocate Y(t), imaginary unit j and soft bits u
-      auto yp1 = gr_complex(1, 0);
-      auto yp2 = gr_complex(1, 0);
-      gr_complex y1, y2;
+      if(d_reset_after_each_call)
+      {
+        this->reset();
+      }
+
+      gr_complex y[2];
       auto j = gr_complex(0, 1);
       float u0, u1;
 
       float d[2][2]; // distance to the transmit symbol S(q,l)
       for(auto i = 0; i < num_bits/2; ++i){
-        y1 = *src_symbols;
-        y2 = *(src_symbols+1);
-        src_symbols += 2;
+        y[0] = *src_symbols;
+        y[1] = *(src_symbols+stepsize);
+        src_symbols += 2 * stepsize;
 
-        d[0][0] = std::real(std::conj(y1) * yp1 + std::conj(y2) * yp2); // distance to 00b
+        d[0][0] = std::real(std::conj(y[0]) * d_yp[0] + std::conj(y[1]) * d_yp[1]); // distance to 00b
         d[0][1] = - d[0][0]; // 11b
-        d[1][0] = std::real(j* (std::conj(y1) * yp2 + std::conj(y2) * yp1)); // 01b
+        d[1][0] = std::real(j* (std::conj(y[0]) * d_yp[1] + std::conj(y[1]) * d_yp[0])); // 01b
         d[1][1] = -d[1][0]; // 10b
 
-        yp1 = y1;
-        yp2 = y2;
+        d_yp[0] = y[0];
+        d_yp[1] = y[1];
 
         u0 = std::min(d[0][1], d[1][1]) - std::min(d[0][0], d[1][0]);
         u1 = std::min(d[0][1], d[1][0]) - std::min(d[0][0], d[1][1]);

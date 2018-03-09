@@ -38,14 +38,17 @@ namespace gr {
     /*
      * The private constructor
      */
-    fddsm_soft_demod_bpsk_cf_impl::fddsm_soft_demod_bpsk_cf_impl(unsigned int packet_len_coded_bits, std::string len_tag)
+    fddsm_soft_demod_bpsk_cf_impl::fddsm_soft_demod_bpsk_cf_impl(unsigned int packet_len_coded_bits,
+                                                                 std::string len_tag)
       : gr::tagged_stream_block("fddsm_soft_demod_bpsk_cf",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(float)), len_tag),
         d_packet_len(packet_len_coded_bits)
     {
       // create demodulator kernel instance for L=2 (BPSK)
-      d_demod_kernel = std::unique_ptr<fddsm_demodulator_kernel>(new fddsm_demodulator_kernel(2));
+      unsigned int bps = 2;
+      bool reset_after_each_call = true;
+      d_demod_kernel = std::unique_ptr<fddsm_demodulator_kernel>(new fddsm_demodulator_kernel(bps, reset_after_each_call));
     }
 
     /*
@@ -70,7 +73,7 @@ namespace gr {
       auto *in = (const gr_complex *) input_items[0];
       auto *out = (float *) output_items[0];
       
-      d_demod_kernel->demodulate_soft(out, in, d_packet_len);
+      d_demod_kernel->demodulate_soft(out, in, d_packet_len, 1);
 
       // Tell runtime system how many output items we produced.
       return d_packet_len;

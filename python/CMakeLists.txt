@@ -57,4 +57,4 @@ GR_ADD_TEST(qa_dsss_normalize_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR
 GR_ADD_TEST(qa_dsss_fragmentation ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_fragmentation.py)
 GR_ADD_TEST(qa_dsss_snr_estimator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_snr_estimator.py)
 GR_ADD_TEST(qa_fddsm_mod_bcb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_mod_bcb.py)
-GR_ADD_TEST(qa_fddsm_soft_demod_bpsk_cf.pydemod_cf ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_soft_demod_bpsk_cf.py)
+GR_ADD_TEST(qa_fddsm_soft_demod_bpsk_cf ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_soft_demod_bpsk_cf.py)

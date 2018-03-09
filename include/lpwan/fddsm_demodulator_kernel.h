@@ -23,6 +23,7 @@
 #define INCLUDED_LPWAN_FDDSM_DEMODULATOR_KERNEL_H
 
 #include <lpwan/api.h>
+#include <cstring>
 
 namespace gr {
   namespace lpwan {
@@ -36,13 +37,17 @@ namespace gr {
     class LPWAN_API fddsm_demodulator_kernel
     {
     public:
-      fddsm_demodulator_kernel(unsigned int bps);
+      fddsm_demodulator_kernel(unsigned int bps, bool reset_after_each_call);
       ~fddsm_demodulator_kernel();
 
-      void demodulate_soft(float* dst_softbits, const gr_complex* src_symbols, unsigned long num_bits);
+      void demodulate_soft(float* dst_softbits, const gr_complex* src_symbols, unsigned long num_bits, unsigned int stepsize);
+      void reset() { d_yp[0] = gr_complex(1, 0); d_yp[1] = gr_complex(1, 0); }
+      void set(const gr_complex* yp){ std::memcpy(d_yp, yp, 2 * sizeof(gr_complex)); }
 
     private:
         unsigned int d_bps;
+        bool d_reset_after_each_call;
+        gr_complex d_yp[2];
     };
 
   } // namespace lpwan
