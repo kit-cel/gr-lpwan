@@ -40,6 +40,8 @@
 #include "lpwan/fddsm_soft_demod_bpsk_cf.h"
 #include "lpwan/fddsm_modulator_kernel.h"
 #include "lpwan/fddsm_demodulator_kernel.h"
+#include "lpwan/fddsm_preamble_detector_cc.h"
+#include "lpwan/sliding_dotprod_32f_x2_32f.h"
 %}
 
 %include "lpwan/dsss_codes.h"
@@ -79,3 +81,6 @@ GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_mod_bcb);
 GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_soft_demod_bpsk_cf);
 %include "lpwan/fddsm_modulator_kernel.h"
 %include "lpwan/fddsm_demodulator_kernel.h"
+%include "lpwan/fddsm_preamble_detector_cc.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_preamble_detector_cc);
+%include "lpwan/sliding_dotprod_32f_x2_32f.h"

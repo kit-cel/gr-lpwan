@@ -1,0 +1,57 @@
+<block>
+  <name>FD-DSM Preamble Detector</name>
+  <key>lpwan_fddsm_preamble_detector_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.fddsm_preamble_detector_cc($shr, $threshold, $sps, $spreading_factor, $num_chips_gap)</make>
+  <callback>set_threshold($threshold)</callback>
+  <param>
+    <name>SHR (NRZ)</name>
+    <key>shr</key>
+    <type>real_vector</type>
+  </param>
+  <param>
+    <name>Threshold</name>
+    <key>threshold</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Samples per symbol</name>
+    <key>sps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spreading factor</name>
+    <key>spreading_factor</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Time gap length (chips)</name>
+    <key>num_chips_gap</key>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>corr</name>
+    <type>complex</type>
+  </sink>
+  <sink>
+    <name>signal</name>
+    <type>complex</type>
+  </sink>
+  <sink>
+    <name>power</name>
+    <type>float</type>
+  </sink>
+  <source>
+    <name>signal</name>
+    <type>complex</type>
+  </source>
+  <source>
+    <name>corr</name>
+    <type>float</type>
+  </source>
+  <source>
+    <name>threshold</name>
+    <type>float</type>
+  </source>
+</block>
