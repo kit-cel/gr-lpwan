@@ -48,7 +48,9 @@ list(APPEND lpwan_sources
     fddsm_mod_bcb_impl.cc
     fddsm_soft_demod_bpsk_cf_impl.cc
     fddsm_modulator_kernel.cc
-    fddsm_demodulator_kernel.cc )
+    fddsm_demodulator_kernel.cc
+    fddsm_preamble_detector_cc_impl.cc
+    sliding_dotprod_32f_x2_32f.cc )
 
 list(APPEND lpwan_libs
     ${Boost_LIBRARIES}

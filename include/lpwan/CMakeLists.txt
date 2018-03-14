@@ -43,6 +43,8 @@ install(FILES
     fddsm_mod_bcb.h
     fddsm_soft_demod_bpsk_cf.h
     fddsm_modulator_kernel.h
-    fddsm_demodulator_kernel.h DESTINATION ${GR_INCLUDE_DIR}/gnuradio/lpwan
+    fddsm_demodulator_kernel.h
+    fddsm_preamble_detector_cc.h
+    sliding_dotprod_32f_x2_32f.h DESTINATION ${GR_INCLUDE_DIR}/gnuradio/lpwan
     COMPONENT "lpwan_devel"
 )
