@@ -1451,7 +1451,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2818,7 +2818,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3403,7 +3403,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3423,7 +3423,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>0</value>
+      <value>frame_len_chips * sps * 10</value>
     </param>
     <param>
       <key>offset</key>
@@ -3439,7 +3439,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>vector</key>
-      <value>[0 for i in range(spread_factor)]</value>
+      <value>[1 for i in range(spread_factor)]</value>
     </param>
   </block>
   <block>
@@ -4424,7 +4424,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>type</key>
-      <value>ccc</value>
+      <value>ccf</value>
     </param>
   </block>
   <block>
@@ -5172,6 +5172,53 @@ Delay of filter length - 1</value>
     <param>
       <key>scale</key>
       <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>lpwan_packet_demux_cc</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>frame_length_samples</key>
+      <value>frame_len_chips*sps</value>
+    </param>
+    <param>
+      <key>tag_key</key>
+      <value>"sop"</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(600, 2308)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lpwan_packet_demux_cc_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>frame_len_chips * sps * 10</value>
     </param>
   </block>
   <block>
@@ -6148,7 +6195,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(824, 2348)</value>
+      <value>(896, 2292)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6507,7 +6554,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -6870,7 +6917,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -10325,7 +10372,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>value</key>
-      <value>2</value>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -10917,12 +10964,6 @@ Delay of filter length - 1</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_skiphead_3</source_block_id>
-    <sink_block_id>blocks_keep_m_in_n_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_stream_mux_1</source_block_id>
     <sink_block_id>virtual_sink_0</sink_block_id>
     <source_key>0</source_key>
@@ -11211,6 +11252,18 @@ Delay of filter length - 1</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>lpwan_packet_demux_cc_0</source_block_id>
+    <sink_block_id>blocks_keep_m_in_n_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>lpwan_packet_demux_cc_0</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>single_pole_iir_filter_xx_0</source_block_id>
     <sink_block_id>lpwan_fddsm_preamble_detector_cc_0</sink_block_id>
     <source_key>0</source_key>
@@ -11291,6 +11344,12 @@ Delay of filter length - 1</value>
   <connection>
     <source_block_id>virtual_source_4</source_block_id>
     <sink_block_id>blocks_skiphead_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>virtual_source_4</source_block_id>
+    <sink_block_id>lpwan_packet_demux_cc_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -1,0 +1,25 @@
+<block>
+  <name>Packet Demux</name>
+  <key>lpwan_packet_demux_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.packet_demux_cc($tag_key, $frame_length_samples)</make>
+  <param>
+    <name>Frame start tag key</name>
+    <key>tag_key</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Frame length (samples)</name>
+    <key>frame_length_samples</key>
+    <type>raw</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

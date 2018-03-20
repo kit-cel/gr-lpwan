@@ -59,3 +59,4 @@ GR_ADD_TEST(qa_dsss_snr_estimator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DI
 GR_ADD_TEST(qa_fddsm_mod_bcb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_mod_bcb.py)
 GR_ADD_TEST(qa_fddsm_soft_demod_bpsk_cf ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_soft_demod_bpsk_cf.py)
 GR_ADD_TEST(qa_fddsm_preamble_detector_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_preamble_detector_cc.py)
+GR_ADD_TEST(qa_packet_demux_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_packet_demux_cc.py)

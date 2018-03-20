@@ -45,6 +45,7 @@ install(FILES
     fddsm_modulator_kernel.h
     fddsm_demodulator_kernel.h
     fddsm_preamble_detector_cc.h
-    sliding_dotprod_32f_x2_32f.h DESTINATION ${GR_INCLUDE_DIR}/gnuradio/lpwan
+    sliding_dotprod_32f_x2_32f.h
+    packet_demux_cc.h DESTINATION ${GR_INCLUDE_DIR}/gnuradio/lpwan
     COMPONENT "lpwan_devel"
 )
