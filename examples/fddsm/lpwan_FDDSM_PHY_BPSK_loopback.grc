@@ -10,7 +10,7 @@
     </param>
     <param>
       <key>window_size</key>
-      <value>2000, 3000</value>
+      <value>2000, 4000</value>
     </param>
     <param>
       <key>category</key>
@@ -142,6 +142,87 @@
     <param>
       <key>widget</key>
       <value>counter_slider</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(488, 2652)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>c_data_nrz</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>lpwan.dsss_codes().generate_gold_code_f(data_seed, spread_factor)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(656, 2652)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>c_data_nrz_upsampled</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>[c if i==0 else 0 for c in c_data_nrz for i in range(sps)]</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(832, 2652)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>c_data_shaped</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>np.convolve(c_data_nrz_upsampled, pulse)</value>
     </param>
   </block>
   <block>
@@ -1436,57 +1517,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_head</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(664, 2372)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_head_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>frame_len_chips*sps</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_keep_m_in_n</key>
     <param>
       <key>alias</key>
@@ -1506,7 +1536,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(360, 2460)</value>
+      <value>(360, 2748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1561,7 +1591,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(536, 2460)</value>
+      <value>(536, 2748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1726,7 +1756,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(232, 2612)</value>
+      <value>(232, 2900)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2099,7 +2129,7 @@ after each symbol</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1064, 2476)</value>
+      <value>(1064, 2764)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2614,7 +2644,7 @@ at the right time.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(896, 2476)</value>
+      <value>(896, 2764)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2704,58 +2734,6 @@ at the right time.</value>
     </param>
     <param>
       <key>comment</key>
-      <value>Skips history of the
-preamble detector</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(152, 2372)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_skiphead_1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>len(shr) * (spread_factor + time_gap_chips) * sps </value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_skiphead</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
       <value>Skip input filter
 delay, align correlation
 with rx signal</value>
@@ -2802,58 +2780,6 @@ with rx signal</value>
     </param>
   </block>
   <block>
-    <key>blocks_skiphead</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>Skips initial delay in front
-of the preamble detector</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(360, 2372)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_skiphead_3</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>len(shr) * sps * (spread_factor + time_gap_chips) - 1</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_stream_mux</key>
     <param>
       <key>alias</key>
@@ -2873,7 +2799,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(928, 728)</value>
+      <value>(976, 728)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2983,7 +2909,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(440, 2620)</value>
+      <value>(440, 2908)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4149,7 +4075,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 2876)</value>
+      <value>(568, 3164)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4243,7 +4169,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(728, 2868)</value>
+      <value>(728, 3156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4392,7 +4318,7 @@ of the preamble detector</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 2460)</value>
+      <value>(688, 2748)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4546,6 +4472,65 @@ Delay of filter length - 1</value>
     <param>
       <key>type</key>
       <value>ccc</value>
+    </param>
+  </block>
+  <block>
+    <key>fft_filter_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>decim</key>
+      <value>sps * spread_factor</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(896, 2548)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fft_filter_xxx_0_2</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>frame_len_chips * sps * 10</value>
+    </param>
+    <param>
+      <key>nthreads</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>np.flipud(c_data_shaped)</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccf</value>
     </param>
   </block>
   <block>
@@ -4771,7 +4756,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1144, 2876)</value>
+      <value>(1144, 3164)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4857,7 +4842,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 2876)</value>
+      <value>(944, 3164)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5053,7 +5038,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(680, 2620)</value>
+      <value>(680, 2908)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5147,7 +5132,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(400, 2868)</value>
+      <value>(400, 3156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5593,7 +5578,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(208, 2860)</value>
+      <value>(208, 3148)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6163,7 +6148,7 @@ Delay of filter length - 1</value>
     <key>qtgui_time_sink_x</key>
     <param>
       <key>autoscale</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>axislabels</key>
@@ -6195,7 +6180,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(896, 2292)</value>
+      <value>(1224, 2540)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6467,7 +6452,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>size</key>
-      <value>frame_len_chips*sps</value>
+      <value>len(shr) + psdu_len_coded</value>
     </param>
     <param>
       <key>srate</key>
@@ -6554,11 +6539,11 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1328, 2452)</value>
+      <value>(1328, 2740)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -6921,7 +6906,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(440, 2684)</value>
+      <value>(440, 2972)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -7284,7 +7269,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1200, 2692)</value>
+      <value>(1200, 2980)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -10684,7 +10669,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 2516)</value>
+      <value>(64, 2804)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -10768,12 +10753,6 @@ Delay of filter length - 1</value>
   <connection>
     <source_block_id>blocks_float_to_complex_0</source_block_id>
     <sink_block_id>virtual_sink_1</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_head_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -10942,18 +10921,6 @@ Delay of filter length - 1</value>
   <connection>
     <source_block_id>blocks_skiphead_0_0</source_block_id>
     <sink_block_id>blocks_multiply_const_xx_2_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_skiphead_1</source_block_id>
-    <sink_block_id>blocks_head_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_skiphead_1</source_block_id>
-    <sink_block_id>blocks_skiphead_3</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -11132,6 +11099,12 @@ Delay of filter length - 1</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>fft_filter_xxx_0_2</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>interp_fir_filter_xxx_0</source_block_id>
     <sink_block_id>blocks_multiply_const_vxx_1</sink_block_id>
     <source_key>0</source_key>
@@ -11259,7 +11232,7 @@ Delay of filter length - 1</value>
   </connection>
   <connection>
     <source_block_id>lpwan_packet_demux_cc_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0_0</sink_block_id>
+    <sink_block_id>fft_filter_xxx_0_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -11338,12 +11311,6 @@ Delay of filter length - 1</value>
   <connection>
     <source_block_id>virtual_source_3</source_block_id>
     <sink_block_id>fft_filter_xxx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>virtual_source_4</source_block_id>
-    <sink_block_id>blocks_skiphead_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
