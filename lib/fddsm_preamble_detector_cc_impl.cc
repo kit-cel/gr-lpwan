@@ -53,18 +53,14 @@ namespace gr {
       d_stepsize = d_sps * (d_spreading_factor + d_num_chips_gap);
 
       // initialize the intermediate buffer, the FD-DSM decoders and SHR filters
-      auto shr_taps = std::vector<float>(d_shr.size());
-      std::reverse_copy(d_shr.begin(), d_shr.end(), shr_taps.begin());
       auto len_buf_per_filter_branch = 100;
       for(auto i = 0; i < d_stepsize; ++i)
       {
         d_buf.push_back(std::vector<float>(len_buf_per_filter_branch));
         d_demod_kernels.push_back(std::unique_ptr<fddsm_demodulator_kernel>(new fddsm_demodulator_kernel(2, false)));
-        d_dotprod_kernels.push_back(std::unique_ptr<sliding_dotprod_32f_x2_32f>(new sliding_dotprod_32f_x2_32f(shr_taps)));
+        d_dotprod_kernels.push_back(std::unique_ptr<sliding_dotprod_32f_x2_32f>(new sliding_dotprod_32f_x2_32f(d_shr)));
       }
       set_output_multiple(d_stepsize);
-      //d_hist_len = d_shr.size() * (d_spreading_factor + d_num_chips_gap) * d_sps+1;
-      //set_history(d_hist_len);
     }
 
     /*

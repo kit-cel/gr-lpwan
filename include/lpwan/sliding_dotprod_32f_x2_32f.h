@@ -29,7 +29,7 @@ namespace gr {
   namespace lpwan {
 
     /*!
-     * \brief Realizes a real-valued dot-product while storing the shift-register state.
+     * \brief Realizes a real-valued dot product while storing the shift-register state.
      * Can be used to create filters and correlators.
      *
      */
@@ -39,12 +39,12 @@ namespace gr {
       sliding_dotprod_32f_x2_32f(const std::vector<float> &taps);
       ~sliding_dotprod_32f_x2_32f();
       void dotprod(float* output, const float* input, unsigned int len);
+      float single_dotprod(const float input);
 
     private:
       std::vector<float> d_taps;
       std::vector<float> d_buf;
       long d_bufpos;
-      float single_dotprod(const float input);
 
     };
 

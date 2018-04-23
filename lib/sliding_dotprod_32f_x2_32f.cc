@@ -31,8 +31,9 @@ namespace gr {
   namespace lpwan {
 
     sliding_dotprod_32f_x2_32f::sliding_dotprod_32f_x2_32f(const std::vector<float> &taps)
-    : d_taps(taps)
     {
+      d_taps.resize(taps.size());
+      std::reverse_copy(taps.begin(), taps.end(), d_taps.begin());
       d_buf.resize(10 * d_taps.size());  // make the buffer 10x the size of the taps to avoid too frequent copying.
       std::memset(&d_buf[0], 0, sizeof(float) * d_buf.size());
       d_bufpos = -1;

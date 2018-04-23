@@ -43,7 +43,6 @@ namespace gr {
 
       unsigned d_stepsize;
       std::vector<std::vector<float> > d_buf;
-      unsigned long d_hist_len;
 
      public:
       fddsm_preamble_detector_cc_impl(std::vector<float> shr, float threshold, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap);
