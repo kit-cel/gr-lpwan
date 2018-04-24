@@ -31,9 +31,12 @@ namespace gr {
      private:
       std::string d_tag_key;
       unsigned int d_frame_length_samples;
+      unsigned int d_payload_length_samples;
+      unsigned int d_downsampling_factor;
+      unsigned int d_payload_length_symbols;
 
      public:
-      packet_demux_cc_impl(std::string tag_key, unsigned int frame_length_samples);
+      packet_demux_cc_impl(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, unsigned int downsampling_factor);
       ~packet_demux_cc_impl();
 
       // Where all the action really happens

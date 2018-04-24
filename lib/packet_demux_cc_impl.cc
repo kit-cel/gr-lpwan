@@ -29,24 +29,31 @@ namespace gr {
   namespace lpwan {
 
     packet_demux_cc::sptr
-    packet_demux_cc::make(std::string tag_key, unsigned int frame_length_samples)
+    packet_demux_cc::make(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, unsigned int downsampling_factor)
     {
       return gnuradio::get_initial_sptr
-        (new packet_demux_cc_impl(tag_key, frame_length_samples));
+        (new packet_demux_cc_impl(tag_key, frame_length_samples, payload_length_samples, downsampling_factor));
     }
 
     /*
      * The private constructor
      */
-    packet_demux_cc_impl::packet_demux_cc_impl(std::string tag_key, unsigned int frame_length_samples)
+    packet_demux_cc_impl::packet_demux_cc_impl(std::string tag_key,
+                                               unsigned int frame_length_samples,
+                                               unsigned int payload_length_samples,
+                                               unsigned int downsampling_factor)
       : gr::block("packet_demux_cc",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(gr_complex))),
         d_tag_key(tag_key),
-        d_frame_length_samples(frame_length_samples)
+        d_frame_length_samples(frame_length_samples),
+        d_payload_length_samples(payload_length_samples),
+        d_downsampling_factor(downsampling_factor),
+        d_payload_length_symbols(payload_length_samples / downsampling_factor)
     {
       set_tag_propagation_policy(TPP_DONT);
-      set_output_multiple(d_frame_length_samples);
+      set_output_multiple(d_payload_length_symbols);
+      set_relative_rate(float(d_payload_length_symbols) / d_frame_length_samples);
     }
 
     /*
@@ -74,12 +81,12 @@ namespace gr {
       auto nitems_consumed = 0l;
       auto nitems_produced = 0l;
 
-      unsigned long max_num_frames = noutput_items / d_frame_length_samples;
+      unsigned long max_num_frames = noutput_items / d_payload_length_symbols;
 
       // search only in the first half of the buffer such that any tags found have an entire frame following them
       std::vector<tag_t> v;
       get_tags_in_range(v, 0, nitems_read(0), nitems_read(0) + d_frame_length_samples);
-      
+
       // if no tags are found, do nothing an consume the buffer
       if(v.empty()) {
         nitems_consumed = d_frame_length_samples;
@@ -90,10 +97,14 @@ namespace gr {
         unsigned long vlen = v.size();
         auto num_output_frames = std::min(vlen, max_num_frames);
         for (auto i = 0; i < num_output_frames; ++i) {
-          std::memcpy(out + i * d_frame_length_samples,
-                      in + v[i].offset - nitems_read(0),
-                      d_frame_length_samples * sizeof(gr_complex));
-          add_item_tag(0, nitems_written(0) + i*d_frame_length_samples, pmt::intern(d_tag_key), pmt::PMT_T);
+          for(auto j = 0; j < d_payload_length_symbols; ++j)
+          {
+            out[i * d_payload_length_symbols + j] = in[v[i].offset - nitems_read(0) + j * d_downsampling_factor];
+          }
+          //std::memcpy(out + i * d_payload_length_symbols,
+          //            in + v[i].offset - nitems_read(0),
+          //            d_payload_length_symbols * sizeof(gr_complex));
+          add_item_tag(0, nitems_written(0) + i*d_payload_length_symbols, pmt::intern(d_tag_key), v[i].value);
         }
 
         if(num_output_frames == vlen) // all detected frames were copied to the output, consume entire search window
@@ -104,7 +115,7 @@ namespace gr {
         {
           nitems_consumed = v[num_output_frames].offset - nitems_read(0);
         }
-        nitems_produced = num_output_frames * d_frame_length_samples;
+        nitems_produced = num_output_frames * d_payload_length_symbols;
       }
 
       consume_each (nitems_consumed);

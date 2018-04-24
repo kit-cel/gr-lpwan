@@ -3,7 +3,7 @@
   <key>lpwan_packet_demux_cc</key>
   <category>[LPWAN]</category>
   <import>import lpwan</import>
-  <make>lpwan.packet_demux_cc($tag_key, $frame_length_samples)</make>
+  <make>lpwan.packet_demux_cc($tag_key, $frame_length_samples, $payload_length_samples, $downsampling_factor)</make>
   <param>
     <name>Frame start tag key</name>
     <key>tag_key</key>
@@ -12,7 +12,17 @@
   <param>
     <name>Frame length (samples)</name>
     <key>frame_length_samples</key>
-    <type>raw</type>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Payload length (samples)</name>
+    <key>payload_length_samples</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Downsampling factor</name>
+    <key>downsampling_factor</key>
+    <type>int</type>
   </param>
   <sink>
     <name>in</name>

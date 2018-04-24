@@ -42,6 +42,7 @@ namespace gr {
       unsigned int d_num_chips_gap;
 
       unsigned d_stepsize;
+      unsigned d_num_branches;
       std::vector<std::vector<float> > d_buf;
 
      public:

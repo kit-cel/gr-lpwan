@@ -50,17 +50,21 @@ namespace gr {
         d_num_chips_gap(num_chips_gap)
 
     {
+      // num branches == length of one space-time block in samples
       d_stepsize = d_sps * (d_spreading_factor + d_num_chips_gap);
+      d_num_branches = 2 * d_stepsize;
 
       // initialize the intermediate buffer, the FD-DSM decoders and SHR filters
       auto len_buf_per_filter_branch = 100;
-      for(auto i = 0; i < d_stepsize; ++i)
+      for(auto i = 0; i < d_num_branches; ++i)
       {
         d_buf.push_back(std::vector<float>(len_buf_per_filter_branch));
         d_demod_kernels.push_back(std::unique_ptr<fddsm_demodulator_kernel>(new fddsm_demodulator_kernel(2, false)));
         d_dotprod_kernels.push_back(std::unique_ptr<sliding_dotprod_32f_x2_32f>(new sliding_dotprod_32f_x2_32f(d_shr)));
       }
-      set_output_multiple(d_stepsize);
+
+      // make sure that even the latest polyphase can access the following symbol for demodulation
+      set_output_multiple(d_num_branches + d_stepsize);
     }
 
     /*
@@ -83,20 +87,24 @@ namespace gr {
       auto *threshold_out = (float *) output_items[2];
 
       // Demodulate FD-DSM signal, output soft bits to intermediate buffer and correlate with preamble.
-      // Effectively, we create a polyphase filterbank by splitting/deinterleaving the input in d_stepsize polyphase
+      // Effectively, we create a polyphase filterbank by splitting/deinterleaving the input in 2 * d_stepsize polyphase
       // components, filtering each component and interleaving the filter/correlator output again.
-      auto nbits_to_process = std::min(static_cast<size_t>(noutput_items) / d_stepsize, d_buf[0].size());
-      nbits_to_process -= nbits_to_process % 2; // can only decode an even number of bits as each symbols represents 2 bits
-      for(auto i = 0; i < d_stepsize; ++i)
+      //auto nbits_to_process = std::min(static_cast<size_t>(noutput_items) / d_num_branches * 2, d_buf[0].size());
+      auto nbits_to_process = 2; // FIXME: DEBUG configuration.
+      for(auto i = 0; i < d_num_branches; ++i)
       {
         d_demod_kernels[i]->demodulate_soft(&d_buf[i][0], corr_in + i, nbits_to_process, d_stepsize);
-        for(auto j = 0; j < nbits_to_process; ++j)
+      }
+      for(auto i = 0; i < nbits_to_process/2; ++i)
+      {
+        float tmp[2];
+        for(auto j = 0; j < d_num_branches; ++j)
         {
-          d_dotprod_kernels[i]->dotprod(corr_out + j * d_stepsize + i, &d_buf[i][j], 1);
-          //corr_out[j * d_stepsize + i] /= d_spreading_factor; // * power_in[j * d_stepsize + i];  //FIXME check this
+          d_dotprod_kernels[j]->dotprod(tmp, &d_buf[j][0], 2);
+          corr_out[i * d_num_branches + j] = tmp[1];
+          //d_dotprod_kernels[i]->dotprod(corr_out + j * d_stepsize + i, &d_buf[i][j], 1);
         }
       }
-
       // Copy signal from input to output
       auto nitems_processed = nbits_to_process * d_stepsize;
       std::memcpy(signal_out, signal_in, sizeof(gr_complex) * nitems_processed);
