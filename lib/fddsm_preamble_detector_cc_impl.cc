@@ -105,6 +105,7 @@ namespace gr {
           //d_dotprod_kernels[i]->dotprod(corr_out + j * d_stepsize + i, &d_buf[i][j], 1);
         }
       }
+
       // Copy signal from input to output
       auto nitems_processed = nbits_to_process * d_stepsize;
       std::memcpy(signal_out, signal_in, sizeof(gr_complex) * nitems_processed);
@@ -116,7 +117,9 @@ namespace gr {
         if(corr_out[i] > threshold_out[i])
         {
           auto offset = i;// + (d_shr.size() - 1) * (d_spreading_factor + d_num_chips_gap) * d_sps;
-          auto value = pmt::from_complex(std::real(corr_in[offset]), std::imag(corr_in[offset]));
+          auto value = pmt::make_tuple(
+              pmt::from_complex(std::real(corr_in[offset]), std::imag(corr_in[offset])),
+              pmt::from_complex(std::real(corr_in[offset + d_stepsize]), std::imag(corr_in[offset + d_stepsize])));
           add_item_tag(0, nitems_written(0) + offset, pmt::intern("sop"), value);
           add_item_tag(1, nitems_written(1) + offset, pmt::intern("sop"), value);
         }

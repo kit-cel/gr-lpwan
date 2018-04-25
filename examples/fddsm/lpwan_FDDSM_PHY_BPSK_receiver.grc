@@ -633,7 +633,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -712,49 +712,6 @@ Bit per channel usage is 1.</value>
     </param>
   </block>
   <block>
-    <key>blocks_complex_to_mag</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1168, 1064)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_complex_to_mag_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_complex_to_mag_squared</key>
     <param>
       <key>alias</key>
@@ -795,61 +752,6 @@ Bit per channel usage is 1.</value>
     <param>
       <key>vlen</key>
       <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_keep_m_in_n</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>Sampling</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(632, 804)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_keep_m_in_n_1</value>
-    </param>
-    <param>
-      <key>m</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>n</key>
-      <value>SF + time_gap_chips</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>offset</key>
-      <value>0</value>
     </param>
   </block>
   <block>
@@ -1120,7 +1022,7 @@ tag delay.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(800, 812)</value>
+      <value>(568, 820)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1261,7 +1163,7 @@ tag delay.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 940)</value>
+      <value>(264, 972)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1312,7 +1214,7 @@ tag delay.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(488, 708)</value>
+      <value>(496, 700)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1551,7 +1453,7 @@ upsampling into account!</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 948)</value>
+      <value>(640, 980)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1594,7 +1496,7 @@ upsampling into account!</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 948)</value>
+      <value>(456, 980)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1699,11 +1601,11 @@ denoting the last preamble symbol
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(864, 940)</value>
+      <value>(1008, 820)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>180</value>
+      <value>0</value>
     </param>
     <param>
       <key>id</key>
@@ -1736,7 +1638,8 @@ denoting the last preamble symbol
       <key>comment</key>
       <value>Deinterleaves potentially
 overlapping frames and
-discards the preamble.</value>
+discards the preamble.
+Outputs at symbol rate.</value>
     </param>
     <param>
       <key>affinity</key>
@@ -3080,7 +2983,7 @@ discards the preamble.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1360, 1036)</value>
+      <value>(1312, 868)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3384,7 +3287,7 @@ discards the preamble.</value>
     </param>
     <param>
       <key>type</key>
-      <value>float</value>
+      <value>complex</value>
     </param>
     <param>
       <key>update_time</key>
@@ -4169,7 +4072,7 @@ discards the preamble.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1016, 1116)</value>
+      <value>(1016, 988)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -4700,20 +4603,8 @@ discards the preamble.</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_complex_to_mag_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_2_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_complex_to_mag_squared_0_0</source_block_id>
     <sink_block_id>single_pole_iir_filter_xx_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_keep_m_in_n_1</source_block_id>
-    <sink_block_id>blocks_stream_to_tagged_stream_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4749,13 +4640,13 @@ discards the preamble.</value>
   </connection>
   <connection>
     <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
-    <sink_block_id>blocks_complex_to_mag_0</sink_block_id>
+    <sink_block_id>lpwan_fddsm_soft_demod_bpsk_cf_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
-    <sink_block_id>lpwan_fddsm_soft_demod_bpsk_cf_0</sink_block_id>
+    <sink_block_id>qtgui_time_sink_x_2_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4851,7 +4742,7 @@ discards the preamble.</value>
   </connection>
   <connection>
     <source_block_id>lpwan_packet_demux_cc_0</source_block_id>
-    <sink_block_id>blocks_keep_m_in_n_1</sink_block_id>
+    <sink_block_id>blocks_stream_to_tagged_stream_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

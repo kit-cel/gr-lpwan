@@ -72,6 +72,16 @@ namespace gr {
     {
       auto *in = (const gr_complex *) input_items[0];
       auto *out = (float *) output_items[0];
+
+      // check if there is a tag with initialization values on the first samples
+      std::vector<tag_t> v;
+      get_tags_in_range(v, 0, nitems_read(0), nitems_read(0)+1, pmt::intern("sop"));
+      if(not v.empty())
+      {
+        gr_complex yp[2] = {gr_complex(pmt::to_complex(pmt::tuple_ref(v[0].value, 0))),
+                            gr_complex(pmt::to_complex(pmt::tuple_ref(v[0].value, 1)))};
+        d_demod_kernel->set(yp);
+      }
       
       d_demod_kernel->demodulate_soft(out, in, d_packet_len, 1);
 

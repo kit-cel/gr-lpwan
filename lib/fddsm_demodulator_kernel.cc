@@ -53,11 +53,6 @@ namespace gr {
       }
 
       // initialize Y(t-1) = I, allocate Y(t), imaginary unit j and soft bits u
-      if(d_reset_after_each_call)
-      {
-        this->reset();
-      }
-
       gr_complex y[2];
       auto j = gr_complex(0, 1);
       float u0, u1;
@@ -81,6 +76,11 @@ namespace gr {
         *dst_softbits = u0;
         *(dst_softbits+1) = u1;
         dst_softbits += 2;
+      }
+
+      if(d_reset_after_each_call)
+      {
+        this->reset();
       }
     }
   } /* namespace lpwan */
