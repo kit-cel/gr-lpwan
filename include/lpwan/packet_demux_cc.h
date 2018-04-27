@@ -30,6 +30,8 @@ namespace gr {
 
     /*!
      * \brief Demultiplexes overlapping frames of length frame_length_samples with frame starts denoted by tag_key.
+     * Whenever a tag is found, the payload symbols are stored into a buffer until the entire frame is recorded and the
+     * symbols can be written to the output buffer.
      * \ingroup lpwan
      *
      */

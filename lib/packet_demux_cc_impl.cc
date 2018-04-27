@@ -53,7 +53,7 @@ namespace gr {
     {
       set_tag_propagation_policy(TPP_DONT);
       set_output_multiple(d_payload_length_symbols);
-      set_relative_rate(float(d_payload_length_symbols) / d_frame_length_samples);
+      //set_relative_rate(float(d_payload_length_symbols) / d_frame_length_samples);
     }
 
     /*
@@ -66,7 +66,7 @@ namespace gr {
     void
     packet_demux_cc_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
-      ninput_items_required[0] = d_frame_length_samples * 2; // x2 to have some headroom
+      ninput_items_required[0] = 2048; // just some value to avoid getting called without input items
     }
 
     int
@@ -78,48 +78,85 @@ namespace gr {
       auto *in = (const gr_complex *) input_items[0];
       auto *out = (gr_complex *) output_items[0];
 
-      auto nitems_consumed = 0l;
-      auto nitems_produced = 0l;
-
-      unsigned long max_num_frames = noutput_items / d_payload_length_symbols;
-
-      // search only in the first half of the buffer such that any tags found have an entire frame following them
+      // search for frame start tags and append new buffers for them
       std::vector<tag_t> v;
-      get_tags_in_range(v, 0, nitems_read(0), nitems_read(0) + d_frame_length_samples);
-
-      // if no tags are found, do nothing an consume the buffer
-      if(v.empty()) {
-        nitems_consumed = d_frame_length_samples;
-        nitems_produced = 0;
+      get_tags_in_range(v, 0, nitems_read(0), nitems_read(0) + ninput_items[0], pmt::intern(d_tag_key));
+      //std::cout << "DEMUX: found " << v.size() << " tags." << std::endl;
+      for(auto i = 0; i < v.size(); ++i)
+      {
+        if(d_bufvec.size() <= d_max_buffers)
+        {
+          // NOTE: This could be optimized by statically allocating memory and keeping track of the position in the buffer,
+          // therefore avoiding copy operations when new buffers are pushed to the back of the array.
+          d_bufvec.push_back(std::vector<gr_complex>(d_payload_length_symbols, gr_complex(0, 0)));
+          d_buf_pos.push_back(0);
+          d_next_abs_symbol_index.push_back(v[i].offset);
+          d_tag_value.push_back(v[i].value);
+          //std::cout << "DEMUX: add buffer for frame starting@" << d_next_abs_symbol_index[d_next_abs_symbol_index.size()-1] << std::endl;
+          std::cout << "tag value from vector: " << pmt::to_complex(pmt::tuple_ref(v[i].value, 0)) << ", "
+                    << pmt::to_complex(pmt::tuple_ref(v[i].value, 1)) << std::endl;
+        }
+        else
+        {
+          std::cout << "WARNING: Too many overlapping frames; dropping." << std::endl;
+        }
       }
-      // if there are frame start tags, copy as many frames as the output buffer allows
-      else {
-        unsigned long vlen = v.size();
-        auto num_output_frames = std::min(vlen, max_num_frames);
-        for (auto i = 0; i < num_output_frames; ++i) {
-          for(auto j = 0; j < d_payload_length_symbols; ++j)
+
+      //std::cout << "DEMUX: # buffers: " << d_bufvec.size() << std::endl;
+      //std::cout << "ninput_items[0]=" << ninput_items[0] << ", nitems_read(0)=" << nitems_read(0) << std::endl;
+
+      // fill existing buffers as far as possible
+      for(auto i = 0; i < d_bufvec.size(); ++i)
+      {
+        // check if the buffer is already filled and if there are symbols in the current input buffer
+        auto next_rel_symbol_index = d_next_abs_symbol_index[i] - nitems_read(0);
+        //std::cout << "bufvec@" << i << ", next symbol (rel) @" << next_rel_symbol_index << std::endl;
+        while(d_buf_pos[i] < d_payload_length_symbols
+            && next_rel_symbol_index < ninput_items[0])
+        {
+          d_bufvec[i][d_buf_pos[i]] = in[next_rel_symbol_index];
+          d_next_abs_symbol_index[i] += d_downsampling_factor;
+          next_rel_symbol_index += d_downsampling_factor;
+          d_buf_pos[i] += 1;
+          //std::cout << "\twrite symbol; next rel/abs offset: " << next_rel_symbol_index << "/" << d_next_abs_symbol_index[i] << std::endl;
+        }
+      }
+
+      // return as many complete frames as possible
+      auto max_frames_to_return = noutput_items / d_payload_length_symbols;
+      auto symbols_written = 0;
+      for(auto i = 0; i < max_frames_to_return; ++i)
+      {
+        if(not d_bufvec.empty()) {
+          if (d_buf_pos[0] == d_payload_length_symbols) // entire frame payload written to internal buffer
           {
-            out[i * d_payload_length_symbols + j] = in[v[i].offset - nitems_read(0) + j * d_downsampling_factor];
-          }
-          //std::memcpy(out + i * d_payload_length_symbols,
-          //            in + v[i].offset - nitems_read(0),
-          //            d_payload_length_symbols * sizeof(gr_complex));
-          add_item_tag(0, nitems_written(0) + i*d_payload_length_symbols, pmt::intern(d_tag_key), v[i].value);
-        }
+            // copy to output and attach tag
+            std::memcpy(out, &d_bufvec[0][0], d_payload_length_symbols * sizeof(gr_complex));
+            add_item_tag(0, nitems_written(0) + i * d_payload_length_symbols, pmt::intern(d_tag_key), d_tag_value[0]);
 
-        if(num_output_frames == vlen) // all detected frames were copied to the output, consume entire search window
-        {
-          nitems_consumed = d_frame_length_samples;
+            // cleanup
+            d_bufvec.erase(d_bufvec.begin());
+            d_buf_pos.erase(d_buf_pos.begin());
+            d_tag_value.erase(d_tag_value.begin());
+            d_next_abs_symbol_index.erase(d_next_abs_symbol_index.begin());
+
+            symbols_written += d_payload_length_symbols;
+          }
+          else
+          {
+            break;
+          }
         }
-        else // there were more frames than could be copied, consume only up to the beginning of the first frame that was not copied
+        else
         {
-          nitems_consumed = v[num_output_frames].offset - nitems_read(0);
+          break;
         }
-        nitems_produced = num_output_frames * d_payload_length_symbols;
       }
 
-      consume_each (nitems_consumed);
-      return nitems_produced;
+      // report back to scheduler
+      //std::cout << "DEMUX: consume " << ninput_items[0] << ", produce " << symbols_written << std::endl << std::endl;
+      consume_each(ninput_items[0]);
+      return symbols_written;
     }
 
   } /* namespace lpwan */
