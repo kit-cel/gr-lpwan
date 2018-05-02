@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.11'?>
+<?grc format='1' created='3.7.12'?>
 <flow_graph>
   <timestamp>Fri Apr 20 08:48:45 2018</timestamp>
   <block>
@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>lpwan_FDDSM_PHY_BPSK_RX</value>
+      <value>SpaRSe_RX_hier</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -73,12 +73,20 @@
       <value>True</value>
     </param>
     <param>
+      <key>sizing_mode</key>
+      <value>fixed</value>
+    </param>
+    <param>
       <key>thread_safe_setters</key>
       <value></value>
     </param>
     <param>
       <key>title</key>
-      <value>FDDSM PHY BPSK receiver</value>
+      <value>SpaRSe_RX_hier</value>
+    </param>
+    <param>
+      <key>placement</key>
+      <value>(0,0)</value>
     </param>
   </block>
   <block>
@@ -354,6 +362,33 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_coordinate</key>
+      <value>(136, 236)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>filter_len</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>c_data_shaped.size * 10</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
       <value>(544, 140)</value>
     </param>
     <param>
@@ -609,6 +644,10 @@ Bit per channel usage is 1.</value>
       <value>s</value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>intx</value>
     </param>
@@ -633,7 +672,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>2</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -680,7 +719,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -755,6 +794,61 @@ Bit per channel usage is 1.</value>
     </param>
   </block>
   <block>
+    <key>blocks_delay</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(176, 412)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_delay_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>filter_len</value>
+    </param>
+    <param>
+      <key>num_ports</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_null_sink</key>
     <param>
       <key>alias</key>
@@ -774,7 +868,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -802,6 +896,147 @@ Bit per channel usage is 1.</value>
     </param>
   </block>
   <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(824, 352)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_1</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(824, 400)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_1_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(944, 592)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_2</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_pdu_to_tagged_stream</key>
     <param>
       <key>alias</key>
@@ -817,7 +1052,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -936,7 +1171,7 @@ tag delay.</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>frame_len_chips * sps * 10</value>
+      <value>1000000</value>
     </param>
     <param>
       <key>num_items</key>
@@ -987,7 +1222,7 @@ tag delay.</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>0</value>
+      <value>1000000</value>
     </param>
     <param>
       <key>num_items</key>
@@ -1022,7 +1257,7 @@ tag delay.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 820)</value>
+      <value>(648, 812)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1090,6 +1325,10 @@ tag delay.</value>
     <param>
       <key>short_id</key>
       <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -1272,7 +1511,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1292,7 +1531,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>frame_len_chips*sps*10</value>
+      <value>filter_len</value>
     </param>
     <param>
       <key>nthreads</key>
@@ -1332,7 +1571,7 @@ upsampling into account!</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1352,7 +1591,7 @@ upsampling into account!</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>frame_len_chips * sps * 10</value>
+      <value>filter_len</value>
     </param>
     <param>
       <key>nthreads</key>
@@ -1431,6 +1670,116 @@ upsampling into account!</value>
     <param>
       <key>import</key>
       <value>import lpwan</value>
+    </param>
+  </block>
+  <block>
+    <key>interp_fir_filter_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(168, 552)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>interp_fir_filter_xxx_0</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>np.conj(np.flipud(c_data_shaped))</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccc</value>
+    </param>
+  </block>
+  <block>
+    <key>interp_fir_filter_xxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(264, 264)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>interp_fir_filter_xxx_1</value>
+    </param>
+    <param>
+      <key>interp</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>samp_delay</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>taps</key>
+      <value>np.conj(np.flipud(c_preamble_shaped))</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>ccc</value>
     </param>
   </block>
   <block>
@@ -1558,7 +1907,7 @@ denoting the last preamble symbol
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>(SF+time_gap_chips) * sps * 10</value>
+      <value>0</value>
     </param>
     <param>
       <key>shr</key>
@@ -1601,7 +1950,7 @@ denoting the last preamble symbol
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1008, 820)</value>
+      <value>(1008, 812)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1663,7 +2012,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(216, 804)</value>
+      <value>(216, 796)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1679,7 +2028,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>psdu_len_chips * sps * 10</value>
+      <value>0</value>
     </param>
     <param>
       <key>payload_length_samples</key>
@@ -1741,7 +2090,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(104, 412)</value>
+      <value>(16, 412)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1807,6 +2156,10 @@ Outputs at symbol rate.</value>
       <value>p</value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>intx</value>
     </param>
@@ -1848,6 +2201,10 @@ Outputs at symbol rate.</value>
     <param>
       <key>short_id</key>
       <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -2173,6 +2530,10 @@ Outputs at symbol rate.</value>
       <value>1</value>
     </param>
     <param>
+      <key>stemplot</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>tr_chan</key>
       <value>0</value>
     </param>
@@ -2253,7 +2614,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2536,6 +2897,10 @@ Outputs at symbol rate.</value>
       <value>1</value>
     </param>
     <param>
+      <key>stemplot</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>tr_chan</key>
       <value>0</value>
     </param>
@@ -2616,11 +2981,11 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(880, 308)</value>
+      <value>(920, 308)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2899,6 +3264,10 @@ Outputs at symbol rate.</value>
       <value>1</value>
     </param>
     <param>
+      <key>stemplot</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>tr_chan</key>
       <value>0</value>
     </param>
@@ -2983,7 +3352,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1312, 868)</value>
+      <value>(1048, 660)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3247,7 +3616,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>name</key>
-      <value>"demod input mag"</value>
+      <value>"demod input"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -3260,6 +3629,10 @@ Outputs at symbol rate.</value>
     <param>
       <key>srate</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>stemplot</key>
+      <value>False</value>
     </param>
     <param>
       <key>tr_chan</key>
@@ -3342,11 +3715,11 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(944, 676)</value>
+      <value>(224, 676)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3610,7 +3983,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>name</key>
-      <value>"data correlator output"</value>
+      <value>"preamble detector output"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -3618,11 +3991,15 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>size</key>
-      <value>6 * (SF + time_gap_chips) * 256</value>
+      <value>(SF + time_gap_chips) * 256</value>
     </param>
     <param>
       <key>srate</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>stemplot</key>
+      <value>False</value>
     </param>
     <param>
       <key>tr_chan</key>
@@ -3709,7 +4086,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 700)</value>
+      <value>(752, 692)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3981,11 +4358,15 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>size</key>
-      <value>3 * (SF + time_gap_chips) * 256</value>
+      <value>256</value>
     </param>
     <param>
       <key>srate</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>stemplot</key>
+      <value>False</value>
     </param>
     <param>
       <key>tr_chan</key>
@@ -4351,6 +4732,10 @@ Outputs at symbol rate.</value>
       <value>1</value>
     </param>
     <param>
+      <key>stemplot</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>tr_chan</key>
       <value>0</value>
     </param>
@@ -4485,6 +4870,10 @@ Outputs at symbol rate.</value>
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>intx</value>
     </param>
@@ -4526,6 +4915,10 @@ Outputs at symbol rate.</value>
     <param>
       <key>short_id</key>
       <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -4609,6 +5002,36 @@ Outputs at symbol rate.</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_delay_0</source_block_id>
+    <sink_block_id>blocks_complex_to_mag_squared_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0</source_block_id>
+    <sink_block_id>fft_filter_xxx_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0</source_block_id>
+    <sink_block_id>fft_filter_xxx_0_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0</source_block_id>
+    <sink_block_id>interp_fir_filter_xxx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_delay_0</source_block_id>
+    <sink_block_id>interp_fir_filter_xxx_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_pdu_to_tagged_stream_0</source_block_id>
     <sink_block_id>blocks_char_to_float_1</sink_block_id>
     <source_key>0</source_key>
@@ -4622,19 +5045,25 @@ Outputs at symbol rate.</value>
   </connection>
   <connection>
     <source_block_id>blocks_skiphead_0_0_0</source_block_id>
+    <sink_block_id>blocks_null_sink_1_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_skiphead_0_0_0</source_block_id>
     <sink_block_id>lpwan_fddsm_preamble_detector_cc_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_skiphead_2_0</source_block_id>
-    <sink_block_id>lpwan_fddsm_preamble_detector_cc_0_0</sink_block_id>
+    <sink_block_id>blocks_null_sink_1_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_skiphead_2_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_2</sink_block_id>
+    <sink_block_id>lpwan_fddsm_preamble_detector_cc_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4683,6 +5112,18 @@ Outputs at symbol rate.</value>
   <connection>
     <source_block_id>fft_filter_xxx_0_1</source_block_id>
     <sink_block_id>blocks_skiphead_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>interp_fir_filter_xxx_0</source_block_id>
+    <sink_block_id>blocks_skiphead_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>interp_fir_filter_xxx_1</source_block_id>
+    <sink_block_id>blocks_skiphead_2_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4760,19 +5201,13 @@ Outputs at symbol rate.</value>
   </connection>
   <connection>
     <source_block_id>pad_source_0</source_block_id>
-    <sink_block_id>blocks_complex_to_mag_squared_0_0</sink_block_id>
+    <sink_block_id>blocks_delay_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>pad_source_0</source_block_id>
-    <sink_block_id>fft_filter_xxx_0_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>pad_source_0</source_block_id>
-    <sink_block_id>fft_filter_xxx_0_1</sink_block_id>
+    <source_block_id>single_pole_iir_filter_xx_0_0</source_block_id>
+    <sink_block_id>blocks_null_sink_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4785,6 +5220,12 @@ Outputs at symbol rate.</value>
   <connection>
     <source_block_id>virtual_source_4</source_block_id>
     <sink_block_id>lpwan_packet_demux_cc_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>virtual_source_4</source_block_id>
+    <sink_block_id>qtgui_time_sink_x_2_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

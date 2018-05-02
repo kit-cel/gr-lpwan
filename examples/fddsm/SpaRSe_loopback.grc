@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.11'?>
+<?grc format='1' created='3.7.12'?>
 <flow_graph>
   <timestamp>Fri Apr 20 13:14:05 2018</timestamp>
   <block>
@@ -73,12 +73,20 @@
       <value>True</value>
     </param>
     <param>
+      <key>sizing_mode</key>
+      <value>fixed</value>
+    </param>
+    <param>
       <key>thread_safe_setters</key>
       <value></value>
     </param>
     <param>
       <key>title</key>
       <value>Loopback simulation for SpaRSe</value>
+    </param>
+    <param>
+      <key>placement</key>
+      <value>(0,0)</value>
     </param>
   </block>
   <block>
@@ -431,12 +439,75 @@
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>intx</value>
     </param>
     <param>
       <key>value</key>
       <value>128</value>
+    </param>
+  </block>
+  <block>
+    <key>SpaRSe_TX_hier</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(440, 228)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>SpaRSe_TX_hier_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>psdu_len</key>
+      <value>16</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>data_seed</key>
+      <value>data_seed</value>
+    </param>
+    <param>
+      <key>preamble_seed</key>
+      <value>preamble_seed</value>
+    </param>
+    <param>
+      <key>SF</key>
+      <value>SF</value>
     </param>
   </block>
   <block>
@@ -652,7 +723,7 @@
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>0</value>
+      <value>SF * 36 * 8 * sps * 10</value>
     </param>
     <param>
       <key>num_inputs</key>
@@ -1137,6 +1208,10 @@
       <value>False</value>
     </param>
     <param>
+      <key>single_key</key>
+      <value>""</value>
+    </param>
+    <param>
       <key>vlen</key>
       <value>1</value>
     </param>
@@ -1337,6 +1412,10 @@
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>long</value>
     </param>
@@ -1471,66 +1550,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>50</value>
-    </param>
-  </block>
-  <block>
-    <key>lpwan_FDDSM_PHY_BPSK_TX</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(480, 196)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>lpwan_FDDSM_PHY_BPSK_TX_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>psdu_len</key>
-      <value>16</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>data_seed</key>
-      <value>data_seed</value>
-    </param>
-    <param>
-      <key>preamble_seed</key>
-      <value>preamble_seed</value>
-    </param>
-    <param>
-      <key>SF</key>
-      <value>SF</value>
+      <value>200</value>
     </param>
   </block>
   <block>
@@ -1613,6 +1633,10 @@
     <param>
       <key>short_id</key>
       <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
     </param>
     <param>
       <key>type</key>
@@ -2169,6 +2193,10 @@
       <value>1</value>
     </param>
     <param>
+      <key>stemplot</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>tr_chan</key>
       <value>0</value>
     </param>
@@ -2532,6 +2560,10 @@
       <value>1</value>
     </param>
     <param>
+      <key>stemplot</key>
+      <value>False</value>
+    </param>
+    <param>
       <key>tr_chan</key>
       <value>0</value>
     </param>
@@ -2615,12 +2647,16 @@
       <value></value>
     </param>
     <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
       <key>type</key>
       <value>intx</value>
     </param>
     <param>
       <key>value</key>
-      <value>2</value>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -2732,6 +2768,18 @@
     </param>
   </block>
   <connection>
+    <source_block_id>SpaRSe_TX_hier_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>SpaRSe_TX_hier_0</source_block_id>
+    <sink_block_id>blocks_multiply_const_vxx_0_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_fastnoise_source_x_0</source_block_id>
     <sink_block_id>blocks_add_xx_1</sink_block_id>
     <source_key>0</source_key>
@@ -2787,7 +2835,7 @@
   </connection>
   <connection>
     <source_block_id>blocks_random_pdu_0</source_block_id>
-    <sink_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</sink_block_id>
+    <sink_block_id>SpaRSe_TX_hier_0</sink_block_id>
     <source_key>pdus</source_key>
     <sink_key>payload_in</sink_key>
   </connection>
@@ -2810,12 +2858,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_tagged_stream_to_pdu_0</source_block_id>
-    <sink_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</sink_block_id>
-    <source_key>pdus</source_key>
-    <sink_key>payload_in</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_vector_insert_x_0</source_block_id>
     <sink_block_id>blocks_delay_0</sink_block_id>
     <source_key>0</source_key>
@@ -2832,18 +2874,6 @@
     <sink_block_id>lpwan_message_counter_0</sink_block_id>
     <source_key>payload_out</source_key>
     <sink_key>in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</source_block_id>
-    <sink_block_id>blocks_multiply_const_vxx_0_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>lpwan_message_counter_0</source_block_id>
