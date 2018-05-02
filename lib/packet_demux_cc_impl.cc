@@ -93,8 +93,6 @@ namespace gr {
           d_next_abs_symbol_index.push_back(v[i].offset);
           d_tag_value.push_back(v[i].value);
           //std::cout << "DEMUX: add buffer for frame starting@" << d_next_abs_symbol_index[d_next_abs_symbol_index.size()-1] << std::endl;
-          std::cout << "tag value from vector: " << pmt::to_complex(pmt::tuple_ref(v[i].value, 0)) << ", "
-                    << pmt::to_complex(pmt::tuple_ref(v[i].value, 1)) << std::endl;
         }
         else
         {
