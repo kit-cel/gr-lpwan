@@ -227,6 +227,73 @@
     </param>
   </block>
   <block>
+    <key>SpaRSe_RX_hier</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(392, 228)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>SpaRSe_RX_hier_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>psdu_len</key>
+      <value>16</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>4</value>
+    </param>
+    <param>
+      <key>data_seed</key>
+      <value>2345432</value>
+    </param>
+    <param>
+      <key>preamble_seed</key>
+      <value>54321</value>
+    </param>
+    <param>
+      <key>SF</key>
+      <value>2**7</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>7500</value>
+    </param>
+  </block>
+  <block>
     <key>analog_fastnoise_source_x</key>
     <param>
       <key>amp</key>
@@ -541,73 +608,6 @@
     <param>
       <key>value</key>
       <value>0.8</value>
-    </param>
-  </block>
-  <block>
-    <key>lpwan_FDDSM_PHY_BPSK_RX</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(392, 228)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>lpwan_FDDSM_PHY_BPSK_RX_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>psdu_len</key>
-      <value>16</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>data_seed</key>
-      <value>data_seed</value>
-    </param>
-    <param>
-      <key>preamble_seed</key>
-      <value>preamble_seed</value>
-    </param>
-    <param>
-      <key>SF</key>
-      <value>SF</value>
-    </param>
-    <param>
-      <key>threshold</key>
-      <value>50</value>
     </param>
   </block>
   <block>
@@ -3035,22 +3035,16 @@
     </param>
   </block>
   <connection>
+    <source_block_id>SpaRSe_RX_hier_0</source_block_id>
+    <sink_block_id>lpwan_message_counter_0</sink_block_id>
+    <source_key>payload_out</source_key>
+    <sink_key>in</sink_key>
+  </connection>
+  <connection>
     <source_block_id>analog_fastnoise_source_x_0</source_block_id>
     <sink_block_id>blocks_throttle_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_throttle_0</source_block_id>
-    <sink_block_id>lpwan_FDDSM_PHY_BPSK_RX_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>lpwan_FDDSM_PHY_BPSK_RX_0</source_block_id>
-    <sink_block_id>lpwan_message_counter_0</sink_block_id>
-    <source_key>payload_out</source_key>
-    <sink_key>in</sink_key>
   </connection>
   <connection>
     <source_block_id>lpwan_message_counter_0</source_block_id>
@@ -3060,7 +3054,7 @@
   </connection>
   <connection>
     <source_block_id>uhd_usrp_source_0</source_block_id>
-    <sink_block_id>lpwan_FDDSM_PHY_BPSK_RX_0</sink_block_id>
+    <sink_block_id>SpaRSe_RX_hier_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -90,6 +90,69 @@
     </param>
   </block>
   <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0.2</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(808, 12)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>gain</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0.0</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>0.1</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>1.0</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter_slider</value>
+    </param>
+  </block>
+  <block>
     <key>variable</key>
     <param>
       <key>comment</key>
@@ -164,6 +227,65 @@
     </param>
   </block>
   <block>
+    <key>SpaRSe_TX_hier</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(464, 276)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>SpaRSe_TX_hier_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>psdu_len</key>
+      <value>16</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>data_seed</key>
+      <value>data_seed</value>
+    </param>
+    <param>
+      <key>preamble_seed</key>
+      <value>preamble_seed</value>
+    </param>
+    <param>
+      <key>SF</key>
+      <value>SF</value>
+    </param>
+  </block>
+  <block>
     <key>blocks_message_strobe</key>
     <param>
       <key>alias</key>
@@ -179,7 +301,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -230,11 +352,11 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(264, 284)</value>
+      <value>(256, 284)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -357,112 +479,6 @@
     <param>
       <key>value</key>
       <value>2345432</value>
-    </param>
-  </block>
-  <block>
-    <key>parameter</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(856, 20)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>gain</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value></value>
-    </param>
-    <param>
-      <key>short_id</key>
-      <value></value>
-    </param>
-    <param>
-      <key>hide</key>
-      <value>none</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>eng_float</value>
-    </param>
-    <param>
-      <key>value</key>
-      <value>0.5</value>
-    </param>
-  </block>
-  <block>
-    <key>lpwan_FDDSM_PHY_BPSK_TX</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(488, 276)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>lpwan_FDDSM_PHY_BPSK_TX_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>psdu_len</key>
-      <value>psdu_len</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>data_seed</key>
-      <value>data_seed</value>
-    </param>
-    <param>
-      <key>preamble_seed</key>
-      <value>preamble_seed</value>
-    </param>
-    <param>
-      <key>SF</key>
-      <value>SF</value>
     </param>
   </block>
   <block>
@@ -1789,7 +1805,7 @@
     </param>
     <param>
       <key>len_tag_name</key>
-      <value>"burst"</value>
+      <value></value>
     </param>
     <param>
       <key>otw</key>
@@ -1797,39 +1813,21 @@
     </param>
   </block>
   <connection>
+    <source_block_id>SpaRSe_TX_hier_0</source_block_id>
+    <sink_block_id>uhd_usrp_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>SpaRSe_TX_hier_0</source_block_id>
+    <sink_block_id>uhd_usrp_sink_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_message_strobe_0</source_block_id>
     <sink_block_id>blocks_random_pdu_0</sink_block_id>
     <source_key>strobe</source_key>
     <sink_key>generate</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_random_pdu_0</source_block_id>
-    <sink_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</sink_block_id>
-    <source_key>pdus</source_key>
-    <sink_key>payload_in</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</source_block_id>
-    <sink_block_id>uhd_usrp_sink_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>lpwan_FDDSM_PHY_BPSK_TX_0</source_block_id>
-    <sink_block_id>uhd_usrp_sink_0</sink_block_id>
-    <source_key>1</source_key>
-    <sink_key>1</sink_key>
   </connection>
 </flow_graph>

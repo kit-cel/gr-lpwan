@@ -448,7 +448,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1024</value>
+      <value>128</value>
     </param>
   </block>
   <block>
@@ -934,7 +934,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1138,7 +1138,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2838,12 +2838,6 @@
     <sink_block_id>blocks_add_xx_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_random_pdu_0</source_block_id>
-    <sink_block_id>SpaRSe_TX_hier_0</sink_block_id>
-    <source_key>pdus</source_key>
-    <sink_key>payload_in</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
