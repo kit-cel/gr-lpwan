@@ -63,6 +63,12 @@ namespace gr {
         d_dotprod_kernels.push_back(std::unique_ptr<sliding_dotprod_32f_x2_32f>(new sliding_dotprod_32f_x2_32f(d_shr)));
       }
 
+      // make sure that the SHR is NRZ with an amplitude equal to 1/sqrt(L * 2). This ensures equal input and output power.
+      for(auto i=0; i < d_shr.size(); ++i)
+      {
+        d_shr[i] = d_shr[i] / std::abs(d_shr[i]) / std::sqrt((float) d_shr.size()) / std::sqrt(2.0f);
+      }
+
       // make sure that even the latest polyphase can access the following symbol for demodulation
       set_output_multiple(d_num_branches + d_stepsize);
     }
@@ -113,7 +119,7 @@ namespace gr {
       // Find correlation peaks that exceed the threshold and attach tags at the respective positions.
       for(auto i = 0; i < nitems_processed; ++i)
       {
-        threshold_out[i] = std::sqrt(power_in[i]) * d_spreading_factor * d_shr.size() * d_threshold; //FIXME find a sensible value
+        threshold_out[i] = power_in[i] * d_threshold; //FIXME find a sensible value
         if(corr_out[i] > threshold_out[i])
         {
           auto offset = i;// + (d_shr.size() - 1) * (d_spreading_factor + d_num_chips_gap) * d_sps;

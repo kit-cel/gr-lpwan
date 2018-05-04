@@ -168,7 +168,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(600, 524)</value>
+      <value>(584, 524)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -286,7 +286,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>0</value>
+      <value>15</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -322,7 +322,7 @@
     </param>
     <param>
       <key>start</key>
-      <value>0</value>
+      <value>-20</value>
     </param>
     <param>
       <key>step</key>
@@ -448,7 +448,74 @@
     </param>
     <param>
       <key>value</key>
-      <value>128</value>
+      <value>1024</value>
+    </param>
+  </block>
+  <block>
+    <key>SpaRSe_RX_hier</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(344, 580)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>SpaRSe_RX_hier_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>psdu_len</key>
+      <value>16</value>
+    </param>
+    <param>
+      <key>sps</key>
+      <value>sps</value>
+    </param>
+    <param>
+      <key>data_seed</key>
+      <value>data_seed</value>
+    </param>
+    <param>
+      <key>preamble_seed</key>
+      <value>preamble_seed</value>
+    </param>
+    <param>
+      <key>SF</key>
+      <value>SF</value>
+    </param>
+    <param>
+      <key>threshold</key>
+      <value>100</value>
     </param>
   </block>
   <block>
@@ -471,7 +538,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(440, 228)</value>
+      <value>(448, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -816,7 +883,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -918,7 +985,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -973,7 +1040,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(744, 244)</value>
+      <value>(728, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1181,7 +1248,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(968, 228)</value>
+      <value>(976, 220)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1279,7 +1346,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>2</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1487,73 +1554,6 @@
     </param>
   </block>
   <block>
-    <key>lpwan_FDDSM_PHY_BPSK_RX</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(344, 580)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>lpwan_FDDSM_PHY_BPSK_RX_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>psdu_len</key>
-      <value>16</value>
-    </param>
-    <param>
-      <key>sps</key>
-      <value>sps</value>
-    </param>
-    <param>
-      <key>data_seed</key>
-      <value>data_seed</value>
-    </param>
-    <param>
-      <key>preamble_seed</key>
-      <value>preamble_seed</value>
-    </param>
-    <param>
-      <key>SF</key>
-      <value>SF</value>
-    </param>
-    <param>
-      <key>threshold</key>
-      <value>200</value>
-    </param>
-  </block>
-  <block>
     <key>lpwan_message_counter</key>
     <param>
       <key>alias</key>
@@ -1573,7 +1573,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 740)</value>
+      <value>(648, 692)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1675,7 +1675,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(832, 732)</value>
+      <value>(840, 684)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -1910,7 +1910,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2178,7 +2178,7 @@
     </param>
     <param>
       <key>name</key>
-      <value>""</value>
+      <value>"TX output"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -2277,7 +2277,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2545,7 +2545,7 @@
     </param>
     <param>
       <key>name</key>
-      <value>""</value>
+      <value>"RX input"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -2553,7 +2553,7 @@
     </param>
     <param>
       <key>size</key>
-      <value>40032+10</value>
+      <value>40032 * sps</value>
     </param>
     <param>
       <key>srate</key>
@@ -2671,7 +2671,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1136, 228)</value>
+      <value>(1152, 228)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2767,6 +2767,12 @@
       <value>rx</value>
     </param>
   </block>
+  <connection>
+    <source_block_id>SpaRSe_RX_hier_0</source_block_id>
+    <sink_block_id>lpwan_message_counter_0</sink_block_id>
+    <source_key>payload_out</source_key>
+    <sink_key>in</sink_key>
+  </connection>
   <connection>
     <source_block_id>SpaRSe_TX_hier_0</source_block_id>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
@@ -2870,12 +2876,6 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>lpwan_FDDSM_PHY_BPSK_RX_0</source_block_id>
-    <sink_block_id>lpwan_message_counter_0</sink_block_id>
-    <source_key>payload_out</source_key>
-    <sink_key>in</sink_key>
-  </connection>
-  <connection>
     <source_block_id>lpwan_message_counter_0</source_block_id>
     <sink_block_id>qtgui_number_sink_0</sink_block_id>
     <source_key>0</source_key>
@@ -2889,7 +2889,7 @@
   </connection>
   <connection>
     <source_block_id>virtual_source_0_0</source_block_id>
-    <sink_block_id>lpwan_FDDSM_PHY_BPSK_RX_0</sink_block_id>
+    <sink_block_id>SpaRSe_RX_hier_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
