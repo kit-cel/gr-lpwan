@@ -424,6 +424,53 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1296, 12)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>IFS</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>inter frame space (samples)</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value>i</value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
@@ -2006,6 +2053,116 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1120, 1612)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_vector_insert_x_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>period</key>
+      <value>IFS + (psdu_len_chips + preamble_len_chips) * sps</value>
+    </param>
+    <param>
+      <key>vector</key>
+      <value>np.zeros(IFS)</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_vector_insert_x</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1120, 1700)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_vector_insert_x_0_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>offset</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>period</key>
+      <value>IFS + (psdu_len_chips + preamble_len_chips) * sps</value>
+    </param>
+    <param>
+      <key>vector</key>
+      <value>np.zeros(IFS)</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_vector_insert_x</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
       <value>1</value>
     </param>
     <param>
@@ -2817,7 +2974,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1104, 1628)</value>
+      <value>(1296, 1628)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2860,7 +3017,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1104, 1716)</value>
+      <value>(1296, 1716)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -4570,6 +4727,18 @@ Really ugly solution!</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>blocks_vector_insert_x_0</source_block_id>
+    <sink_block_id>pad_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_vector_insert_x_0_0</source_block_id>
+    <sink_block_id>pad_sink_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>blocks_vector_insert_x_0_0_0_0</source_block_id>
     <sink_block_id>virtual_sink_2</sink_block_id>
     <source_key>0</source_key>
@@ -4607,13 +4776,13 @@ Really ugly solution!</value>
   </connection>
   <connection>
     <source_block_id>blocks_vector_to_stream_0_1</source_block_id>
-    <sink_block_id>pad_sink_0</sink_block_id>
+    <sink_block_id>blocks_vector_insert_x_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_vector_to_stream_0_1_0</source_block_id>
-    <sink_block_id>pad_sink_0_0</sink_block_id>
+    <sink_block_id>blocks_vector_insert_x_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

@@ -579,7 +579,34 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>value</key>
-      <value>pulse / np.sqrt(np.sum(np.abs(pulse)**2))</value>
+      <value>pulse / np.sqrt(pulse_power)</value>
+    </param>
+  </block>
+  <block>
+    <key>variable</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1208, 76)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>pulse_power</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>np.sum(np.abs(pulse)**2)</value>
     </param>
   </block>
   <block>
@@ -680,7 +707,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>value</key>
-      <value>2**7</value>
+      <value>2**10</value>
     </param>
   </block>
   <block>
@@ -4374,7 +4401,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>value</key>
-      <value>75</value>
+      <value>10</value>
     </param>
   </block>
   <block>

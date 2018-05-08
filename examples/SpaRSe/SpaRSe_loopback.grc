@@ -515,7 +515,7 @@
     </param>
     <param>
       <key>threshold</key>
-      <value>100</value>
+      <value>10</value>
     </param>
   </block>
   <block>
@@ -567,6 +567,10 @@
     <param>
       <key>data_seed</key>
       <value>data_seed</value>
+    </param>
+    <param>
+      <key>IFS</key>
+      <value>0</value>
     </param>
     <param>
       <key>preamble_seed</key>
