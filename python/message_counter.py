@@ -66,6 +66,8 @@ class message_counter(gr.sync_block):
     def work(self, input_items, output_items):
         out = output_items[0]
 
+        time.sleep(0.01)
+
         self.update_count()
         out[0] = self.cnt*self.scale
         return 1
