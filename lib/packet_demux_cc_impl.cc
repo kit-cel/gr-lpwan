@@ -94,10 +94,6 @@ namespace gr {
           d_tag_value.push_back(v[i].value);
           //std::cout << "DEMUX: add buffer for frame starting@" << d_next_abs_symbol_index[d_next_abs_symbol_index.size()-1] << std::endl;
         }
-        else
-        {
-          std::cout << "WARNING: Too many overlapping frames; dropping." << std::endl;
-        }
       }
 
       //std::cout << "DEMUX: # buffers: " << d_bufvec.size() << std::endl;
