@@ -223,7 +223,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2**7</value>
+      <value>2**8</value>
     </param>
   </block>
   <block>
@@ -275,6 +275,10 @@
     <param>
       <key>data_seed</key>
       <value>data_seed</value>
+    </param>
+    <param>
+      <key>IFS</key>
+      <value>samp_rate/100</value>
     </param>
     <param>
       <key>preamble_seed</key>

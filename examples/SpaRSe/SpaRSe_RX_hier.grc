@@ -1072,7 +1072,7 @@ tag delay.</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>1000000</value>
+      <value>SF * sps * 100</value>
     </param>
     <param>
       <key>num_items</key>
@@ -1123,7 +1123,7 @@ tag delay.</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>1000000</value>
+      <value>SF * sps * 100</value>
     </param>
     <param>
       <key>num_items</key>
@@ -1353,7 +1353,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1373,7 +1373,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>filter_len</value>
+      <value>0</value>
     </param>
     <param>
       <key>nthreads</key>
@@ -1400,8 +1400,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>comment</key>
-      <value>NOTE: This does not take 
-upsampling into account!</value>
+      <value></value>
     </param>
     <param>
       <key>affinity</key>
@@ -1409,11 +1408,11 @@ upsampling into account!</value>
     </param>
     <param>
       <key>decim</key>
-      <value>sps</value>
+      <value>1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1433,7 +1432,7 @@ upsampling into account!</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>filter_len</value>
+      <value>0</value>
     </param>
     <param>
       <key>nthreads</key>
@@ -1530,7 +1529,7 @@ upsampling into account!</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1585,7 +1584,7 @@ upsampling into account!</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -4299,7 +4298,7 @@ Outputs at symbol rate.</value>
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>0</value>
+      <value>SF * sps * 100</value>
     </param>
     <param>
       <key>type</key>
@@ -4629,6 +4628,18 @@ Outputs at symbol rate.</value>
   <connection>
     <source_block_id>pad_source_0</source_block_id>
     <sink_block_id>blocks_complex_to_mag_squared_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pad_source_0</source_block_id>
+    <sink_block_id>fft_filter_xxx_0_0_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>pad_source_0</source_block_id>
+    <sink_block_id>fft_filter_xxx_0_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>

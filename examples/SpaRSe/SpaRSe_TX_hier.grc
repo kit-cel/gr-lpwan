@@ -2085,11 +2085,11 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>period</key>
-      <value>IFS + (psdu_len_chips + preamble_len_chips) * sps</value>
+      <value>int(IFS + (psdu_len_chips + preamble_len_chips) * sps)</value>
     </param>
     <param>
       <key>vector</key>
-      <value>np.zeros(IFS)</value>
+      <value>[0+0j,] * int(IFS)</value>
     </param>
   </block>
   <block>
@@ -2140,11 +2140,11 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>period</key>
-      <value>IFS + (psdu_len_chips + preamble_len_chips) * sps</value>
+      <value>int(IFS + (psdu_len_chips + preamble_len_chips) * sps)</value>
     </param>
     <param>
       <key>vector</key>
-      <value>np.zeros(IFS)</value>
+      <value>[0+0j,] * int(IFS)</value>
     </param>
   </block>
   <block>
