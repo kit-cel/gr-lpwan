@@ -96,7 +96,7 @@ namespace gr {
       // Effectively, we create a polyphase filterbank by splitting/deinterleaving the input in 2 * d_stepsize polyphase
       // components, filtering each component and interleaving the filter/correlator output again.
       //auto nbits_to_process = std::min(static_cast<size_t>(noutput_items) / d_num_branches * 2, d_buf[0].size());
-      auto nbits_to_process = 2; // FIXME: DEBUG configuration.
+      auto nbits_to_process = 2; // FIXME: DEBUG configuration. If this is changed, make sure to, e.g., adapt the treshold calculation
       for(auto i = 0; i < d_num_branches; ++i)
       {
         d_demod_kernels[i]->demodulate_soft(&d_buf[i][0], corr_in + i, nbits_to_process, d_stepsize);
@@ -116,10 +116,17 @@ namespace gr {
       auto nitems_processed = nbits_to_process * d_stepsize;
       std::memcpy(signal_out, signal_in, sizeof(gr_complex) * nitems_processed);
 
+      // determine signal-based threshold which is valid for the next 2 bit durations
+      uint32_t max_idx;
+      volk_32f_index_max_32u(&max_idx, corr_out, nbits_to_process / 2 * d_num_branches); // maybe even use the max(abs(...)) to include the negative correlations in the ACF
+      float max_corr = corr_out[max_idx];
+      float d_beta = 0.5; // FIXME: this needs to become a ctor argument
+      float signal_threshold = d_beta * max_corr;
+
       // Find correlation peaks that exceed the threshold and attach tags at the respective positions.
       for(auto i = 0; i < nitems_processed; ++i)
       {
-        threshold_out[i] = power_in[i] * d_threshold; //FIXME also adapt to signal power (important for high-SNR regimes)
+        threshold_out[i] = std::max(power_in[i] * d_threshold, signal_threshold);
         if(corr_out[i] > threshold_out[i])
         {
           auto offset = i;// + (d_shr.size() - 1) * (d_spreading_factor + d_num_chips_gap) * d_sps;
