@@ -3,16 +3,23 @@
   <key>lpwan_fddsm_preamble_detector_cc</key>
   <category>[LPWAN]</category>
   <import>import lpwan</import>
-  <make>lpwan.fddsm_preamble_detector_cc($shr, $threshold, $sps, $spreading_factor, $num_chips_gap)</make>
+  <make>lpwan.fddsm_preamble_detector_cc($shr, $sps, $spreading_factor, $num_chips_gap, $alpha, $beta)</make>
   <callback>set_threshold($threshold)</callback>
+  <callback>set_alpha($alpha)</callback>
+  <callback>set_beta($beta)</callback>
   <param>
     <name>SHR (NRZ)</name>
     <key>shr</key>
     <type>real_vector</type>
   </param>
   <param>
-    <name>Threshold</name>
-    <key>threshold</key>
+    <name>Alpha</name>
+    <key>alpha</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Beta</name>
+    <key>beta</key>
     <type>float</type>
   </param>
   <param>
@@ -37,10 +44,6 @@
   <sink>
     <name>signal</name>
     <type>complex</type>
-  </sink>
-  <sink>
-    <name>power</name>
-    <type>float</type>
   </sink>
   <source>
     <name>signal</name>

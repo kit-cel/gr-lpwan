@@ -34,19 +34,21 @@ namespace gr {
     {
      private:
       std::vector<float> d_shr;
-      float d_threshold;
       std::vector<std::unique_ptr<fddsm_demodulator_kernel> > d_demod_kernels;
       std::vector<std::unique_ptr<sliding_dotprod_32f_x2_32f> > d_dotprod_kernels;
       unsigned int d_sps;
       unsigned int d_spreading_factor;
       unsigned int d_num_chips_gap;
+      float d_alpha;
+      float d_beta;
+      std::vector<float> d_avg_pp_power;
 
       unsigned d_stepsize;
       unsigned d_num_branches;
       std::vector<std::vector<float> > d_buf;
 
      public:
-      fddsm_preamble_detector_cc_impl(std::vector<float> shr, float threshold, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap);
+      fddsm_preamble_detector_cc_impl(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta);
       ~fddsm_preamble_detector_cc_impl();
 
       // Where all the action really happens
@@ -54,7 +56,8 @@ namespace gr {
          gr_vector_const_void_star &input_items,
          gr_vector_void_star &output_items);
 
-      void set_threshold(float threshold){ d_threshold = threshold; }; // not threadsafe
+      void set_alpha(float alpha){ d_alpha = alpha; }; // not threadsafe
+      void set_beta(float beta){ d_beta = beta; }; // not threadsafe
     };
 
   } // namespace lpwan

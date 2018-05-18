@@ -34,10 +34,11 @@ namespace gr {
      * reference.
      *
      * @param shr SHR in NRZ-coding (+-1)
-     * @param threshold Treshold (0 <= x <= 1)
      * @param sps Samples per symbol
      * @param spreading_factor Spreading factor
      * @param num_chips_gap length of the time gap between symbols in chips
+     * @param alpha alpha for single-pole IIR used to average energy per polyphase
+     * @param beta factor to control false alarm probability per polyphase
      * \ingroup lpwan
      *
      */
@@ -54,9 +55,10 @@ namespace gr {
        * class. lpwan::fddsm_preamble_detector_cc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(std::vector<float> shr, float threshold, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap);
+      static sptr make(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta);
 
-      virtual void set_threshold(float threshold) = 0;
+      virtual void set_alpha(float alpha) = 0;
+      virtual void set_beta(float beta) = 0;
     };
 
   } // namespace lpwan
