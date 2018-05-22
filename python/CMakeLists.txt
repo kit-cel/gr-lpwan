@@ -31,7 +31,8 @@ list(APPEND python_sources
 GR_PYTHON_INSTALL(
     FILES ${python_sources}
     dsss_preamble_search_cc.py
-    message_counter.py DESTINATION ${GR_PYTHON_DIR}/lpwan
+    message_counter.py
+    error_rate_calculation.py DESTINATION ${GR_PYTHON_DIR}/lpwan
     COMPONENT "lpwan_python"
 )
 
