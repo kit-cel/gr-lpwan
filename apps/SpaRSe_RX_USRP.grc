@@ -97,7 +97,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1e-2</value>
+      <value>1e-3</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -137,7 +137,7 @@
     </param>
     <param>
       <key>step</key>
-      <value>0.01</value>
+      <value>1e-3</value>
     </param>
     <param>
       <key>stop</key>
@@ -372,7 +372,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(392, 212)</value>
+      <value>(392, 220)</value>
     </param>
     <param>
       <key>gui_hint</key>
