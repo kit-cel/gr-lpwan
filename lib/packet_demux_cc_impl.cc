@@ -94,6 +94,10 @@ namespace gr {
           d_tag_value.push_back(v[i].value);
           //std::cout << "DEMUX: add buffer for frame starting@" << d_next_abs_symbol_index[d_next_abs_symbol_index.size()-1] << std::endl;
         }
+        else
+        {
+          std::cout << "packet_demux_cc: Buffer queue full! Dropping " << v.size() - i << " tags." << std::endl;
+        }
       }
 
       //std::cout << "DEMUX: # buffers: " << d_bufvec.size() << std::endl;
