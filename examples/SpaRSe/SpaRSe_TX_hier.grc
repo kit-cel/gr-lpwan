@@ -38,7 +38,7 @@
     </param>
     <param>
       <key>generate_options</key>
-      <value>hb_qt_gui</value>
+      <value>hb</value>
     </param>
     <param>
       <key>hier_block_src_path</key>
@@ -663,7 +663,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2364,7 +2364,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>vector</key>
-      <value>[137, 122, 87, 45, 38, 99, 100, 22]</value>
+      <value>np.random.randint(0, 256, 12 * 100)</value>
     </param>
   </block>
   <block>
@@ -3808,7 +3808,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
