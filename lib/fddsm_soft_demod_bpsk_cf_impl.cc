@@ -78,8 +78,8 @@ namespace gr {
       get_tags_in_range(v, 0, nitems_read(0), nitems_read(0)+1, pmt::intern("sop"));
       if(not v.empty())
       {
-        gr_complex yp[2] = {gr_complex(pmt::to_complex(pmt::tuple_ref(v[0].value, 0))),
-                            gr_complex(pmt::to_complex(pmt::tuple_ref(v[0].value, 1)))};
+        gr_complex yp[2] = {gr_complex(pmt::to_complex(pmt::tuple_ref(pmt::dict_ref(v[0].value, pmt::intern("init_symbols"), pmt::PMT_NIL), 0))),
+                            gr_complex(pmt::to_complex(pmt::tuple_ref(pmt::dict_ref(v[0].value, pmt::intern("init_symbols"), pmt::PMT_NIL), 1)))};
         d_demod_kernel->set(yp);
       }
       

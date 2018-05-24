@@ -42,10 +42,12 @@ namespace gr {
       float d_alpha;
       float d_beta;
       std::vector<float> d_avg_pp_power;
+      std::vector<float> d_var_pp_power;
 
       unsigned d_stepsize;
       unsigned d_num_branches;
       std::vector<std::vector<float> > d_buf;
+      uint64_t d_frame_number;
 
      public:
       fddsm_preamble_detector_cc_impl(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta);

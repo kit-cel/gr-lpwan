@@ -48,12 +48,14 @@ namespace gr {
         d_spreading_factor(spreading_factor),
         d_num_chips_gap(num_chips_gap),
         d_alpha(alpha),
-        d_beta(beta)
+        d_beta(beta),
+        d_frame_number(0)
     {
       // num branches == length of one space-time block in samples
       d_stepsize = d_sps * (d_spreading_factor + d_num_chips_gap);
       d_num_branches = 2 * d_stepsize;
       d_avg_pp_power = std::vector<float>(d_stepsize, 1); // initializing with zero may cause lots of false alarms at startup
+      d_var_pp_power = std::vector<float>(d_stepsize, 1); // do not initialize with 0 for same reason as above
 
       // make sure that the SHR is NRZ with an amplitude equal to 1/sqrt(L * 2). This ensures equal input and output power.
       for(auto i=0; i < d_shr.size(); ++i)
@@ -119,17 +121,22 @@ namespace gr {
       for(auto i = 0; i < nitems_processed; ++i)
       {
         // single-pole IIR for each polyphase's power
-        d_avg_pp_power[i % d_stepsize] = (1 - d_alpha) * d_avg_pp_power[i % d_stepsize] + std::pow(std::abs(corr_out[i]), 2) * d_alpha;
+        d_avg_pp_power[i % d_stepsize] = (1 - d_alpha) * d_avg_pp_power[i % d_stepsize] + std::abs(corr_out[i]) * d_alpha;
+        d_var_pp_power[i % d_stepsize] = (1 - d_alpha) * d_var_pp_power[i % d_stepsize] + std::pow(std::abs(corr_out[i] - d_avg_pp_power[i % d_stepsize]), 2) * d_alpha;
         // beta can be compared to a sigma-factor to reduce false alarm probability
-        threshold_out[i] = d_beta * std::sqrt(d_avg_pp_power[i % d_stepsize]);
+        threshold_out[i] = d_avg_pp_power[i % d_stepsize] + d_beta * std::sqrt(d_var_pp_power[i % d_stepsize]);
         if(corr_out[i] > threshold_out[i])
         {
           auto offset = i;
+          auto tag_dict = pmt::make_dict();
           auto value = pmt::make_tuple(
               pmt::from_complex(std::real(corr_in[offset]), std::imag(corr_in[offset])),
               pmt::from_complex(std::real(corr_in[offset + d_stepsize]), std::imag(corr_in[offset + d_stepsize])));
-          add_item_tag(0, nitems_written(0) + offset, pmt::intern("sop"), value);
-          add_item_tag(1, nitems_written(1) + offset, pmt::intern("sop"), value);
+          tag_dict = pmt::dict_add(tag_dict, pmt::intern("init_symbols"), value);
+          tag_dict = pmt::dict_add(tag_dict, pmt::intern("frame_number"), pmt::from_uint64(d_frame_number));
+          d_frame_number++;
+          add_item_tag(0, nitems_written(0) + offset, pmt::intern("sop"), tag_dict);
+          add_item_tag(1, nitems_written(1) + offset, pmt::intern("sop"), tag_dict);
         }
 
       }
