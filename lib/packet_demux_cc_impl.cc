@@ -78,6 +78,9 @@ namespace gr {
       auto *in = (const gr_complex *) input_items[0];
       auto *out = (gr_complex *) output_items[0];
 
+      //for(auto i=0; i < noutput_items; ++i)
+      //  out[i] = gr_complex(1.0 * i / noutput_items, noutput_items/10000.0);
+
       // search for frame start tags and append new buffers for them
       std::vector<tag_t> v;
       get_tags_in_range(v, 0, nitems_read(0), nitems_read(0) + ninput_items[0], pmt::intern(d_tag_key));
@@ -88,11 +91,10 @@ namespace gr {
         {
           // NOTE: This could be optimized by statically allocating memory and keeping track of the position in the buffer,
           // therefore avoiding copy operations when new buffers are pushed to the back of the array.
-          d_bufvec.push_back(std::vector<gr_complex>(d_payload_length_symbols, gr_complex(0, 0)));
+          d_bufvec.push_back(std::vector<gr_complex>(d_payload_length_symbols, gr_complex(-1, -1)));
           d_buf_pos.push_back(0);
           d_next_abs_symbol_index.push_back(v[i].offset);
           d_tag_value.push_back(v[i].value);
-          //std::cout << "DEMUX: add buffer for frame starting@" << d_next_abs_symbol_index[d_next_abs_symbol_index.size()-1] << std::endl;
         }
         else
         {
@@ -129,7 +131,7 @@ namespace gr {
           if (d_buf_pos[0] == d_payload_length_symbols) // entire frame payload written to internal buffer
           {
             // copy to output and attach tag
-            std::memcpy(out, &d_bufvec[0][0], d_payload_length_symbols * sizeof(gr_complex));
+            std::memcpy(out + symbols_written, &d_bufvec[0][0], d_payload_length_symbols * sizeof(gr_complex));
             add_item_tag(0, nitems_written(0) + i * d_payload_length_symbols, pmt::intern(d_tag_key), d_tag_value[0]);
 
             // cleanup
