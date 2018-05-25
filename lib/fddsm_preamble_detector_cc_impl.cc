@@ -127,6 +127,11 @@ namespace gr {
         threshold_out[i] = d_avg_pp_power[i % d_stepsize] + d_beta * std::sqrt(d_var_pp_power[i % d_stepsize]);
         if(corr_out[i] > threshold_out[i])
         {
+          // exclude the peak from the threshold calculation as it does not belong to the "average" behavior
+          // note that the peak still influenced the threshold for the current decision
+          d_avg_pp_power[i % d_stepsize] -= std::abs(corr_out[i]) * d_alpha;
+          d_var_pp_power[i % d_stepsize] -= std::pow(std::abs(corr_out[i] - d_avg_pp_power[i % d_stepsize]), 2) * d_alpha;
+
           auto offset = i;
           auto tag_dict = pmt::make_dict();
           auto value = pmt::make_tuple(
