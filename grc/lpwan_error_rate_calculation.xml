@@ -11,7 +11,12 @@
     <value>100</value>
     <type>int</type>
   </param>
-
+  <param>
+    <name>file name</name>
+    <key>filename</key>
+    <value>""</value>
+    <type>string</type>
+  </param>
   <sink>
     <name>in</name>
     <type>message</type>

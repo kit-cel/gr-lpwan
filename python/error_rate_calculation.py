@@ -29,7 +29,7 @@ class error_rate_calculation(gr.sync_block):
     """
     docstring for block error_rate_calculation
     """
-    def __init__(self, averaging_length = 100):
+    def __init__(self, averaging_length = 100, filename = ""):
         gr.sync_block.__init__(self,
             name="error_rate_calculation",
             in_sig=None,
@@ -40,6 +40,9 @@ class error_rate_calculation(gr.sync_block):
         self.PER = 1
         self.seq_numbers = collections.deque(self.ma_len * [0], self.ma_len)
         self.ctr = 0
+        self.textfile = None
+        if filename is not "" and filename is not None:
+            self.textfile = open(filename, "w")
 
     def get_PER(self):
         return self.PER
@@ -51,10 +54,17 @@ class error_rate_calculation(gr.sync_block):
         b1 = pmt.u8vector_ref(pdu, 1)
         b2 = pmt.u8vector_ref(pdu, 2)
         b3 = pmt.u8vector_ref(pdu, 3)
-        print("#", self.ctr, "possible duplicate bytes: ", b0, b1, b2, b3)
+        if self.textfile:
+            self.textfile.write("PACKET meta:" + str(pmt.car(msg)) + "\n")
+            self.textfile.write("\tfirst bytes:")
+            for i in range(4):
+                self.textfile.write(str(pmt.u8vector_ref(pdu, i)) + "\t")
+            self.textfile.write("\n")
         new_seq_nr = (b0 << 0) + (b1 << 8) + (b2 << 16) + (b3 << 24)
         if new_seq_nr > self.seq_numbers[0]:
-            print("\tnew seq #:", new_seq_nr)
+            # if new_seq_nr - self.seq_numbers[0] > 1:
+            #    print "\t missed", new_seq_nr - self.seq_numbers[0] - 1, "frame(s)!"
+            # print "new seq #:", new_seq_nr
             self.seq_numbers.appendleft(new_seq_nr)
             self.PER = 1 - self.ma_len / float(self.seq_numbers[0] - self.seq_numbers[-1] + 1)
 
