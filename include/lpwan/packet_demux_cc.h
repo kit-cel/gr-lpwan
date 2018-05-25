@@ -48,7 +48,7 @@ namespace gr {
        * class. lpwan::packet_demux_cc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, unsigned int downsampling_factor);
+      static sptr make(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, std::vector<float> spreading_code, unsigned int spreading_factor, unsigned int sps, std::vector<float> pulse, bool reset_after_each_symbol);
     };
 
   } // namespace lpwan

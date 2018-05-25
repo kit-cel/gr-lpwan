@@ -43,6 +43,7 @@
 #include "lpwan/fddsm_preamble_detector_cc.h"
 #include "lpwan/sliding_dotprod_32f_x2_32f.h"
 #include "lpwan/packet_demux_cc.h"
+#include "lpwan/interpolating_spreading_cc.h"
 %}
 
 %include "lpwan/dsss_codes.h"
@@ -89,3 +90,5 @@ GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_preamble_detector_cc);
 
 %include "lpwan/packet_demux_cc.h"
 GR_SWIG_BLOCK_MAGIC2(lpwan, packet_demux_cc);
+%include "lpwan/interpolating_spreading_cc.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, interpolating_spreading_cc);

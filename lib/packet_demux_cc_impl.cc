@@ -24,15 +24,16 @@
 
 #include <gnuradio/io_signature.h>
 #include "packet_demux_cc_impl.h"
+#include <volk/volk.h>
 
 namespace gr {
   namespace lpwan {
 
     packet_demux_cc::sptr
-    packet_demux_cc::make(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, unsigned int downsampling_factor)
+    packet_demux_cc::make(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, std::vector<float> spreading_code, unsigned int spreading_factor, unsigned int sps, std::vector<float> pulse, bool reset_after_each_symbol)
     {
       return gnuradio::get_initial_sptr
-        (new packet_demux_cc_impl(tag_key, frame_length_samples, payload_length_samples, downsampling_factor));
+        (new packet_demux_cc_impl(tag_key, frame_length_samples, payload_length_samples, spreading_code, spreading_factor, sps, pulse, reset_after_each_symbol));
     }
 
     /*
@@ -41,16 +42,47 @@ namespace gr {
     packet_demux_cc_impl::packet_demux_cc_impl(std::string tag_key,
                                                unsigned int frame_length_samples,
                                                unsigned int payload_length_samples,
-                                               unsigned int downsampling_factor)
+                                               std::vector<float> spreading_code,
+                                               unsigned int spreading_factor,
+                                               unsigned int sps,
+                                               std::vector<float> pulse,
+                                               bool reset_after_each_symbol)
       : gr::block("packet_demux_cc",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(gr_complex))),
         d_tag_key(tag_key),
         d_frame_length_samples(frame_length_samples),
         d_payload_length_samples(payload_length_samples),
-        d_downsampling_factor(downsampling_factor),
-        d_payload_length_symbols(payload_length_samples / downsampling_factor)
+        d_code(spreading_code),
+        d_sf(spreading_factor),
+        d_sps(sps),
+        d_pulse(pulse),
+        d_reset_after_each_symbol(reset_after_each_symbol)
     {
+      d_downsampling_factor = d_sf * d_sps - (d_sps - 1) + d_pulse.size() - 1; // remove trailing zeros, convolve with pulse
+      d_payload_length_symbols = d_payload_length_samples / d_downsampling_factor;
+      auto nsymbols_in_code = d_code.size() / d_sf;
+      d_filtered_code.resize(d_downsampling_factor * nsymbols_in_code); // reserve space for up to d_code / d_sf symbols (which should equal the payload length)
+
+      float tmp[d_pulse.size()];
+      for(auto i = 0; i < nsymbols_in_code; ++i)
+      {
+        for(auto j = 0; j < d_sf; ++j)
+        {
+          volk_32f_s32f_multiply_32f(tmp, &d_pulse[0], d_code[i*d_sf + j], d_pulse.size());
+          /*if(i * d_downsampling_factor + j * d_sps + d_pulse.size() - 1 >= d_filtered_code.size())
+          {
+            std::cout << "OOB at " <<  i * d_downsampling_factor + j * d_sps << std::endl;
+            throw std::runtime_error("OOB error!");
+          }*/
+          volk_32f_x2_add_32f(&d_filtered_code[0] + i * d_downsampling_factor + j * d_sps, &d_filtered_code[0] + i * d_downsampling_factor + j * d_sps, tmp, d_pulse.size());
+        }
+      }
+
+      for(auto i=0; i < d_downsampling_factor * 2; ++i)
+        std::cout << d_filtered_code[i] << ", ";
+      std::cout << std::endl;
+
       set_tag_propagation_policy(TPP_DONT);
       set_output_multiple(d_payload_length_symbols);
       //set_relative_rate(float(d_payload_length_symbols) / d_frame_length_samples);
@@ -78,13 +110,9 @@ namespace gr {
       auto *in = (const gr_complex *) input_items[0];
       auto *out = (gr_complex *) output_items[0];
 
-      //for(auto i=0; i < noutput_items; ++i)
-      //  out[i] = gr_complex(1.0 * i / noutput_items, noutput_items/10000.0);
-
       // search for frame start tags and append new buffers for them
       std::vector<tag_t> v;
       get_tags_in_range(v, 0, nitems_read(0), nitems_read(0) + ninput_items[0], pmt::intern(d_tag_key));
-      //std::cout << "DEMUX: found " << v.size() << " tags." << std::endl;
       for(auto i = 0; i < v.size(); ++i)
       {
         if(d_bufvec.size() <= d_max_buffers)
@@ -112,9 +140,17 @@ namespace gr {
         auto next_rel_symbol_index = d_next_abs_symbol_index[i] - nitems_read(0);
         //std::cout << "bufvec@" << i << ", next symbol (rel) @" << next_rel_symbol_index << std::endl;
         while(d_buf_pos[i] < d_payload_length_symbols
-            && next_rel_symbol_index < ninput_items[0])
+            && (next_rel_symbol_index + d_downsampling_factor) < ninput_items[0])
         {
-          d_bufvec[i][d_buf_pos[i]] = in[next_rel_symbol_index];
+          if(d_reset_after_each_symbol)
+          {
+            volk_32fc_32f_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in+next_rel_symbol_index, &d_filtered_code[0], d_downsampling_factor);
+          }
+          else
+          {
+            volk_32fc_32f_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in+next_rel_symbol_index, &d_filtered_code[0] + d_buf_pos[i] * d_downsampling_factor, d_downsampling_factor);
+          }
+          //d_bufvec[i][d_buf_pos[i]] = in[next_rel_symbol_index];
           d_next_abs_symbol_index[i] += d_downsampling_factor;
           next_rel_symbol_index += d_downsampling_factor;
           d_buf_pos[i] += 1;
