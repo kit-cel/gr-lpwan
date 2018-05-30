@@ -320,7 +320,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>ntaps</key>
-      <value>11 * sps</value>
+      <value>11 * sps + (1 - sps % 2)</value>
     </param>
     <param>
       <key>samp_rate</key>
@@ -409,7 +409,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>value</key>
-      <value>len(pulse) // sps</value>
+      <value>(len(pulse) - 1) // sps</value>
     </param>
   </block>
   <block>
@@ -503,7 +503,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>value</key>
-      <value>2**4</value>
+      <value>2**8</value>
     </param>
   </block>
   <block>
@@ -716,7 +716,7 @@ after each symbol</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1130,7 +1130,7 @@ after each symbol</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -1613,7 +1613,7 @@ after each symbol</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2380,7 +2380,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3063,6 +3063,57 @@ Really ugly solution!</value>
     <param>
       <key>packet_len_bytes</key>
       <value>len(shr) / 8</value>
+    </param>
+  </block>
+  <block>
+    <key>lpwan_interpolating_spreading_cc</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(320, 1028)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>lpwan_interpolating_spreading_cc_0</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>nsymbols_before_reset</key>
+      <value>psdu_len_coded*8</value>
+    </param>
+    <param>
+      <key>spreading_factor</key>
+      <value>SF</value>
+    </param>
+    <param>
+      <key>spreading_sequence</key>
+      <value>lpwan.dsss_codes().generate_gold_code_f(data_seed, SF*psdu_len_coded*8)</value>
     </param>
   </block>
   <block>
@@ -3770,7 +3821,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1448, 356)</value>
+      <value>(1432, 356)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -3798,7 +3849,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>value</key>
-      <value>1</value>
+      <value>4</value>
     </param>
   </block>
   <block>
@@ -4516,6 +4567,12 @@ Really ugly solution!</value>
     <sink_key>0</sink_key>
   </connection>
   <connection>
+    <source_block_id>lpwan_fddsm_mod_bcb_0</source_block_id>
+    <sink_block_id>lpwan_interpolating_spreading_cc_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
     <source_block_id>lpwan_fddsm_mod_bcb_0_0</source_block_id>
     <sink_block_id>virtual_sink_5</sink_block_id>
     <source_key>0</source_key>
@@ -4525,6 +4582,12 @@ Really ugly solution!</value>
     <source_block_id>lpwan_fddsm_mod_bcb_0_0</source_block_id>
     <sink_block_id>blocks_repeat_0_0_0</sink_block_id>
     <source_key>1</source_key>
+    <sink_key>0</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>lpwan_interpolating_spreading_cc_0</source_block_id>
+    <sink_block_id>blocks_vector_insert_x_0_0_0_0</sink_block_id>
+    <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>

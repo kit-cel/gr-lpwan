@@ -62,3 +62,4 @@ GR_ADD_TEST(qa_fddsm_soft_demod_bpsk_cf ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOU
 GR_ADD_TEST(qa_fddsm_preamble_detector_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_preamble_detector_cc.py)
 GR_ADD_TEST(qa_packet_demux_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_packet_demux_cc.py)
 GR_ADD_TEST(qa_sliding_dotprod_32f_x2_32f ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sliding_dotprod_32f_x2_32f.py)
+GR_ADD_TEST(qa_interpolating_spreading_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_interpolating_spreading_cc.py)

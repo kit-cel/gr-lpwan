@@ -98,6 +98,8 @@ namespace gr {
       // Effectively, we create a polyphase filterbank by splitting/deinterleaving the input in 2 * d_stepsize polyphase
       // components, filtering each component and interleaving the filter/correlator output again.
       //auto nbits_to_process = std::min(static_cast<size_t>(noutput_items) / d_num_branches * 2, d_buf[0].size());
+
+      // TODO: This part could be done in parallel by multiple threads as this might be the bottleneck
       auto nbits_to_process = 2; // be careful if this is to be changed (e.g., for performance reason). There are some implications that need to be dealt with.
       for(auto i = 0; i < d_num_branches; ++i)
       {

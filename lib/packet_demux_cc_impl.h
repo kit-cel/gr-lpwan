@@ -33,8 +33,14 @@ namespace gr {
       std::string d_tag_key;
       unsigned int d_frame_length_samples;
       unsigned int d_payload_length_samples;
+      std::vector<float> d_filtered_code; // payload spreading code (upsampled and filtered)
       unsigned int d_downsampling_factor;
       unsigned int d_payload_length_symbols;
+      std::vector<float> d_code;
+      std::vector<float> d_pulse;
+      unsigned int d_sps;
+      unsigned int d_sf;
+      bool d_reset_after_each_symbol;
       static const unsigned int d_max_buffers = 100; // constrain maximum memory usage
       std::vector< std::vector< gr_complex > > d_bufvec; // queue holding the actual symbol buffers
       std::vector< uint64_t > d_next_abs_symbol_index; // absolute starting offset for every buffer in d_bufvec
@@ -42,7 +48,7 @@ namespace gr {
       std::vector< pmt::pmt_t > d_tag_value; // value of frame start tag (initialization for differential demodulator)
 
      public:
-      packet_demux_cc_impl(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, unsigned int downsampling_factor);
+      packet_demux_cc_impl(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, std::vector<float> spreading_code, unsigned int spreading_factor, unsigned int sps, std::vector<float> pulse, bool reset_after_each_symbol);
       ~packet_demux_cc_impl();
 
       // Where all the action really happens

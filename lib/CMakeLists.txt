@@ -51,7 +51,8 @@ list(APPEND lpwan_sources
     fddsm_demodulator_kernel.cc
     fddsm_preamble_detector_cc_impl.cc
     sliding_dotprod_32f_x2_32f.cc
-    packet_demux_cc_impl.cc )
+    packet_demux_cc_impl.cc
+    interpolating_spreading_cc_impl.cc )
 
 list(APPEND lpwan_libs
     ${Boost_LIBRARIES}
