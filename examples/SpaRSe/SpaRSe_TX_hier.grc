@@ -503,7 +503,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>value</key>
-      <value>2**4</value>
+      <value>2**8</value>
     </param>
   </block>
   <block>
@@ -3849,7 +3849,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>value</key>
-      <value>1</value>
+      <value>4</value>
     </param>
   </block>
   <block>

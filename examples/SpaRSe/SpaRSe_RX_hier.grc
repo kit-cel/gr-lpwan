@@ -653,7 +653,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>value</key>
-      <value>2**8</value>
+      <value>2**4</value>
     </param>
   </block>
   <block>
@@ -887,7 +887,7 @@ into the following block</value>
     </param>
     <param>
       <key>num_items</key>
-      <value>sps * (SF + time_gap_chips) - (sps - 1) + 1</value>
+      <value>sps * (SF + time_gap_chips) + 1</value>
     </param>
     <param>
       <key>type</key>
@@ -1344,7 +1344,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2955,7 +2955,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>name</key>
-      <value>""</value>
+      <value>"preamble despread"</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -3054,7 +3054,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>

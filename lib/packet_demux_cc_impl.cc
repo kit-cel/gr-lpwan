@@ -59,10 +59,12 @@ namespace gr {
         d_pulse(pulse),
         d_reset_after_each_symbol(reset_after_each_symbol)
     {
-      d_downsampling_factor = d_sf * d_sps - (d_sps - 1) + d_pulse.size() - 1; // remove trailing zeros, convolve with pulse
+      //d_downsampling_factor = d_sf * d_sps - (d_sps - 1) + d_pulse.size() - 1; // remove trailing zeros after upsampling, convolve with pulse
+      d_downsampling_factor = d_sf * d_sps + d_pulse.size() - 1;
       d_payload_length_symbols = d_payload_length_samples / d_downsampling_factor;
       auto nsymbols_in_code = d_code.size() / d_sf;
       d_filtered_code.resize(d_downsampling_factor * nsymbols_in_code); // reserve space for up to d_code / d_sf symbols (which should equal the payload length)
+      std::cout << "Downsampling factor: " << d_downsampling_factor << ". Filtered code length: " << d_filtered_code.size() << ". payload length (symbols): " << d_payload_length_symbols << std::endl;
 
       float tmp[d_pulse.size()];
       for(auto i = 0; i < nsymbols_in_code; ++i)
