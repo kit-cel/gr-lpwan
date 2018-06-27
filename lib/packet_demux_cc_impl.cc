@@ -81,9 +81,9 @@ namespace gr {
         }
       }
 
-      for(auto i=0; i < d_downsampling_factor * 2; ++i)
+      /*for(auto i=0; i < d_downsampling_factor * 2; ++i)
         std::cout << d_filtered_code[i] << ", ";
-      std::cout << std::endl;
+      std::cout << std::endl;*/
 
       set_tag_propagation_policy(TPP_DONT);
       set_output_multiple(d_payload_length_symbols);
@@ -100,7 +100,17 @@ namespace gr {
     void
     packet_demux_cc_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
-      ninput_items_required[0] = 2048; // just some value to avoid getting called without input items
+      if(!d_buf_pos.empty()) // do not require input as long as there are frames to return
+      {
+        if(d_buf_pos[0] == d_payload_length_symbols)
+        {
+            ninput_items_required[0] = 0;
+        }
+      }
+      else
+      {
+        ninput_items_required[0] = 2048; // just some value to avoid getting called without input items
+      }
     }
 
     int

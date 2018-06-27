@@ -41,7 +41,7 @@ namespace gr {
       unsigned int d_sps;
       unsigned int d_sf;
       bool d_reset_after_each_symbol;
-      static const unsigned int d_max_buffers = 100; // constrain maximum memory usage
+      static const unsigned int d_max_buffers = 1000000; // constrain maximum memory usage
       std::vector< std::vector< gr_complex > > d_bufvec; // queue holding the actual symbol buffers
       std::vector< uint64_t > d_next_abs_symbol_index; // absolute starting offset for every buffer in d_bufvec
       std::vector< unsigned int > d_buf_pos; // current writing position in a specific buffer in d_bufvec

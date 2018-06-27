@@ -3105,7 +3105,7 @@ Really ugly solution!</value>
     </param>
     <param>
       <key>nsymbols_before_reset</key>
-      <value>psdu_len_coded*8</value>
+      <value>psdu_len_coded*8 if not payload_short_code else 1</value>
     </param>
     <param>
       <key>spreading_factor</key>
@@ -3200,6 +3200,53 @@ Really ugly solution!</value>
     <param>
       <key>vlen</key>
       <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1432, 556)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>payload_short_code</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Use short code for payload</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
     </param>
   </block>
   <block>
