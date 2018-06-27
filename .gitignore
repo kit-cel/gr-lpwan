@@ -7,3 +7,10 @@ build/*
 *.npy
 .idea/*
 **/.DS_Store
+*.pdf
+SpaRSe*.txt
+.idea/
+*.bin
+examples/SpaRSe/*.txt
+apps/*.txt
+!CMakeLists.txt
