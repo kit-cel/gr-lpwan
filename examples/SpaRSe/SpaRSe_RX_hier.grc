@@ -676,7 +676,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 972)</value>
+      <value>(400, 924)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -805,10 +805,8 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>comment</key>
-      <value>use this to control the 
-SOP tag position
-FIXME: integrate this 
-into the following block</value>
+      <value>used to adjust the 
+SOP tag position</value>
     </param>
     <param>
       <key>affinity</key>
@@ -820,7 +818,7 @@ into the following block</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(736, 492)</value>
+      <value>(456, 532)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -852,59 +850,6 @@ into the following block</value>
     </param>
   </block>
   <block>
-    <key>blocks_skiphead</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value>Skip filter delay.
-FIXME: incorporate this as
-delay into the filter</value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>2</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(576, 348)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_skiphead_2_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>SF * sps * 100</value>
-    </param>
-    <param>
-      <key>num_items</key>
-      <value>len(c_preamble_shaped)-1</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_stream_to_tagged_stream</key>
     <param>
       <key>alias</key>
@@ -912,9 +857,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>comment</key>
-      <value>Skip filter delay.
-FIXME: incorporate this as
-delay into the filter</value>
+      <value></value>
     </param>
     <param>
       <key>affinity</key>
@@ -926,7 +869,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 812)</value>
+      <value>(624, 708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -981,7 +924,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 1220)</value>
+      <value>(328, 1076)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1083,7 +1026,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 940)</value>
+      <value>(112, 892)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1138,7 +1081,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 1204)</value>
+      <value>(112, 1060)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1196,7 +1139,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(368, 332)</value>
+      <value>(456, 364)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1313,7 +1256,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 980)</value>
+      <value>(1000, 932)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1356,7 +1299,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 980)</value>
+      <value>(704, 932)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1410,7 +1353,7 @@ denoting the last preamble symbol
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(952, 404)</value>
+      <value>(704, 444)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1453,10 +1396,7 @@ denoting the last preamble symbol
     </param>
     <param>
       <key>comment</key>
-      <value>Puts a tag on the first symbol of
-the payload part with the tag value
-denoting the last preamble symbol
-(for differential demod initialization).</value>
+      <value></value>
     </param>
     <param>
       <key>affinity</key>
@@ -1468,7 +1408,7 @@ denoting the last preamble symbol
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1008, 812)</value>
+      <value>(976, 708)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1527,7 +1467,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 780)</value>
+      <value>(304, 660)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1582,7 +1522,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1216, 508)</value>
+      <value>(976, 516)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1625,7 +1565,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 1220)</value>
+      <value>(576, 1076)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1668,7 +1608,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1216, 428)</value>
+      <value>(976, 468)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1700,49 +1640,6 @@ symbols (i.e., at symbol rate).</value>
     </param>
   </block>
   <block>
-    <key>pad_sink</key>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(920, 700)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>pad_sink_2</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>complex</value>
-    </param>
-    <param>
-      <key>label</key>
-      <value>constellation</value>
-    </param>
-    <param>
-      <key>num_streams</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>optional</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>pad_source</key>
     <param>
       <key>comment</key>
@@ -1754,7 +1651,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 412)</value>
+      <value>(72, 452)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1880,333 +1777,6 @@ symbols (i.e., at symbol rate).</value>
     </param>
   </block>
   <block>
-    <key>qtgui_histogram_sink_x</key>
-    <param>
-      <key>accum</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>autoscale</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>axislabels</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(704, 276)</value>
-    </param>
-    <param>
-      <key>gui_hint</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>grid</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>qtgui_time_sink_x_1</value>
-    </param>
-    <param>
-      <key>legend</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>alpha1</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color1</key>
-      <value>"blue"</value>
-    </param>
-    <param>
-      <key>label1</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker1</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width1</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha10</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color10</key>
-      <value>"dark blue"</value>
-    </param>
-    <param>
-      <key>label10</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker10</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style10</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width10</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha2</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color2</key>
-      <value>"red"</value>
-    </param>
-    <param>
-      <key>label2</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker2</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width2</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha3</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color3</key>
-      <value>"green"</value>
-    </param>
-    <param>
-      <key>label3</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker3</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style3</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width3</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha4</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color4</key>
-      <value>"black"</value>
-    </param>
-    <param>
-      <key>label4</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker4</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style4</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width4</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha5</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color5</key>
-      <value>"cyan"</value>
-    </param>
-    <param>
-      <key>label5</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker5</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style5</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width5</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha6</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color6</key>
-      <value>"magenta"</value>
-    </param>
-    <param>
-      <key>label6</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker6</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style6</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width6</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha7</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color7</key>
-      <value>"yellow"</value>
-    </param>
-    <param>
-      <key>label7</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker7</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style7</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width7</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha8</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color8</key>
-      <value>"dark red"</value>
-    </param>
-    <param>
-      <key>label8</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker8</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style8</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width8</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>alpha9</key>
-      <value>1.0</value>
-    </param>
-    <param>
-      <key>color9</key>
-      <value>"dark green"</value>
-    </param>
-    <param>
-      <key>label9</key>
-      <value></value>
-    </param>
-    <param>
-      <key>marker9</key>
-      <value>-1</value>
-    </param>
-    <param>
-      <key>style9</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>width9</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>xmax</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>xmin</key>
-      <value>-2</value>
-    </param>
-    <param>
-      <key>name</key>
-      <value>"distribution of soft-input bits"</value>
-    </param>
-    <param>
-      <key>bins</key>
-      <value>20</value>
-    </param>
-    <param>
-      <key>nconnections</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>size</key>
-      <value>psdu_len_coded * 8</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>float</value>
-    </param>
-    <param>
-      <key>update_time</key>
-      <value>0.10</value>
-    </param>
-  </block>
-  <block>
     <key>parameter</key>
     <param>
       <key>alias</key>
@@ -2265,7 +1835,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1216, 380)</value>
+      <value>(976, 420)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2292,7 +1862,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 820)</value>
+      <value>(80, 716)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2320,20 +1890,8 @@ symbols (i.e., at symbol rate).</value>
     <sink_key>1</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_skiphead_2_0</source_block_id>
-    <sink_block_id>lpwan_fddsm_preamble_detector_cc_0_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
     <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
     <sink_block_id>lpwan_fddsm_soft_demod_bpsk_cf_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_stream_to_tagged_stream_0</source_block_id>
-    <sink_block_id>pad_sink_2</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -2357,13 +1915,7 @@ symbols (i.e., at symbol rate).</value>
   </connection>
   <connection>
     <source_block_id>fft_filter_xxx_0_0_0</source_block_id>
-    <sink_block_id>blocks_skiphead_2_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>fft_filter_xxx_0_0_0</source_block_id>
-    <sink_block_id>qtgui_time_sink_x_1</sink_block_id>
+    <sink_block_id>lpwan_fddsm_preamble_detector_cc_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
