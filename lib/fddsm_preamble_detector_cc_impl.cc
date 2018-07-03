@@ -88,7 +88,7 @@ namespace gr {
         gr_vector_const_void_star &input_items,
         gr_vector_void_star &output_items)
     {
-      const auto *corr_in = (const gr_complex *) input_items[0];// + d_hist_len - 1;
+      const auto *corr_in = (const gr_complex *) input_items[0];
       const auto *signal_in = (const gr_complex *) input_items[1];
       auto *signal_out = (gr_complex *) output_items[0];
       auto *corr_out = (float *) output_items[1];

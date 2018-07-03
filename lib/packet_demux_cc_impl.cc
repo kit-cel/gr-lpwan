@@ -25,6 +25,8 @@
 #include <gnuradio/io_signature.h>
 #include "packet_demux_cc_impl.h"
 #include <volk/volk.h>
+#include <algorithm>
+
 
 namespace gr {
   namespace lpwan {
@@ -100,17 +102,7 @@ namespace gr {
     void
     packet_demux_cc_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
     {
-      if(!d_buf_pos.empty()) // do not require input as long as there are frames to return
-      {
-        if(d_buf_pos[0] == d_payload_length_symbols)
-        {
-            ninput_items_required[0] = 0;
-        }
-      }
-      else
-      {
-        ninput_items_required[0] = 2048; // just some value to avoid getting called without input items
-      }
+      ninput_items_required[0] = d_downsampling_factor * 2;
     }
 
     int
@@ -121,6 +113,8 @@ namespace gr {
     {
       auto *in = (const gr_complex *) input_items[0];
       auto *out = (gr_complex *) output_items[0];
+
+      //std::cout << "WORK index range: " << nitems_read(0) << " to " << nitems_read(0) + ninput_items[0] << " (" << ninput_items[0] << " items)" << std::endl;
 
       // search for frame start tags and append new buffers for them
       std::vector<tag_t> v;
@@ -134,6 +128,9 @@ namespace gr {
           d_bufvec.push_back(std::vector<gr_complex>(d_payload_length_symbols, gr_complex(-1, -1)));
           d_buf_pos.push_back(0);
           d_next_abs_symbol_index.push_back(v[i].offset);
+          //std::cout << "ADD TAG @ " << v[i].offset << std::endl;
+          if(v[i].offset < nitems_read(0))
+            throw std::runtime_error("Invalid tag offset!");
           d_tag_value.push_back(v[i].value);
         }
         else
@@ -142,35 +139,32 @@ namespace gr {
         }
       }
 
-      //std::cout << "DEMUX: # buffers: " << d_bufvec.size() << std::endl;
-      //std::cout << "ninput_items[0]=" << ninput_items[0] << ", nitems_read(0)=" << nitems_read(0) << std::endl;
-
       // fill existing buffers as far as possible
-      for(auto i = 0; i < d_bufvec.size(); ++i)
-      {
+      for (auto i = 0; i < d_bufvec.size(); ++i) {
         // check if the buffer is already filled and if there are symbols in the current input buffer
         auto next_rel_symbol_index = d_next_abs_symbol_index[i] - nitems_read(0);
-        //std::cout << "bufvec@" << i << ", next symbol (rel) @" << next_rel_symbol_index << std::endl;
-        while(d_buf_pos[i] < d_payload_length_symbols
-            && (next_rel_symbol_index + d_downsampling_factor) < ninput_items[0])
-        {
-          if(d_reset_after_each_symbol)
-          {
-            volk_32fc_32f_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in+next_rel_symbol_index, &d_filtered_code[0], d_downsampling_factor);
+        if (d_next_abs_symbol_index[i] < nitems_read(0) && d_buf_pos[i] < d_payload_length_symbols) {
+          std::cout << "i=" << i << "\tnext_abs_index=" << d_next_abs_symbol_index[i] << "\tnitems_read(0)="
+                    << nitems_read(0) << "\tnext_rel_index=" << next_rel_symbol_index << "\tbuf_pos[i]="
+                    << d_buf_pos[i] << std::endl;
+          throw std::runtime_error("Invalid symbol index!");
+        }
+        while (d_buf_pos[i] < d_payload_length_symbols
+               && (next_rel_symbol_index + d_downsampling_factor) < ninput_items[0]) {
+          if (d_reset_after_each_symbol) {
+            volk_32fc_32f_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in + next_rel_symbol_index, &d_filtered_code[0],
+                                        d_downsampling_factor);
+          } else {
+            volk_32fc_32f_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in + next_rel_symbol_index,
+                                        &d_filtered_code[0] + d_buf_pos[i] * d_downsampling_factor,
+                                        d_downsampling_factor);
           }
-          else
-          {
-            volk_32fc_32f_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in+next_rel_symbol_index, &d_filtered_code[0] + d_buf_pos[i] * d_downsampling_factor, d_downsampling_factor);
-          }
-          //d_bufvec[i][d_buf_pos[i]] = in[next_rel_symbol_index];
           d_next_abs_symbol_index[i] += d_downsampling_factor;
           next_rel_symbol_index += d_downsampling_factor;
           d_buf_pos[i] += 1;
-          //std::cout << "\twrite symbol; next rel/abs offset: " << next_rel_symbol_index << "/" << d_next_abs_symbol_index[i] << std::endl;
         }
       }
 
-      // return as many complete frames as possible
       auto max_frames_to_return = noutput_items / d_payload_length_symbols;
       auto symbols_written = 0;
       for(auto i = 0; i < max_frames_to_return; ++i)
@@ -201,9 +195,9 @@ namespace gr {
         }
       }
 
-      // report back to scheduler
-      //std::cout << "DEMUX: consume " << ninput_items[0] << ", produce " << symbols_written << std::endl << std::endl;
-      consume_each(ninput_items[0]);
+      auto samples_consumed = ninput_items[0] - d_downsampling_factor;
+      consume_each(samples_consumed);
+      //std::cout << "RETURN samples consumed: " << samples_consumed << std::endl << std::endl;
       return symbols_written;
     }
 
