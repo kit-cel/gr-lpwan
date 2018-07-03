@@ -7,18 +7,18 @@ import matplotlib.pyplot as plt
 
 
 if __name__ == "__main__":
-    niterations = 10
+    niterations = 5
     avg_PER = []
     for n in range(niterations):
         print "iteration no.", n, "out of ", niterations
         SNR_range = np.arange(0, 16, 1)
         SF = 256
-        tx_gain_range = SNR_range + 36.4  # this transforms actually to Eb/N0!
+        tx_gain_range = SNR_range + 36.2  # this transforms actually to Eb/N0 (02/07/18)!
         rx_gain = 0.8
         txsps = 2
         rxsps = 4
         alpha = 1e-3
-        beta = 2
+        beta = 5
 
         num_packets = 200
         time_per_packet = float((SF + 10) * (256 + 32)) / 1e6
@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
         print "estimated time per iteration:", (10 + num_packets * time_per_packet) * len(SNR_range), "seconds"
         with open("SpaRSe_OTA_results_"+datestr+".txt", 'w') as f:
-            f.write("Settings: \nSNR_range={}\nSF={}\nnum_packets={}\nbeta={}\n\n".format(SNR_range, SF, num_packets, beta))
+            f.write("Settings: \nSNR_range={}\nSF={}\nnum_packets={}\nalpha={}\nbeta={}\n\n".format(SNR_range, SF, num_packets, alpha, beta))
             PER = []
             packets_received = []
             npackets_sent = []
@@ -75,4 +75,6 @@ if __name__ == "__main__":
     avg_PER = np.array(avg_PER)
     print "averaged PER:", avg_PER
     np.save("avg_PER_"+str(int(time.time()))+".npy", avg_PER)
+    print(np.mean(avg_PER, axis=0))
+    print(np.mean(avg_PER, axis=1))
 

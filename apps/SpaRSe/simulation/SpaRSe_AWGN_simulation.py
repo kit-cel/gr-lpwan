@@ -9,11 +9,12 @@ if __name__ == "__main__":
     print "PID:", os.getpid()
 
     SF = 256
-    max_time = 30
-    num_packets = 100
+    max_time = 40
+    num_packets = 200
     phi = 0
     perfect_sync = False
-    beta = 5
+    alpha = 1e-3
+    beta = 3
     EbN0_range = np.arange(0, 16, 1)
 
     # calculate SNR from Eb/N0
@@ -39,6 +40,7 @@ if __name__ == "__main__":
         sim.set_snr_db(snr)
         sim.set_num_packets(num_packets)
         sim.set_phi(phi)
+        sim.set_alpha(alpha)  # this has no impact for perfect sync
         sim.set_beta(beta)  # this has no impact for perfect sync
         sim.lpwan_error_rate_calculation_0.start_counting_packets()
         sim.start()
