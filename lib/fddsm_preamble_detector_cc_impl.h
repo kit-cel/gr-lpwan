@@ -30,6 +30,25 @@
 namespace gr {
   namespace lpwan {
 
+    class LPWAN_API filter_branch {
+    public:
+      fddsm_demodulator_kernel d_demod;
+      sliding_dotprod_32f_x2_32f d_dotprod;
+      std::vector<float> d_buf;
+      float d_preamble_correlation;
+      uint32_t d_stepsize;
+      static const uint32_t d_num_bits = 2;
+      float d_tmp[d_num_bits];
+      float d_threshold;
+      float d_avg_corr;
+      float d_var_corr;
+
+      void demodulate_soft(gr_complex* corr_in);
+      void dotprod();
+
+      filter_branch(uint32_t buf_len, std::vector<float> taps, uint32_t stepsize);
+    };
+
     class fddsm_preamble_detector_cc_impl : public fddsm_preamble_detector_cc
     {
      private:
@@ -41,16 +60,18 @@ namespace gr {
       unsigned int d_num_chips_gap;
       float d_alpha;
       float d_beta;
-      std::vector<float> d_avg_pp_power;
-      std::vector<float> d_var_pp_power;
+      //std::vector<std::vector<float>> d_avg_pp_power;
+      //std::vector<std::vector<float>> d_var_pp_power;
+      std::vector<float> d_phase_increments; // phase increments used for frequency offset correction for the different input paths
 
+      unsigned d_num_freq_hypotheses; // number of frequency-translated inputs
       unsigned d_stepsize;
-      unsigned d_num_branches;
-      std::vector<std::vector<float> > d_buf;
+      unsigned d_num_branches_per_hypothesis;
+      std::vector< std::vector<filter_branch> > d_filter_branches; // vector containing all the different frequency-translated polyphase chains
       uint64_t d_frame_number;
 
      public:
-      fddsm_preamble_detector_cc_impl(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta);
+      fddsm_preamble_detector_cc_impl(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta, std::vector<float> phase_increments);
       ~fddsm_preamble_detector_cc_impl();
 
       // Where all the action really happens
@@ -58,8 +79,8 @@ namespace gr {
          gr_vector_const_void_star &input_items,
          gr_vector_void_star &output_items);
 
-      void set_alpha(float alpha){ d_alpha = alpha; }; // not threadsafe
-      void set_beta(float beta){ d_beta = beta; }; // not threadsafe
+      void set_alpha(float alpha){ d_alpha = alpha; } // not threadsafe
+      void set_beta(float beta){ d_beta = beta; } // not threadsafe
     };
 
   } // namespace lpwan

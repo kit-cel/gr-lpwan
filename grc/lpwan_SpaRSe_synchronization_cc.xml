@@ -1,0 +1,70 @@
+<block>
+    <name>SpaRSe Synchronization</name>
+    <key>lpwan_SpaRSe_synchronization_cc</key>
+    <category>[LPWAN]</category>
+    <import>import lpwan</import>
+    <make>lpwan.SpaRSe_synchronization_cc($samp_rate_hz, $spreading_factor, $shr, $pulse, $alpha, $beta, $time_gap_chips, $max_offset_hz, $max_num_filters)</make>
+    <callback>set_alpha($alpha)</callback>
+    <callback>set_beta($beta)</callback>
+    <param>
+        <name>Sample rate (Hz)</name>
+        <key>samp_rate_hz</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Spreading factor</name>
+        <key>spreading_factor</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>SHR (NRZ)</name>
+        <key>shr</key>
+        <type>real_vector</type>
+    </param>
+    <param>
+        <name>Chip pulse</name>
+        <key>pulse</key>
+        <type>real_vector</type>
+    </param>
+    <param>
+        <name>Alpha</name>
+        <key>alpha</key>
+        <type>float</type>
+    </param>
+    <param>
+        <name>Beta</name>
+        <key>beta</key>
+        <type>float</type>
+    </param>
+    <param>
+        <name>Time gap length (chips)</name>
+        <key>time_gap_chips</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Max. offset (Hz)</name>
+        <key>max_offset_hz</key>
+        <type>float</type>
+    </param>
+    <param>
+        <name>Max. no. of filters</name>
+        <key>max_num_filters</key>
+        <type>int</type>
+    </param>
+    <sink>
+        <name>in</name>
+        <type>complex</type>
+    </sink>
+    <source>
+        <name>out</name>
+        <type>complex</type>
+    </source>
+    <source>
+        <name>corr</name>
+        <type>float</type>
+    </source>
+    <source>
+        <name>threshold</name>
+        <type>float</type>
+    </source>
+</block>

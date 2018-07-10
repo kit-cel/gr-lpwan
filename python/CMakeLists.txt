@@ -32,7 +32,8 @@ GR_PYTHON_INSTALL(
     FILES ${python_sources}
     dsss_preamble_search_cc.py
     message_counter.py
-    error_rate_calculation.py DESTINATION ${GR_PYTHON_DIR}/lpwan
+    error_rate_calculation.py
+    SpaRSe_synchronization_cc.py DESTINATION ${GR_PYTHON_DIR}/lpwan
     COMPONENT "lpwan_python"
 )
 
@@ -63,3 +64,4 @@ GR_ADD_TEST(qa_fddsm_preamble_detector_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_S
 GR_ADD_TEST(qa_packet_demux_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_packet_demux_cc.py)
 GR_ADD_TEST(qa_sliding_dotprod_32f_x2_32f ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sliding_dotprod_32f_x2_32f.py)
 GR_ADD_TEST(qa_interpolating_spreading_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_interpolating_spreading_cc.py)
+GR_ADD_TEST(qa_SpaRSe_synchronization_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_SpaRSe_synchronization_cc.py)

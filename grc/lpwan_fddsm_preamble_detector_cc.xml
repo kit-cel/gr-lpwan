@@ -1,10 +1,9 @@
 <block>
-  <name>FD-DSM Preamble Detector</name>
+  <name>SpaRSe Preamble Detector</name>
   <key>lpwan_fddsm_preamble_detector_cc</key>
   <category>[LPWAN]</category>
   <import>import lpwan</import>
-  <make>lpwan.fddsm_preamble_detector_cc($shr, $sps, $spreading_factor, $num_chips_gap, $alpha, $beta)</make>
-  <callback>set_threshold($threshold)</callback>
+  <make>lpwan.fddsm_preamble_detector_cc($shr, $sps, $spreading_factor, $num_chips_gap, $alpha, $beta, $phase_increments)</make>
   <callback>set_alpha($alpha)</callback>
   <callback>set_beta($beta)</callback>
   <param>
@@ -37,9 +36,15 @@
     <key>num_chips_gap</key>
     <type>int</type>
   </param>
+  <param>
+    <name>Phase increments</name>
+    <key>phase_increments</key>
+    <type>real_vector</type>
+  </param>
   <sink>
     <name>corr</name>
     <type>complex</type>
+    <nports>len($phase_increments)</nports>
   </sink>
   <sink>
     <name>signal</name>
