@@ -3,12 +3,17 @@
     <key>lpwan_SpaRSe_synchronization_cc</key>
     <category>[LPWAN]</category>
     <import>import lpwan</import>
-    <make>lpwan.SpaRSe_synchronization_cc($samp_rate_hz, $spreading_factor, $shr, $pulse, $alpha, $beta, $time_gap_chips, $max_offset_hz, $max_num_filters)</make>
+    <make>lpwan.SpaRSe_synchronization_cc($samp_rate_hz, $sps, $spreading_factor, $shr, $filtered_preamble_code, $alpha, $beta, $time_gap_chips, $max_offset_hz, $max_num_filters)</make>
     <callback>set_alpha($alpha)</callback>
     <callback>set_beta($beta)</callback>
     <param>
         <name>Sample rate (Hz)</name>
         <key>samp_rate_hz</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>sps</name>
+        <key>sps</key>
         <type>int</type>
     </param>
     <param>
@@ -22,8 +27,8 @@
         <type>real_vector</type>
     </param>
     <param>
-        <name>Chip pulse</name>
-        <key>pulse</key>
+        <name>Filtered preamble code</name>
+        <key>filtered_preamble_code</key>
         <type>real_vector</type>
     </param>
     <param>

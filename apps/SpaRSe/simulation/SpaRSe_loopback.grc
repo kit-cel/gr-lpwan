@@ -168,7 +168,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(408, 852)</value>
+      <value>(408, 868)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -231,7 +231,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(536, 852)</value>
+      <value>(536, 868)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -737,7 +737,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(432, 692)</value>
+      <value>(432, 676)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -750,6 +750,14 @@
     <param>
       <key>maxoutbuf</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>max_offset_hz</key>
+      <value>10000</value>
+    </param>
+    <param>
+      <key>max_num_filters</key>
+      <value>4</value>
     </param>
     <param>
       <key>minoutbuf</key>

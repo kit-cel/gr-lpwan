@@ -198,6 +198,8 @@ namespace gr {
             d_frame_number++;
             add_item_tag(0, nitems_written(0) + j, pmt::intern("sop"), tag_dict);
             add_item_tag(1, nitems_written(1) + j, pmt::intern("sop"), tag_dict);
+
+            std::cout << "Preamble detected @" << nitems_read(0) + j << " on branch " << i << std::endl;
           }
         }
       }

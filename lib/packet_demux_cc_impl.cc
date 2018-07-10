@@ -66,7 +66,7 @@ namespace gr {
       d_payload_length_symbols = d_payload_length_samples / d_downsampling_factor;
       auto nsymbols_in_code = d_code.size() / d_sf;
       d_filtered_code.resize(d_downsampling_factor * nsymbols_in_code); // reserve space for up to d_code / d_sf symbols (which should equal the payload length)
-      std::cout << "Downsampling factor: " << d_downsampling_factor << ". Filtered code length: " << d_filtered_code.size() << ". payload length (symbols): " << d_payload_length_symbols << std::endl;
+      //std::cout << "Downsampling factor: " << d_downsampling_factor << ". Filtered code length: " << d_filtered_code.size() << ". payload length (symbols): " << d_payload_length_symbols << std::endl;
 
       float tmp[d_pulse.size()];
       for(auto i = 0; i < nsymbols_in_code; ++i)
