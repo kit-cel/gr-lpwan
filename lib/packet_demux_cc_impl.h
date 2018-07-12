@@ -37,7 +37,7 @@ namespace gr {
       unsigned int d_downsampling_factor;
       unsigned int d_payload_length_symbols;
       std::vector<float> d_code;
-      std::vector<float> d_pulse;
+      std::vector< std::vector<gr_complex>  > d_freqshifted_pulses;
       unsigned int d_sps;
       unsigned int d_sf;
       bool d_reset_after_each_symbol;
@@ -46,9 +46,13 @@ namespace gr {
       std::vector< uint64_t > d_next_abs_symbol_index; // absolute starting offset for every buffer in d_bufvec
       std::vector< unsigned int > d_buf_pos; // current writing position in a specific buffer in d_bufvec
       std::vector< pmt::pmt_t > d_tag_value; // value of frame start tag (initialization for differential demodulator)
+      std::vector< float > d_phase_inc; // phase increment used to correct the frequency offset
+      std::vector< float > d_phase; // current phase of the rotator correcting the frequency offset
+      std::vector< long > d_phi_index; // index of the phase increment required for a specific frame
+      std::vector< float > d_delta_phi; // list of the different delta phi used during preamble demodulation
 
      public:
-      packet_demux_cc_impl(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, std::vector<float> spreading_code, unsigned int spreading_factor, unsigned int sps, std::vector<float> pulse, bool reset_after_each_symbol);
+      packet_demux_cc_impl(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, std::vector<float> spreading_code, unsigned int spreading_factor, unsigned int sps, std::vector<float> pulse, bool reset_after_each_symbol, std::vector<float> delta_phi);
       ~packet_demux_cc_impl();
 
       // Where all the action really happens

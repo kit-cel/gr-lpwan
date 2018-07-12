@@ -195,6 +195,7 @@ namespace gr {
             tag_dict = pmt::dict_add(tag_dict, pmt::intern("frame_number"), pmt::from_uint64(d_frame_number));
             tag_dict = pmt::dict_add(tag_dict, pmt::intern("delta_phi_index"), pmt::from_long(i));
             tag_dict = pmt::dict_add(tag_dict, pmt::intern("delta_phi"), pmt::from_float(d_phase_increments[i]));
+            tag_dict = pmt::dict_add(tag_dict, pmt::intern("phi_start"), pmt::from_float(0 /* FIXME */));
             d_frame_number++;
             add_item_tag(0, nitems_written(0) + j, pmt::intern("sop"), tag_dict);
             add_item_tag(1, nitems_written(1) + j, pmt::intern("sop"), tag_dict);

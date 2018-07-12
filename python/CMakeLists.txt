@@ -27,6 +27,7 @@ list(APPEND python_sources
     dsss_const.py
     dsss_phy.py
     dsss_mod.py
+    SpaRSe_utils.py
 )
 GR_PYTHON_INSTALL(
     FILES ${python_sources}

@@ -3,7 +3,7 @@
   <key>lpwan_packet_demux_cc</key>
   <category>[LPWAN]</category>
   <import>import lpwan</import>
-  <make>lpwan.packet_demux_cc($tag_key, $frame_length_samples, $payload_length_samples, $code, $sf, $sps, $pulse, $reset)</make>
+  <make>lpwan.packet_demux_cc($tag_key, $frame_length_samples, $payload_length_samples, $code, $sf, $sps, $pulse, $reset, $delta_phi)</make>
   <param>
     <name>Frame start tag key</name>
     <key>tag_key</key>
@@ -43,6 +43,11 @@
     <name>Reset after each symbol</name>
     <key>reset</key>
     <type>bool</type>
+  </param>
+  <param>
+    <name>Phase increments</name>
+    <key>delta_phi</key>
+    <type>real_vector</type>
   </param>
   <sink>
     <name>in</name>

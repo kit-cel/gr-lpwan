@@ -24,6 +24,7 @@ import gnuradio.filter as filter
 from . import fddsm_preamble_detector_cc as preamble_detector_cc
 from gnuradio import gr
 import numpy as np
+import lpwan
 
 class SpaRSe_synchronization_cc(gr.hier_block2):
     """
@@ -35,34 +36,35 @@ class SpaRSe_synchronization_cc(gr.hier_block2):
             gr.io_signature(1, 1, gr.sizeof_gr_complex),  # Input signature
             gr.io_signature3(3, 3, gr.sizeof_gr_complex, gr.sizeof_gr_complex, gr.sizeof_float)) # Output signature
 
-        filter_spacing_normalized = 2 * 0.2 * 1.0 / SF / sps  # 0.44 corresponds to about 3 dB maximum loss due to decorrelation for conventional IEEE LECIM with BPSK
-        max_offset_normalized = float(max_offset_hz) / samp_rate_hz
-        num_filters = int(np.ceil(max_offset_normalized * 2.0 / filter_spacing_normalized))
-        if num_filters == 0:  # this occurs for max_offset_hz==0
-            num_filters = 1
-        print "Number of filters requested:", num_filters
-        if num_filters > max_num_filters:
-            if max_num_filters == 0:
-                raise ValueError("At least one input filter must be allowed")
-            print "WARNING:", num_filters, "required to cover the possible frequency offset, but only", max_num_filters, "possible"
-            num_filters = max_num_filters
-
-        achievable_max_offset_normalized = min(max_offset_normalized, num_filters * filter_spacing_normalized / 2)
-        actual_filter_spacing_normalized = 2 * achievable_max_offset_normalized / num_filters
-
-        delta_phi = [-achievable_max_offset_normalized + actual_filter_spacing_normalized/2 + i*actual_filter_spacing_normalized for i in range(num_filters)]
-        print "Phase increments for each branch at sample rate:", delta_phi
+        self.delta_phi = lpwan.SpaRSe_utils.calculate_phase_increments(samp_rate_hz, SF, sps, max_offset_hz, max_num_filters)
+        # filter_spacing_normalized = 2 * 0.2 * 1.0 / SF / sps  # 0.44 corresponds to about 3 dB maximum loss due to decorrelation for conventional IEEE LECIM with BPSK
+        # max_offset_normalized = float(max_offset_hz) / samp_rate_hz
+        # num_filters = int(np.ceil(max_offset_normalized * 2.0 / filter_spacing_normalized))
+        # if num_filters == 0:  # this occurs for max_offset_hz==0
+        #     num_filters = 1
+        # print "Number of filters requested:", num_filters
+        # if num_filters > max_num_filters:
+        #     if max_num_filters == 0:
+        #         raise ValueError("At least one input filter must be allowed")
+        #     print "WARNING:", num_filters, "required to cover the possible frequency offset, but only", max_num_filters, "possible"
+        #     num_filters = max_num_filters
+        #
+        # achievable_max_offset_normalized = min(max_offset_normalized, num_filters * filter_spacing_normalized / 2)
+        # actual_filter_spacing_normalized = 2 * achievable_max_offset_normalized / num_filters
+        #
+        # self.delta_phi = [-achievable_max_offset_normalized + actual_filter_spacing_normalized/2 + i * actual_filter_spacing_normalized for i in range(num_filters)]
+        # print "Phase increments for each branch at sample rate:", delta_phi
 
         # Define blocks
-        self.rotators = [blocks.rotator_cc(-phi) for phi in delta_phi]
-        self.matched_filters = [filter.fft_filter_ccf(1, np.flipud(np.conj(filtered_preamble_code))) for i in xrange(num_filters)]
-        self.preamble_detector = preamble_detector_cc(shr, sps, SF, time_gap_chips, alpha, beta, delta_phi)
+        self.rotators = [blocks.rotator_cc(-phi) for phi in self.delta_phi]
+        self.matched_filters = [filter.fft_filter_ccf(1, np.flipud(np.conj(filtered_preamble_code))) for i in xrange(len(self.delta_phi))]
+        self.preamble_detector = preamble_detector_cc(shr, sps, SF, time_gap_chips, alpha, beta, self.delta_phi)
         self.skiphead = blocks.skiphead(gr.sizeof_gr_complex, sps * (SF + time_gap_chips) + 4)  # the +4 is "empirical" but well tested for sps=4
 
         # Connect blocks with preamble detector and outputs
-        for i in xrange(len(delta_phi)):
+        for i in xrange(len(self.delta_phi)):
             self.connect(self, self.rotators[i], self.matched_filters[i], (self.preamble_detector, i))
-        self.connect(self, self.skiphead, (self.preamble_detector, len(delta_phi)))
+        self.connect(self, self.skiphead, (self.preamble_detector, len(self.delta_phi)))
         for i in xrange(3):
             self.connect((self.preamble_detector, i), (self, i))
 

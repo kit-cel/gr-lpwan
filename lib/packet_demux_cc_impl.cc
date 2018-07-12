@@ -32,10 +32,10 @@ namespace gr {
   namespace lpwan {
 
     packet_demux_cc::sptr
-    packet_demux_cc::make(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, std::vector<float> spreading_code, unsigned int spreading_factor, unsigned int sps, std::vector<float> pulse, bool reset_after_each_symbol)
+    packet_demux_cc::make(std::string tag_key, unsigned int frame_length_samples, unsigned int payload_length_samples, std::vector<float> spreading_code, unsigned int spreading_factor, unsigned int sps, std::vector<float> pulse, bool reset_after_each_symbol, std::vector<float> delta_phi)
     {
       return gnuradio::get_initial_sptr
-        (new packet_demux_cc_impl(tag_key, frame_length_samples, payload_length_samples, spreading_code, spreading_factor, sps, pulse, reset_after_each_symbol));
+        (new packet_demux_cc_impl(tag_key, frame_length_samples, payload_length_samples, spreading_code, spreading_factor, sps, pulse, reset_after_each_symbol, delta_phi));
     }
 
     /*
@@ -48,7 +48,8 @@ namespace gr {
                                                unsigned int spreading_factor,
                                                unsigned int sps,
                                                std::vector<float> pulse,
-                                               bool reset_after_each_symbol)
+                                               bool reset_after_each_symbol,
+                                               std::vector<float> delta_phi)
       : gr::block("packet_demux_cc",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
               gr::io_signature::make(1, 1, sizeof(gr_complex))),
@@ -58,30 +59,44 @@ namespace gr {
         d_code(spreading_code),
         d_sf(spreading_factor),
         d_sps(sps),
-        d_pulse(pulse),
-        d_reset_after_each_symbol(reset_after_each_symbol)
+        d_reset_after_each_symbol(reset_after_each_symbol),
+        d_delta_phi(delta_phi)
     {
       //d_downsampling_factor = d_sf * d_sps - (d_sps - 1) + d_pulse.size() - 1; // remove trailing zeros after upsampling, convolve with pulse
-      d_downsampling_factor = d_sf * d_sps + d_pulse.size() - 1;
+      d_downsampling_factor = d_sf * d_sps + pulse.size() - 1;
       d_payload_length_symbols = d_payload_length_samples / d_downsampling_factor;
       auto nsymbols_in_code = d_code.size() / d_sf;
       d_filtered_code.resize(d_downsampling_factor * nsymbols_in_code); // reserve space for up to d_code / d_sf symbols (which should equal the payload length)
       //std::cout << "Downsampling factor: " << d_downsampling_factor << ". Filtered code length: " << d_filtered_code.size() << ". payload length (symbols): " << d_payload_length_symbols << std::endl;
 
-      float tmp[d_pulse.size()];
+      float tmp[pulse.size()];
       for(auto i = 0; i < nsymbols_in_code; ++i)
       {
         for(auto j = 0; j < d_sf; ++j)
         {
-          volk_32f_s32f_multiply_32f(tmp, &d_pulse[0], d_code[i*d_sf + j], d_pulse.size());
+          volk_32f_s32f_multiply_32f(tmp, &pulse[0], d_code[i*d_sf + j], pulse.size());
           /*if(i * d_downsampling_factor + j * d_sps + d_pulse.size() - 1 >= d_filtered_code.size())
           {
             std::cout << "OOB at " <<  i * d_downsampling_factor + j * d_sps << std::endl;
             throw std::runtime_error("OOB error!");
           }*/
-          volk_32f_x2_add_32f(&d_filtered_code[0] + i * d_downsampling_factor + j * d_sps, &d_filtered_code[0] + i * d_downsampling_factor + j * d_sps, tmp, d_pulse.size());
+          volk_32f_x2_add_32f(&d_filtered_code[0] + i * d_downsampling_factor + j * d_sps, &d_filtered_code[0] + i * d_downsampling_factor + j * d_sps, tmp, pulse.size());
         }
       }
+
+      if(d_delta_phi.size() < 1)
+      {
+        throw std::runtime_error("packet_demux_cc requires at least one phase increment.");
+      }
+      for(auto i = 0; i < d_delta_phi.size(); ++i)
+      {
+        d_freqshifted_pulses.push_back(std::vector<gr_complex>(d_filtered_code.size()));
+        for(auto j = 0; j < d_filtered_code.size(); ++j)
+        {
+          d_freqshifted_pulses[i][j] = d_filtered_code[j] * std::exp(gr_complex(0, j * delta_phi[i]));
+        }
+      }
+
 
       /*for(auto i=0; i < d_downsampling_factor * 2; ++i)
         std::cout << d_filtered_code[i] << ", ";
@@ -90,6 +105,8 @@ namespace gr {
       set_tag_propagation_policy(TPP_DONT);
       set_output_multiple(d_payload_length_symbols);
       //set_relative_rate(float(d_payload_length_symbols) / d_frame_length_samples);
+
+      std::cout << "NOTE: Initial phase for the rotators not set correctly in packet_demux_cc and preamble_detector_cc!" << std::endl;
     }
 
     /*
@@ -128,10 +145,14 @@ namespace gr {
           d_bufvec.push_back(std::vector<gr_complex>(d_payload_length_symbols, gr_complex(-1, -1)));
           d_buf_pos.push_back(0);
           d_next_abs_symbol_index.push_back(v[i].offset);
+          pmt::pmt_t tag_value = v[i].value;
+          d_phase_inc.push_back(pmt::to_float(pmt::dict_ref(tag_value, pmt::intern("delta_phi"), pmt::PMT_NIL)));
+          d_phase.push_back(pmt::to_float(pmt::dict_ref(tag_value, pmt::intern("phi_start"), pmt::PMT_NIL)));
+          d_phi_index.push_back(pmt::to_long(pmt::dict_ref(tag_value, pmt::intern("delta_phi_index"), pmt::PMT_NIL)));
           //std::cout << "ADD TAG @ " << v[i].offset << std::endl;
           if(v[i].offset < nitems_read(0))
             throw std::runtime_error("Invalid tag offset!");
-          d_tag_value.push_back(v[i].value);
+          d_tag_value.push_back(tag_value);
         }
         else
         {
@@ -143,8 +164,9 @@ namespace gr {
       for (auto i = 0; i < d_bufvec.size(); ++i) {
         // check if the buffer is already filled and if there are symbols in the current input buffer
         auto next_rel_symbol_index = d_next_abs_symbol_index[i] - nitems_read(0);
+        gr_complex tmp;
         if (d_next_abs_symbol_index[i] < nitems_read(0) && d_buf_pos[i] < d_payload_length_symbols) {
-          std::cout << "i=" << i << "\tnext_abs_index=" << d_next_abs_symbol_index[i] << "\tnitems_read(0)="
+          std::cerr << "i=" << i << "\tnext_abs_index=" << d_next_abs_symbol_index[i] << "\tnitems_read(0)="
                     << nitems_read(0) << "\tnext_rel_index=" << next_rel_symbol_index << "\tbuf_pos[i]="
                     << d_buf_pos[i] << std::endl;
           throw std::runtime_error("Invalid symbol index!");
@@ -152,12 +174,17 @@ namespace gr {
         while (d_buf_pos[i] < d_payload_length_symbols
                && (next_rel_symbol_index + d_downsampling_factor) < ninput_items[0]) {
           if (d_reset_after_each_symbol) {
-            volk_32fc_32f_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in + next_rel_symbol_index, &d_filtered_code[0],
+            volk_32fc_x2_conjugate_dot_prod_32fc(&tmp, in + next_rel_symbol_index, &d_freqshifted_pulses[d_phi_index[i]][0],
                                         d_downsampling_factor);
+            d_bufvec[i][d_buf_pos[i]] *= std::exp(gr_complex(0, - d_phase[i]));
+            d_phase[i] = fmod(d_phase_inc[i] + d_phase[i], 2 * M_PI);
           } else {
-            volk_32fc_32f_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in + next_rel_symbol_index,
-                                        &d_filtered_code[0] + d_buf_pos[i] * d_downsampling_factor,
+            volk_32fc_x2_conjugate_dot_prod_32fc(&tmp, in + next_rel_symbol_index,
+                                        &d_freqshifted_pulses[d_phi_index[i]][0] + d_buf_pos[i] * d_downsampling_factor,
                                         d_downsampling_factor);
+
+            d_bufvec[i][d_buf_pos[i]] = tmp * std::exp(gr_complex(0, - d_phase[i]));
+            d_phase[i] = fmod(d_phase_inc[d_phi_index[i]] + d_phase[i], 2 * M_PI);
           }
           d_next_abs_symbol_index[i] += d_downsampling_factor;
           next_rel_symbol_index += d_downsampling_factor;
@@ -181,6 +208,9 @@ namespace gr {
             d_buf_pos.erase(d_buf_pos.begin());
             d_tag_value.erase(d_tag_value.begin());
             d_next_abs_symbol_index.erase(d_next_abs_symbol_index.begin());
+            d_phase.erase(d_phase.begin());
+            d_phase_inc.erase(d_phase_inc.begin());
+            d_phi_index.erase(d_phi_index.begin());
 
             symbols_written += d_payload_length_symbols;
           }
