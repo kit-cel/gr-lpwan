@@ -26,6 +26,8 @@
 #include <lpwan/sliding_dotprod_32f_x2_32f.h>
 
 #include <memory>
+#include <boost/thread/thread_pool.hpp>
+
 
 namespace gr {
   namespace lpwan {
@@ -69,6 +71,9 @@ namespace gr {
       unsigned d_num_branches_per_hypothesis;
       std::vector< std::vector<filter_branch> > d_filter_branches; // vector containing all the different frequency-translated polyphase chains
       uint64_t d_frame_number;
+      //boost::thread d_threadpool;
+
+      void work_frequency_hypothesis(unsigned int index, gr_complex** corr_in, float* corr_out, float* threshold_out);
 
      public:
       fddsm_preamble_detector_cc_impl(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta, std::vector<float> phase_increments);
