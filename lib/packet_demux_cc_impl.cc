@@ -75,11 +75,6 @@ namespace gr {
         for(auto j = 0; j < d_sf; ++j)
         {
           volk_32f_s32f_multiply_32f(tmp, &pulse[0], d_code[i*d_sf + j], pulse.size());
-          /*if(i * d_downsampling_factor + j * d_sps + d_pulse.size() - 1 >= d_filtered_code.size())
-          {
-            std::cout << "OOB at " <<  i * d_downsampling_factor + j * d_sps << std::endl;
-            throw std::runtime_error("OOB error!");
-          }*/
           volk_32f_x2_add_32f(&d_filtered_code[0] + i * d_downsampling_factor + j * d_sps, &d_filtered_code[0] + i * d_downsampling_factor + j * d_sps, tmp, pulse.size());
         }
       }
@@ -97,16 +92,10 @@ namespace gr {
         }
       }
 
-
-      /*for(auto i=0; i < d_downsampling_factor * 2; ++i)
-        std::cout << d_filtered_code[i] << ", ";
-      std::cout << std::endl;*/
-
       set_tag_propagation_policy(TPP_DONT);
       set_output_multiple(d_payload_length_symbols);
-      //set_relative_rate(float(d_payload_length_symbols) / d_frame_length_samples);
 
-      std::cout << "NOTE: Initial phase for the rotators not set correctly in packet_demux_cc and preamble_detector_cc!" << std::endl;
+      std::cout << "NOTE: Initial phase for the rotators not set correctly in packet_demux_cc!" << std::endl;
     }
 
     /*
@@ -131,8 +120,6 @@ namespace gr {
       auto *in = (const gr_complex *) input_items[0];
       auto *out = (gr_complex *) output_items[0];
 
-      //std::cout << "WORK index range: " << nitems_read(0) << " to " << nitems_read(0) + ninput_items[0] << " (" << ninput_items[0] << " items)" << std::endl;
-
       // search for frame start tags and append new buffers for them
       std::vector<tag_t> v;
       get_tags_in_range(v, 0, nitems_read(0), nitems_read(0) + ninput_items[0], pmt::intern(d_tag_key));
@@ -147,9 +134,8 @@ namespace gr {
           d_next_abs_symbol_index.push_back(v[i].offset);
           pmt::pmt_t tag_value = v[i].value;
           d_phase_inc.push_back(pmt::to_float(pmt::dict_ref(tag_value, pmt::intern("delta_phi"), pmt::PMT_NIL)));
-          d_phase.push_back(pmt::to_float(pmt::dict_ref(tag_value, pmt::intern("phi_start"), pmt::PMT_NIL)));
+          d_phase.push_back(pmt::to_float(pmt::dict_ref(tag_value, pmt::intern("phi_start"), pmt::PMT_NIL))); // this is supposed to  create a continuous phase between preamble and payload
           d_phi_index.push_back(pmt::to_long(pmt::dict_ref(tag_value, pmt::intern("delta_phi_index"), pmt::PMT_NIL)));
-          //std::cout << "ADD TAG @ " << v[i].offset << std::endl;
           if(v[i].offset < nitems_read(0))
             throw std::runtime_error("Invalid tag offset!");
           d_tag_value.push_back(tag_value);
@@ -162,7 +148,7 @@ namespace gr {
 
       // fill existing buffers as far as possible
       for (auto i = 0; i < d_bufvec.size(); ++i) {
-        // check if the buffer is already filled and if there are symbols in the current input buffer
+        // check if the buffer is already filled and if there are symbols in      //std::cout << "WORK index range: " << nitems_read(0) << " to " << nitems_read(0) + ninput_items[0] << " (" << ninput_items[0] << " items)" << std::endl;
         auto next_rel_symbol_index = d_next_abs_symbol_index[i] - nitems_read(0);
         gr_complex tmp;
         if (d_next_abs_symbol_index[i] < nitems_read(0) && d_buf_pos[i] < d_payload_length_symbols) {
