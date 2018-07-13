@@ -25,6 +25,7 @@
 #include <gnuradio/io_signature.h>
 #include "fddsm_preamble_detector_cc_impl.h"
 #include <volk/volk.h>
+#include <thread>
 
 
 namespace gr {
@@ -99,6 +100,8 @@ namespace gr {
         d_filter_branches.push_back(tmp);
       }
 
+      std::cout << "NOTE: preamble_detector_cc does not set the correct initial phase for payload frequency correction" << std::endl;
+
       // make sure that even the latest polyphase can access the following symbol for demodulation
       set_output_multiple(d_num_branches_per_hypothesis + d_stepsize);
     }
@@ -149,7 +152,7 @@ namespace gr {
           tag_dict = pmt::dict_add(tag_dict, pmt::intern("frame_number"), pmt::from_uint64(d_frame_number));
           tag_dict = pmt::dict_add(tag_dict, pmt::intern("delta_phi_index"), pmt::from_long(index));
           tag_dict = pmt::dict_add(tag_dict, pmt::intern("delta_phi"), pmt::from_float(d_phase_increments[index]));
-          tag_dict = pmt::dict_add(tag_dict, pmt::intern("phi_start"), pmt::from_float(0 /* FIXME */));
+          tag_dict = pmt::dict_add(tag_dict, pmt::intern("phi_start"), pmt::from_float(0 /* FIXME: set correct phase */));
           d_frame_number++;
           add_item_tag(0, nitems_written(0) + j, pmt::intern("sop"), tag_dict);
           add_item_tag(1, nitems_written(1) + j, pmt::intern("sop"), tag_dict);
@@ -188,54 +191,14 @@ namespace gr {
 
       // TODO: This part could be done in parallel by multiple threads as this will be the bottleneck
       // TODO: Assigning threads to frequency hypotheses also avoids possible race conditions.
-      auto correlation_display_index = 0; // this is just an arbitrary choice for debug purposes
+      std::vector<std::thread> worker_threads;
       for(auto i = 0; i < d_num_freq_hypotheses; ++i)
       {
-        work_frequency_hypothesis(i, corr_in, corr_out, threshold_out);
-        /*for(auto j = 0; j < d_num_branches_per_hypothesis; ++j)
-        {
-          // calculate d_preamble_correlation based on the soft bit output of the demodulator
-          d_filter_branches[i][j].demodulate_soft(corr_in[i] + j);
-          d_filter_branches[i][j].dotprod();
-
-          // single-pole IIR for calculating the moments of the absolute value of the correlation for each polyphase component
-          d_filter_branches[i][j].d_avg_corr = (1 - d_alpha) * d_filter_branches[i][j].d_avg_corr
-                                               + std::abs(d_filter_branches[i][j].d_preamble_correlation) * d_alpha;
-          d_filter_branches[i][j].d_var_corr = (1 - d_alpha) * d_filter_branches[i][j].d_var_corr
-                                               + std::pow(std::abs(d_filter_branches[i][j].d_preamble_correlation - d_filter_branches[i][j].d_avg_corr), 2.0f) * d_alpha;
-
-          // threshold is determined by considering the absolute value of the preamble correlation as a normally distributed random variable
-          d_filter_branches[i][j].d_threshold = d_filter_branches[i][j].d_avg_corr + d_beta * std::sqrt(d_filter_branches[i][j].d_var_corr);
-
-          if(i == correlation_display_index)
-          {
-            corr_out[j] = d_filter_branches[i][j].d_preamble_correlation;
-            threshold_out[j] = d_filter_branches[i][j].d_threshold;
-          }
-
-          if(d_filter_branches[i][j].d_preamble_correlation > d_filter_branches[i][j].d_threshold)
-          {
-            // exclude the peak from the threshold calculation as it does not belong to the "average" behavior
-            d_filter_branches[i][j].d_avg_corr -= std::abs(d_filter_branches[i][j].d_preamble_correlation) * d_alpha;
-            d_filter_branches[i][j].d_var_corr -= std::pow(std::abs(d_filter_branches[i][j].d_preamble_correlation - d_filter_branches[i][j].d_avg_corr), 2.0f) * d_alpha;
-
-            // a preamble was detected at offset j on branch i; attach a tag including the phase increment of the respective filter branch and the last symbols required for demodulation
-            auto tag_dict = pmt::make_dict();
-            auto value = pmt::make_tuple(
-                pmt::from_complex(std::real(corr_in[i][j]), std::imag(corr_in[i][j])),
-                pmt::from_complex(std::real(corr_in[i][j + d_stepsize]), std::imag(corr_in[i][j + d_stepsize])));
-            tag_dict = pmt::dict_add(tag_dict, pmt::intern("init_symbols"), value);
-            tag_dict = pmt::dict_add(tag_dict, pmt::intern("frame_number"), pmt::from_uint64(d_frame_number));
-            tag_dict = pmt::dict_add(tag_dict, pmt::intern("delta_phi_index"), pmt::from_long(i));
-            tag_dict = pmt::dict_add(tag_dict, pmt::intern("delta_phi"), pmt::from_float(d_phase_increments[i]));
-            tag_dict = pmt::dict_add(tag_dict, pmt::intern("phi_start"), pmt::from_float(0)); // FIXME: set correct initial phase based on last preamble symbol
-            d_frame_number++;
-            add_item_tag(0, nitems_written(0) + j, pmt::intern("sop"), tag_dict);
-            add_item_tag(1, nitems_written(1) + j, pmt::intern("sop"), tag_dict);
-
-            std::cout << "Preamble detected @" << nitems_read(0) + j << " on branch " << i << std::endl;
-          }
-        }*/
+        worker_threads.push_back(std::thread(&fddsm_preamble_detector_cc_impl::work_frequency_hypothesis, this, i, corr_in, corr_out, threshold_out));
+      }
+      for(auto&& thread : worker_threads)
+      {
+        thread.join();
       }
 
       // Tell runtime system how many output items we produced.
