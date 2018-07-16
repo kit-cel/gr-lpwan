@@ -55,10 +55,18 @@ namespace gr {
        * class. lpwan::fddsm_preamble_detector_cc::make is the public interface for
        * creating new instances.
        */
-      static sptr make(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta, std::vector<float> phase_increments);
+      static sptr make(std::vector<float> shr,
+                       unsigned int sps,
+                       unsigned int spreading_factor,
+                       unsigned int num_chips_gap,
+                       float alpha,
+                       float beta,
+                       std::vector<float> phase_increments,
+                       unsigned int output_correlator_index);
 
       virtual void set_alpha(float alpha) = 0;
       virtual void set_beta(float beta) = 0;
+      virtual void set_output_correlator(unsigned index) = 0;
     };
 
   } // namespace lpwan

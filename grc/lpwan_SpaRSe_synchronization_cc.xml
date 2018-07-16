@@ -3,9 +3,10 @@
     <key>lpwan_SpaRSe_synchronization_cc</key>
     <category>[LPWAN]</category>
     <import>import lpwan</import>
-    <make>lpwan.SpaRSe_synchronization_cc($samp_rate_hz, $sps, $spreading_factor, $shr, $filtered_preamble_code, $alpha, $beta, $time_gap_chips, $max_offset_hz, $max_num_filters)</make>
+    <make>lpwan.SpaRSe_synchronization_cc($samp_rate_hz, $sps, $spreading_factor, $shr, $filtered_preamble_code, $alpha, $beta, $time_gap_chips, $max_offset_hz, $max_num_filters, $output_correlator)</make>
     <callback>set_alpha($alpha)</callback>
     <callback>set_beta($beta)</callback>
+    <callback>set_output_correlator($output_correlator)</callback>
     <param>
         <name>Sample rate (Hz)</name>
         <key>samp_rate_hz</key>
@@ -54,6 +55,12 @@
     <param>
         <name>Max. no. of filters</name>
         <key>max_num_filters</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Output correlator index</name>
+        <key>output_correlator</key>
+        <value>0</value>
         <type>int</type>
     </param>
     <sink>

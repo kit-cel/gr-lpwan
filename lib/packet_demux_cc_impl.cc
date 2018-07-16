@@ -94,8 +94,6 @@ namespace gr {
 
       set_tag_propagation_policy(TPP_DONT);
       set_output_multiple(d_payload_length_symbols);
-
-      std::cout << "NOTE: Initial phase for the rotators not set correctly in packet_demux_cc!" << std::endl;
     }
 
     /*

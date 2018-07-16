@@ -56,16 +56,30 @@ namespace gr {
     }
 
     fddsm_preamble_detector_cc::sptr
-    fddsm_preamble_detector_cc::make(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta, std::vector<float> phase_increments)
+    fddsm_preamble_detector_cc::make(std::vector<float> shr,
+                                     unsigned int sps,
+                                     unsigned int spreading_factor,
+                                     unsigned int num_chips_gap,
+                                     float alpha,
+                                     float beta,
+                                     std::vector<float> phase_increments,
+                                     unsigned int output_correlator_index)
     {
       return gnuradio::get_initial_sptr
-        (new fddsm_preamble_detector_cc_impl(shr, sps, spreading_factor, num_chips_gap, alpha, beta, phase_increments));
+        (new fddsm_preamble_detector_cc_impl(shr, sps, spreading_factor, num_chips_gap, alpha, beta, phase_increments, output_correlator_index));
     }
 
     /*
      * The private constructor
      */
-    fddsm_preamble_detector_cc_impl::fddsm_preamble_detector_cc_impl(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta, std::vector<float> phase_increments)
+    fddsm_preamble_detector_cc_impl::fddsm_preamble_detector_cc_impl(std::vector<float> shr,
+                                                                     unsigned int sps,
+                                                                     unsigned int spreading_factor,
+                                                                     unsigned int num_chips_gap,
+                                                                     float alpha,
+                                                                     float beta,
+                                                                     std::vector<float> phase_increments,
+                                                                     unsigned int output_correlator_index)
       : gr::sync_block("fddsm_preamble_detector_cc",
               gr::io_signature::makev(phase_increments.size()+1 ,phase_increments.size()+1, std::vector<int>(phase_increments.size()+1, sizeof(gr_complex))),
               gr::io_signature::make3(3, 3, sizeof(gr_complex), sizeof(float), sizeof(float))),
@@ -77,7 +91,8 @@ namespace gr {
         d_beta(beta),
         d_frame_number(0),
         d_phase_increments(phase_increments),
-        d_num_freq_hypotheses(phase_increments.size())
+        d_num_freq_hypotheses(phase_increments.size()),
+        d_output_correlator(output_correlator_index)
     {
       // num branches per frequency hypothesis == length of one space-time block in samples
       d_stepsize = d_sps * (d_spreading_factor + d_num_chips_gap);
@@ -99,8 +114,6 @@ namespace gr {
         }
         d_filter_branches.push_back(tmp);
       }
-
-      std::cout << "NOTE: preamble_detector_cc does not set the correct initial phase for payload frequency correction" << std::endl;
 
       // make sure that even the latest polyphase can access the following symbol for demodulation
       set_output_multiple(d_num_branches_per_hypothesis + d_stepsize);
@@ -131,7 +144,7 @@ namespace gr {
         // threshold is determined by considering the absolute value of the preamble correlation as a normally distributed random variable
         d_filter_branches[index][j].d_threshold = d_filter_branches[index][j].d_avg_corr + d_beta * std::sqrt(d_filter_branches[index][j].d_var_corr);
 
-        if(index == 0) // FIXME: this can be used for debug and display purposes
+        if(index == d_output_correlator) // this can be used for debug and display purposes
         {
           corr_out[j] = d_filter_branches[index][j].d_preamble_correlation;
           threshold_out[j] = d_filter_branches[index][j].d_threshold;
@@ -157,12 +170,24 @@ namespace gr {
           // the initial phase corresponds to the time between the last preamble and the first payload symbol
           float phase = std::arg(corr_in[index][j]);
           tag_dict = pmt::dict_add(tag_dict, pmt::intern("phi_start"), pmt::from_float(phase));
+
           d_frame_number++;
           add_item_tag(0, nitems_written(0) + j, pmt::intern("sop"), tag_dict);
           add_item_tag(1, nitems_written(1) + j, pmt::intern("sop"), tag_dict);
 
           std::cout << "Preamble detected @" << nitems_read(0) + j << " on branch " << index << std::endl;
         }
+      }
+    }
+
+    void
+    fddsm_preamble_detector_cc_impl::set_output_correlator(unsigned index)
+    {
+      if(index < d_num_freq_hypotheses) {
+        std::lock_guard<std::mutex> lock(d_mutex);
+        d_output_correlator = index;
+      } else {
+        std::cerr << "WARNING: Invalid output correlator index, must be 0 <= i < " << d_num_freq_hypotheses << std::endl;
       }
     }
 
@@ -193,8 +218,7 @@ namespace gr {
       // components, filtering each component and interleaving the filter/correlator output again.
       //auto nbits_to_process = std::min(static_cast<size_t>(noutput_items) / d_num_branches * 2, d_buf[0].size());
 
-      // TODO: This part could be done in parallel by multiple threads as this will be the bottleneck
-      // TODO: Assigning threads to frequency hypotheses also avoids possible race conditions.
+      // this could still be improved by creating a thread pool to avoid thread creation and destruction overhead
       std::vector<std::thread> worker_threads;
       for(auto i = 0; i < d_num_freq_hypotheses; ++i)
       {

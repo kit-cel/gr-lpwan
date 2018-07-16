@@ -26,6 +26,7 @@
 #include <lpwan/sliding_dotprod_32f_x2_32f.h>
 
 #include <memory>
+#include <mutex>
 
 
 namespace gr {
@@ -68,11 +69,20 @@ namespace gr {
       unsigned d_num_branches_per_hypothesis;
       std::vector< std::vector<filter_branch> > d_filter_branches; // vector containing all the different frequency-translated polyphase chains
       uint64_t d_frame_number;
+      std::mutex d_mutex;
+      unsigned d_output_correlator;
 
       void work_frequency_hypothesis(unsigned int index, gr_complex** corr_in, float* corr_out, float* threshold_out);
 
      public:
-      fddsm_preamble_detector_cc_impl(std::vector<float> shr, unsigned int sps, unsigned int spreading_factor, unsigned int num_chips_gap, float alpha, float beta, std::vector<float> phase_increments);
+      fddsm_preamble_detector_cc_impl(std::vector<float> shr,
+                                      unsigned int sps,
+                                      unsigned int spreading_factor,
+                                      unsigned int num_chips_gap,
+                                      float alpha,
+                                      float beta,
+                                      std::vector<float> phase_increments,
+                                      unsigned int output_correlator_index);
       ~fddsm_preamble_detector_cc_impl();
 
       // Where all the action really happens
@@ -80,8 +90,9 @@ namespace gr {
          gr_vector_const_void_star &input_items,
          gr_vector_void_star &output_items);
 
-      void set_alpha(float alpha){ d_alpha = alpha; } // not threadsafe
-      void set_beta(float beta){ d_beta = beta; } // not threadsafe
+      void set_alpha(float alpha){ std::lock_guard<std::mutex> lock(d_mutex); d_alpha = alpha; }
+      void set_beta(float beta){ std::lock_guard<std::mutex> lock(d_mutex); d_beta = beta; }
+      void set_output_correlator(unsigned index);
     };
 
   } // namespace lpwan

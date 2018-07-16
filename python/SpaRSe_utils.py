@@ -18,5 +18,5 @@ def calculate_phase_increments(samp_rate_hz, SF, sps, max_offset_hz, max_num_fil
     actual_filter_spacing_normalized = 2 * achievable_max_offset_normalized / num_filters
 
     delta_phi = [-achievable_max_offset_normalized + actual_filter_spacing_normalized/2 + i * actual_filter_spacing_normalized for i in range(num_filters)]
-    print "Phase increments for each branch at sample rate:", delta_phi
+    # print "Phase increments for each branch at sample rate:", delta_phi
     return delta_phi

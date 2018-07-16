@@ -1210,6 +1210,10 @@ delay into the filter</value>
       <value>0</value>
     </param>
     <param>
+      <key>output_correlator</key>
+      <value>output_correlator</value>
+    </param>
+    <param>
       <key>shr</key>
       <value>(np.array(shr, dtype=float) * 2 - 1)</value>
     </param>
@@ -1533,6 +1537,53 @@ symbols (i.e., at symbol rate).</value>
     <param>
       <key>type</key>
       <value>eng_float</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1432, 556)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>output_correlator</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Output correlator index</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value></value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>part</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
     </param>
     <param>
       <key>value</key>

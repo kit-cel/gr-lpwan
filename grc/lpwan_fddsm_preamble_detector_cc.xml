@@ -3,9 +3,10 @@
   <key>lpwan_fddsm_preamble_detector_cc</key>
   <category>[LPWAN]</category>
   <import>import lpwan</import>
-  <make>lpwan.fddsm_preamble_detector_cc($shr, $sps, $spreading_factor, $num_chips_gap, $alpha, $beta, $phase_increments)</make>
+  <make>lpwan.fddsm_preamble_detector_cc($shr, $sps, $spreading_factor, $num_chips_gap, $alpha, $beta, $phase_increments, $output_correlator)</make>
   <callback>set_alpha($alpha)</callback>
   <callback>set_beta($beta)</callback>
+  <callback>set_output_correlator($output_correlator)</callback>
   <param>
     <name>SHR (NRZ)</name>
     <key>shr</key>
@@ -40,6 +41,12 @@
     <name>Phase increments</name>
     <key>phase_increments</key>
     <type>real_vector</type>
+  </param>
+  <param>
+    <name>Output correlator index</name>
+    <key>output_correlator</key>
+    <value>0</value>
+    <type>int</type>
   </param>
   <sink>
     <name>corr</name>
