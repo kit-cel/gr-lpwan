@@ -155,7 +155,7 @@ namespace gr {
 
           // the transmitted symbol's phase for L=2 (BPSK) and the 32bit preamble is actually 0, so we do not need to consider it
           // the initial phase corresponds to the time between the last preamble and the first payload symbol
-          float phase = 0; // FIXME: find a way to initialize the phase correctly
+          float phase = std::arg(corr_in[index][j]);
           tag_dict = pmt::dict_add(tag_dict, pmt::intern("phi_start"), pmt::from_float(phase));
           d_frame_number++;
           add_item_tag(0, nitems_written(0) + j, pmt::intern("sop"), tag_dict);
