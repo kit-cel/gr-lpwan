@@ -25,7 +25,6 @@
 #include <gnuradio/io_signature.h>
 #include "fddsm_preamble_detector_cc_impl.h"
 #include <volk/volk.h>
-#include <thread>
 
 
 namespace gr {
@@ -97,6 +96,9 @@ namespace gr {
       // num branches per frequency hypothesis == length of one space-time block in samples
       d_stepsize = d_sps * (d_spreading_factor + d_num_chips_gap);
       d_num_branches_per_hypothesis = 2 * d_stepsize;
+
+      // initialize thread pool
+      d_pool = std::unique_ptr<ThreadPool>(new ThreadPool(d_num_freq_hypotheses));
 
       // make sure that the SHR is NRZ with an amplitude equal to 1/sqrt(L * 2). This ensures equal input and output power.
       for(auto i=0; i < d_shr.size(); ++i)
@@ -216,18 +218,11 @@ namespace gr {
       // Demodulate FD-DSM signal for the different frequency hypotheses, output soft bits to intermediate buffer and correlate with preamble.
       // Effectively, we create polyphase filterbanks by splitting/deinterleaving each input in 2 * d_stepsize polyphase
       // components, filtering each component and interleaving the filter/correlator output again.
-      //auto nbits_to_process = std::min(static_cast<size_t>(noutput_items) / d_num_branches * 2, d_buf[0].size());
-
-      // this could still be improved by creating a thread pool to avoid thread creation and destruction overhead
-      std::vector<std::thread> worker_threads;
       for(auto i = 0; i < d_num_freq_hypotheses; ++i)
       {
-        worker_threads.push_back(std::thread(&fddsm_preamble_detector_cc_impl::work_frequency_hypothesis, this, i, corr_in, corr_out, threshold_out));
+        d_pool->enqueue(boost::bind(&fddsm_preamble_detector_cc_impl::work_frequency_hypothesis, this, i, corr_in, corr_out, threshold_out));
       }
-      for(auto&& thread : worker_threads)
-      {
-        thread.join();
-      }
+      d_pool->waitFinished();
 
       // Tell runtime system how many output items we produced.
       return nitems_processed;

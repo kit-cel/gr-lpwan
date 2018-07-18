@@ -24,6 +24,7 @@
 #include <lpwan/fddsm_preamble_detector_cc.h>
 #include <lpwan/fddsm_demodulator_kernel.h>
 #include <lpwan/sliding_dotprod_32f_x2_32f.h>
+#include <lpwan/thread_pool.h>
 
 #include <memory>
 #include <mutex>
@@ -71,6 +72,8 @@ namespace gr {
       uint64_t d_frame_number;
       std::mutex d_mutex;
       unsigned d_output_correlator;
+
+      std::unique_ptr<ThreadPool> d_pool;
 
       void work_frequency_hypothesis(unsigned int index, gr_complex** corr_in, float* corr_out, float* threshold_out);
 
