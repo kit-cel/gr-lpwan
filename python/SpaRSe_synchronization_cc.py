@@ -26,6 +26,7 @@ from gnuradio import gr
 import numpy as np
 import lpwan
 
+
 class SpaRSe_synchronization_cc(gr.hier_block2):
     """
     Performs time and frequency synchronization for SpaRSe based on the preamble.

@@ -160,7 +160,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>1e-2</value>
+      <value>1e-3</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -502,7 +502,7 @@
     </param>
     <param>
       <key>start</key>
-      <value>-5000</value>
+      <value>-20000</value>
     </param>
     <param>
       <key>step</key>
@@ -510,7 +510,7 @@
     </param>
     <param>
       <key>stop</key>
-      <value>5000</value>
+      <value>20000</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -725,7 +725,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>ebn0 - 3.01 - 24.08</value>
+      <value>ebn0 - 3.01 - 24.08 + 2</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -867,7 +867,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>256</value>
+      <value>128</value>
     </param>
   </block>
   <block>
@@ -934,11 +934,11 @@
     </param>
     <param>
       <key>max_num_filters</key>
-      <value>10</value>
+      <value>8</value>
     </param>
     <param>
       <key>max_offset_hz</key>
-      <value>5000</value>
+      <value>15000</value>
     </param>
     <param>
       <key>preamble_seed</key>
