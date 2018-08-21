@@ -88,7 +88,7 @@ namespace gr {
         d_freqshifted_pulses.push_back(std::vector<gr_complex>(d_filtered_code.size()));
         for(auto j = 0; j < d_filtered_code.size(); ++j)
         {
-          d_freqshifted_pulses[i][j] = d_filtered_code[j] * std::exp(gr_complex(0, j * delta_phi[i]));
+          d_freqshifted_pulses[i][j] = d_filtered_code[j] * std::exp(gr_complex(0, - j * d_delta_phi[i]));
         }
       }
 
@@ -158,17 +158,22 @@ namespace gr {
         while (d_buf_pos[i] < d_payload_length_symbols
                && (next_rel_symbol_index + d_downsampling_factor) < ninput_items[0]) {
           if (d_reset_after_each_symbol) {
-            volk_32fc_x2_conjugate_dot_prod_32fc(&tmp, in + next_rel_symbol_index, &d_freqshifted_pulses[d_phi_index[i]][0],
+            volk_32fc_x2_dot_prod_32fc(&tmp, in + next_rel_symbol_index, &d_freqshifted_pulses[d_phi_index[i]][0],
                                         d_downsampling_factor);
-            d_bufvec[i][d_buf_pos[i]] *= std::exp(gr_complex(0, - d_phase[i]));
-            d_phase[i] = fmod(d_phase_inc[i] + d_phase[i], 2 * M_PI);
+            d_bufvec[i][d_buf_pos[i]] = tmp * std::exp(gr_complex(0, - d_phase[i]));
+            d_phase[i] = fmod(d_phase_inc[i] * d_downsampling_factor + d_phase[i], 2 * M_PI);
           } else {
-            volk_32fc_x2_conjugate_dot_prod_32fc(&tmp, in + next_rel_symbol_index,
-                                        &d_freqshifted_pulses[d_phi_index[i]][0] + d_buf_pos[i] * d_downsampling_factor,
+            volk_32fc_x2_dot_prod_32fc(&d_bufvec[i][d_buf_pos[i]], in + next_rel_symbol_index,
+                                       &d_freqshifted_pulses[d_phi_index[i]][0] + d_buf_pos[i] * d_downsampling_factor,
                                         d_downsampling_factor);
 
-            d_bufvec[i][d_buf_pos[i]] = tmp * std::exp(gr_complex(0, - d_phase[i]));
-            d_phase[i] = fmod(d_phase_inc[d_phi_index[i]] + d_phase[i], 2 * M_PI);
+            //d_bufvec[i][d_buf_pos[i]] = tmp;// * std::exp(gr_complex(0, - d_phase[i]));
+            //d_phase[i] = fmod(d_phase_inc[d_phi_index[i]] * d_downsampling_factor + d_phase[i], 2 * M_PI);
+            /*d_bufvec[i][d_buf_pos[i]] = 0;
+            for(int n = 0; n < d_downsampling_factor; ++n)
+            {
+              d_bufvec[i][d_buf_pos[i]] += in[next_rel_symbol_index + n] * d_filtered_code[d_buf_pos[i] * d_downsampling_factor + n] * std::exp(gr_complex(0, -((d_buf_pos[i] * d_downsampling_factor + n) * d_delta_phi[d_phi_index[i]])));
+            }*/
           }
           d_next_abs_symbol_index[i] += d_downsampling_factor;
           next_rel_symbol_index += d_downsampling_factor;

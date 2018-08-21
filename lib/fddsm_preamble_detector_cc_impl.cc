@@ -103,7 +103,12 @@ namespace gr {
       // make sure that the SHR is NRZ with an amplitude equal to 1/sqrt(L * 2). This ensures equal input and output power.
       for(auto i=0; i < d_shr.size(); ++i)
       {
-        d_shr[i] = d_shr[i] / std::abs(d_shr[i]) / std::sqrt((float) d_shr.size()) / std::sqrt(2.0f);
+        if(i < 2)
+        {
+          d_shr[i] = 0; // the first two bits (for L=2) do not have a reference and are therefore usually wrong. Don't include them in the correlation.
+        } else {
+          d_shr[i] = d_shr[i] / std::abs(d_shr[i]) / std::sqrt((float) d_shr.size()) / std::sqrt(2.0f);
+        }
       }
 
       // initialize all the different branches with their intermediate buffers, FD-DSM decoders and SHR filters
@@ -173,11 +178,13 @@ namespace gr {
           float phase = std::arg(corr_in[index][j]);
           tag_dict = pmt::dict_add(tag_dict, pmt::intern("phi_start"), pmt::from_float(phase));
 
+          //float freq_offset = d_filter_branches[index][j].d_demod.get_phase() / (4 * M_PI * (d_spreading_factor + d_num_chips_gap) * 1e-6);
+
           d_frame_number++;
           add_item_tag(0, nitems_written(0) + j, pmt::intern("sop"), tag_dict);
           add_item_tag(1, nitems_written(1) + j, pmt::intern("sop"), tag_dict);
 
-          std::cout << "Preamble detected @" << nitems_read(0) + j << " on branch " << index << std::endl;
+          //std::cout << "Preamble detected @" << nitems_read(0) + j << " on branch " << index << " with frequency offset " << freq_offset << " Hz." << std::endl;
         }
       }
     }
