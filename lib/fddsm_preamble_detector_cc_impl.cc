@@ -146,7 +146,7 @@ namespace gr {
         d_filter_branches[index][j].d_avg_corr = (1 - d_alpha) * d_filter_branches[index][j].d_avg_corr
                                              + std::abs(d_filter_branches[index][j].d_preamble_correlation) * d_alpha;
         d_filter_branches[index][j].d_var_corr = (1 - d_alpha) * d_filter_branches[index][j].d_var_corr
-                                             + std::pow(std::abs(d_filter_branches[index][j].d_preamble_correlation - d_filter_branches[index][j].d_avg_corr), 2.0f) * d_alpha;
+                                             + std::pow(std::abs(d_filter_branches[index][j].d_preamble_correlation) - d_filter_branches[index][j].d_avg_corr, 2.0f) * d_alpha;
 
         // threshold is determined by considering the absolute value of the preamble correlation as a normally distributed random variable
         d_filter_branches[index][j].d_threshold = d_filter_branches[index][j].d_avg_corr + d_beta * std::sqrt(d_filter_branches[index][j].d_var_corr);
@@ -161,7 +161,7 @@ namespace gr {
         {
           // exclude the peak from the threshold calculation as it does not belong to the "average" behavior
           d_filter_branches[index][j].d_avg_corr -= std::abs(d_filter_branches[index][j].d_preamble_correlation) * d_alpha;
-          d_filter_branches[index][j].d_var_corr -= std::pow(std::abs(d_filter_branches[index][j].d_preamble_correlation - d_filter_branches[index][j].d_avg_corr), 2.0f) * d_alpha;
+          d_filter_branches[index][j].d_var_corr -= std::pow(std::abs(d_filter_branches[index][j].d_preamble_correlation) - d_filter_branches[index][j].d_avg_corr, 2.0f) * d_alpha;
 
           // a preamble was detected at offset j on branch i; attach a tag including the phase increment of the respective filter branch and the last symbols required for demodulation
           auto tag_dict = pmt::make_dict();
