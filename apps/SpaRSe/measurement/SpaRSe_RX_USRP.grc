@@ -160,7 +160,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>5</value>
+      <value>8</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -223,7 +223,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>0</value>
+      <value>2e3</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -259,15 +259,15 @@
     </param>
     <param>
       <key>start</key>
-      <value>-10000</value>
+      <value>-20000</value>
     </param>
     <param>
       <key>step</key>
-      <value>10</value>
+      <value>100</value>
     </param>
     <param>
       <key>stop</key>
-      <value>10000</value>
+      <value>20000</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -276,6 +276,69 @@
     <param>
       <key>widget</key>
       <value>counter_slider</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(208, 84)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>output_correlator</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Output correlator index</value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>10</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>int</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>counter</value>
     </param>
   </block>
   <block>
@@ -478,7 +541,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2**8</value>
+      <value>2**7</value>
     </param>
   </block>
   <block>
@@ -501,7 +564,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(392, 220)</value>
+      <value>(392, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -518,6 +581,10 @@
     <param>
       <key>minoutbuf</key>
       <value>0</value>
+    </param>
+    <param>
+      <key>output_correlator</key>
+      <value>output_correlator</value>
     </param>
     <param>
       <key>psdu_len</key>
@@ -540,8 +607,20 @@
       <value>2345432</value>
     </param>
     <param>
+      <key>max_num_filters</key>
+      <value>max_num_filters</value>
+    </param>
+    <param>
+      <key>max_offset_hz</key>
+      <value>20000</value>
+    </param>
+    <param>
       <key>preamble_seed</key>
       <value>54321</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>samp_rate</value>
     </param>
     <param>
       <key>SF</key>
@@ -564,7 +643,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -635,68 +714,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_ctrlport_monitor</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>en</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(352, 28)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_ctrlport_monitor_0</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_ctrlport_monitor_performance</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>en</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(496, 20)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_ctrlport_monitor_performance_0</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_nlog10_ff</key>
     <param>
       <key>alias</key>
@@ -712,7 +729,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -796,6 +813,53 @@
     <param>
       <key>n</key>
       <value>10</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_null_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>bus_conns</key>
+      <value>[[0,],]</value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(920, 136)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_null_sink_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
     </param>
   </block>
   <block>
@@ -1084,6 +1148,53 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>scale</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1080, 556)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>max_num_filters</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>max_num_filters</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value>n</value>
+    </param>
+    <param>
+      <key>hide</key>
+      <value>none</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>intx</value>
+    </param>
+    <param>
+      <key>value</key>
       <value>1</value>
     </param>
   </block>
@@ -2313,7 +2424,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -2787,7 +2898,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(376, 388)</value>
+      <value>(408, 388)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -3122,7 +3233,7 @@ Delay of filter length - 1</value>
     <key>qtgui_time_sink_x</key>
     <param>
       <key>autoscale</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>axislabels</key>
@@ -3150,7 +3261,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -3728,7 +3839,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -5029,7 +5140,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>dev_addr</key>
-      <value>name=Delilah</value>
+      <value></value>
     </param>
     <param>
       <key>dev_args</key>
@@ -5041,7 +5152,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(136, 220)</value>
+      <value>(136, 228)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5057,7 +5168,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>clock_source0</key>
-      <value>external</value>
+      <value></value>
     </param>
     <param>
       <key>sd_spec0</key>
@@ -5198,6 +5309,12 @@ Delay of filter length - 1</value>
   </block>
   <connection>
     <source_block_id>SpaRSe_RX_hier_0</source_block_id>
+    <sink_block_id>blocks_null_sink_0</sink_block_id>
+    <source_key>1</source_key>
+    <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>SpaRSe_RX_hier_0</source_block_id>
     <sink_block_id>qtgui_time_sink_x_0_0_0</sink_block_id>
     <source_key>1</source_key>
     <sink_key>1</sink_key>
@@ -5213,6 +5330,12 @@ Delay of filter length - 1</value>
     <sink_block_id>lpwan_message_counter_0</sink_block_id>
     <source_key>payload_out</source_key>
     <sink_key>in</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>SpaRSe_RX_hier_0</source_block_id>
+    <sink_block_id>blocks_null_sink_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>SpaRSe_RX_hier_0</source_block_id>

@@ -160,7 +160,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2**8</value>
+      <value>2**6</value>
     </param>
   </block>
   <block>
@@ -548,7 +548,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>"ebn0_15dB.bin"</value>
+      <value>"test.bin"</value>
     </param>
   </block>
   <block>
@@ -1911,7 +1911,7 @@
     </param>
     <param>
       <key>dev_addr</key>
-      <value>name=Delilah</value>
+      <value></value>
     </param>
     <param>
       <key>dev_args</key>
@@ -1923,7 +1923,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(136, 220)</value>
+      <value>(136, 228)</value>
     </param>
     <param>
       <key>_rotation</key>

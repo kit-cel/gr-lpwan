@@ -101,7 +101,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>0</value>
+      <value>1</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -117,7 +117,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>a</value>
+      <value>a0</value>
     </param>
     <param>
       <key>label</key>
@@ -141,7 +141,70 @@
     </param>
     <param>
       <key>stop</key>
+      <value>2</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>slider</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(696, 116)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>a1</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>.1</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>2</value>
     </param>
     <param>
       <key>rangeType</key>
@@ -455,7 +518,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>31104*sps + 0*(SF*sps - (sps-1) + 11*sps + (1 - sps%2) - 1) * (32 + 256)</value>
+      <value>76896*sps + 0*(SF*sps - (sps-1) + 11*sps + (1 - sps%2) - 1) * (32 + 256)</value>
     </param>
   </block>
   <block>
@@ -506,7 +569,7 @@
     </param>
     <param>
       <key>step</key>
-      <value>100</value>
+      <value>10</value>
     </param>
     <param>
       <key>stop</key>
@@ -612,7 +675,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>phi</value>
+      <value>phi0</value>
     </param>
     <param>
       <key>label</key>
@@ -632,7 +695,70 @@
     </param>
     <param>
       <key>step</key>
-      <value>np.pi/10</value>
+      <value>np.pi/100</value>
+    </param>
+    <param>
+      <key>stop</key>
+      <value>2 * np.pi</value>
+    </param>
+    <param>
+      <key>rangeType</key>
+      <value>float</value>
+    </param>
+    <param>
+      <key>widget</key>
+      <value>slider</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_range</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(808, 116)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>phi1</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value></value>
+    </param>
+    <param>
+      <key>min_len</key>
+      <value>200</value>
+    </param>
+    <param>
+      <key>orient</key>
+      <value>Qt.Horizontal</value>
+    </param>
+    <param>
+      <key>start</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>step</key>
+      <value>np.pi/100</value>
     </param>
     <param>
       <key>stop</key>
@@ -725,7 +851,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>ebn0 - 3.01 - 24.08 + 2</value>
+      <value>ebn0 - 3.01 - 10*np.log10(SF) + 2</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -867,7 +993,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>128</value>
+      <value>256</value>
     </param>
   </block>
   <block>
@@ -934,7 +1060,7 @@
     </param>
     <param>
       <key>max_num_filters</key>
-      <value>8</value>
+      <value>3</value>
     </param>
     <param>
       <key>max_offset_hz</key>
@@ -973,7 +1099,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(224, 196)</value>
+      <value>(152, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1095,7 +1221,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 232)</value>
+      <value>(704, 232)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1452,7 +1578,7 @@ to USRP.</value>
     </param>
     <param>
       <key>const</key>
-      <value>np.exp(1j * phi)</value>
+      <value>a1 * np.exp(1j * phi1)</value>
     </param>
     <param>
       <key>affinity</key>
@@ -1464,7 +1590,7 @@ to USRP.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 260)</value>
+      <value>(480, 260)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1473,6 +1599,57 @@ to USRP.</value>
     <param>
       <key>id</key>
       <value>blocks_multiply_const_vxx_0_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_multiply_const_vxx</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>const</key>
+      <value>a0 * np.exp(1j * phi0)</value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(480, 204)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_multiply_const_vxx_0_0_0</value>
     </param>
     <param>
       <key>type</key>
@@ -1634,7 +1811,7 @@ to decrease settling time.</value>
     </param>
     <param>
       <key>phase_inc</key>
-      <value>freq_offset_hz / samp_rate</value>
+      <value>float(freq_offset_hz) * 2. * np.pi / samp_rate</value>
     </param>
   </block>
   <block>
@@ -4206,7 +4383,7 @@ to decrease settling time.</value>
   </connection>
   <connection>
     <source_block_id>SpaRSe_TX_hier_0</source_block_id>
-    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <sink_block_id>blocks_multiply_const_vxx_0_0_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -4275,6 +4452,12 @@ to decrease settling time.</value>
     <sink_block_id>blocks_add_xx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>1</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_multiply_const_vxx_0_0_0</source_block_id>
+    <sink_block_id>blocks_add_xx_0</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>0</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_multiply_const_vxx_1</source_block_id>

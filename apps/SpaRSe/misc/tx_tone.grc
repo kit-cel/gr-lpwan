@@ -1568,7 +1568,7 @@
     </param>
     <param>
       <key>dev_addr</key>
-      <value>name=Diana</value>
+      <value>name=Dora</value>
     </param>
     <param>
       <key>dev_args</key>
@@ -1596,7 +1596,7 @@
     </param>
     <param>
       <key>clock_source0</key>
-      <value>external</value>
+      <value></value>
     </param>
     <param>
       <key>sd_spec0</key>
@@ -2903,7 +2903,7 @@
     </param>
     <param>
       <key>dev_addr</key>
-      <value>name=Delilah</value>
+      <value>name=Dorothea</value>
     </param>
     <param>
       <key>dev_args</key>
@@ -2931,7 +2931,7 @@
     </param>
     <param>
       <key>clock_source0</key>
-      <value>external</value>
+      <value></value>
     </param>
     <param>
       <key>sd_spec0</key>

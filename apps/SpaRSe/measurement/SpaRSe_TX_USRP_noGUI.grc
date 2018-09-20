@@ -160,7 +160,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2**8</value>
+      <value>2**7</value>
     </param>
   </block>
   <block>
@@ -183,7 +183,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(448, 252)</value>
+      <value>(448, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -208,6 +208,10 @@
     <param>
       <key>sps</key>
       <value>sps</value>
+    </param>
+    <param>
+      <key>payload_short_code</key>
+      <value>0</value>
     </param>
     <param>
       <key>data_seed</key>

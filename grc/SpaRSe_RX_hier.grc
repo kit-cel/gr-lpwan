@@ -389,7 +389,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 692)</value>
+      <value>(272, 556)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -703,7 +703,7 @@ Bit per channel usage is 1.</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(256, 972)</value>
+      <value>(848, 892)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -846,7 +846,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 812)</value>
+      <value>(552, 676)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -901,11 +901,11 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 1220)</value>
+      <value>(208, 900)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>id</key>
@@ -1003,7 +1003,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 940)</value>
+      <value>(648, 860)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1058,11 +1058,11 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(56, 1204)</value>
+      <value>(424, 884)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>id</key>
@@ -1183,7 +1183,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(576, 340)</value>
+      <value>(616, 436)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1254,11 +1254,11 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(640, 980)</value>
+      <value>(1048, 684)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>180</value>
+      <value>0</value>
     </param>
     <param>
       <key>id</key>
@@ -1297,7 +1297,7 @@ delay into the filter</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(456, 980)</value>
+      <value>(1048, 900)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1343,7 +1343,7 @@ denoting the last preamble symbol
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1008, 812)</value>
+      <value>(784, 676)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1402,7 +1402,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(272, 756)</value>
+      <value>(272, 620)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1602,7 +1602,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1216, 508)</value>
+      <value>(904, 580)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1645,11 +1645,11 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(520, 1220)</value>
+      <value>(48, 900)</value>
     </param>
     <param>
       <key>_rotation</key>
-      <value>0</value>
+      <value>180</value>
     </param>
     <param>
       <key>id</key>
@@ -1688,7 +1688,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1216, 428)</value>
+      <value>(904, 532)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1774,7 +1774,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(16, 412)</value>
+      <value>(40, 516)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2332,7 +2332,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1216, 380)</value>
+      <value>(888, 484)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2359,7 +2359,7 @@ symbols (i.e., at symbol rate).</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(40, 820)</value>
+      <value>(40, 684)</value>
     </param>
     <param>
       <key>_rotation</key>

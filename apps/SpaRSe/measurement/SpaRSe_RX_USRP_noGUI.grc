@@ -520,6 +520,10 @@
       <value>0</value>
     </param>
     <param>
+      <key>output_correlator</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>psdu_len</key>
       <value>16</value>
     </param>
@@ -540,8 +544,20 @@
       <value>2345432</value>
     </param>
     <param>
+      <key>max_num_filters</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>max_offset_hz</key>
+      <value>0</value>
+    </param>
+    <param>
       <key>preamble_seed</key>
       <value>54321</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>1</value>
     </param>
     <param>
       <key>SF</key>
@@ -5182,7 +5198,7 @@ Delay of filter length - 1</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(136, 220)</value>
+      <value>(136, 244)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5337,12 +5353,6 @@ Delay of filter length - 1</value>
       <value></value>
     </param>
   </block>
-  <connection>
-    <source_block_id>SpaRSe_RX_hier_0</source_block_id>
-    <sink_block_id>qtgui_const_sink_x_0_0</sink_block_id>
-    <source_key>2</source_key>
-    <sink_key>0</sink_key>
-  </connection>
   <connection>
     <source_block_id>SpaRSe_RX_hier_0</source_block_id>
     <sink_block_id>blocks_null_sink_0</sink_block_id>
