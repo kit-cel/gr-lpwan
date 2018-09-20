@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<block>
+  <name>Packet error rate calculation</name>
+  <key>lpwan_error_rate_calculation</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.error_rate_calculation($averaging_length)</make>
+  <param>
+    <name>Averaging length</name>
+    <key>averaging_length</key>
+    <value>100</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>file name</name>
+    <key>filename</key>
+    <value>""</value>
+    <type>string</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+</block>

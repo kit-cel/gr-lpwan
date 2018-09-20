@@ -40,7 +40,14 @@ install(FILES
     mac_field_fragment.h
     mac_field_frak.h
     dsss_filter_crc_packets.h
-    partial_repeat_cc.h
-    DESTINATION ${GR_INCLUDE_DIR}/gnuradio/lpwan
+    fddsm_mod_bcb.h
+    fddsm_soft_demod_bpsk_cf.h
+    fddsm_modulator_kernel.h
+    fddsm_demodulator_kernel.h
+    fddsm_preamble_detector_cc.h
+    sliding_dotprod_32f_x2_32f.h
+    packet_demux_cc.h
+    thread_pool.h
+    interpolating_spreading_cc.h DESTINATION ${GR_INCLUDE_DIR}/gnuradio/lpwan
     COMPONENT "lpwan_devel"
 )

@@ -1,0 +1,30 @@
+<block>
+  <name>Interpolate and spread</name>
+  <key>lpwan_interpolating_spreading_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.interpolating_spreading_cc($spreading_sequence, $spreading_factor, $nsymbols_before_reset)</make>
+  <param>
+    <name>Spreading sequence</name>
+    <key>spreading_sequence</key>
+    <type>real_vector</type>
+  </param>
+  <param>
+    <name>Spreading factor</name>
+    <key>spreading_factor</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Number of symbols before reset</name>
+    <key>nsymbols_before_reset</key>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

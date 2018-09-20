@@ -1,0 +1,72 @@
+<block>
+  <name>SpaRSe Preamble Detector</name>
+  <key>lpwan_fddsm_preamble_detector_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.fddsm_preamble_detector_cc($shr, $sps, $spreading_factor, $num_chips_gap, $alpha, $beta, $phase_increments, $output_correlator)</make>
+  <callback>set_alpha($alpha)</callback>
+  <callback>set_beta($beta)</callback>
+  <callback>set_output_correlator($output_correlator)</callback>
+  <param>
+    <name>SHR (NRZ)</name>
+    <key>shr</key>
+    <type>real_vector</type>
+  </param>
+  <param>
+    <name>Alpha</name>
+    <key>alpha</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Beta</name>
+    <key>beta</key>
+    <type>float</type>
+  </param>
+  <param>
+    <name>Samples per symbol</name>
+    <key>sps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spreading factor</name>
+    <key>spreading_factor</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Time gap length (chips)</name>
+    <key>num_chips_gap</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Phase increments</name>
+    <key>phase_increments</key>
+    <type>real_vector</type>
+  </param>
+  <param>
+    <name>Output correlator index</name>
+    <key>output_correlator</key>
+    <value>0</value>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>corr</name>
+    <type>complex</type>
+    <nports>len($phase_increments)</nports>
+  </sink>
+  <sink>
+    <name>signal</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>signal</name>
+    <type>complex</type>
+  </source>
+  <source>
+    <name>corr</name>
+    <type>float</type>
+  </source>
+  <source>
+    <name>threshold</name>
+    <type>float</type>
+  </source>
+</block>

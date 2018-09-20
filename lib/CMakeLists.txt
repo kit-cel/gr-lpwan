@@ -34,19 +34,25 @@ list(APPEND lpwan_sources
     dsss_snr_estimator_impl.cc
     mac_format.cc
     dsss_fragmentation_impl.cc
-        mac_field.cc
+    mac_field.cc
     mac_field_frame_ctrl.cc
     mac_field_frag_header.cc
     mac_field_frag_status.cc
     mac_field_frame.cc
-        mac_crc.cc
+    mac_crc.cc
     mac_field_header_ie.cc
     mac_field_ie_fscd.cc
     mac_field_fragment.cc
     mac_field_frak.cc
     dsss_filter_crc_packets_impl.cc
-    partial_repeat_cc_impl.cc
-    )
+    fddsm_mod_bcb_impl.cc
+    fddsm_soft_demod_bpsk_cf_impl.cc
+    fddsm_modulator_kernel.cc
+    fddsm_demodulator_kernel.cc
+    fddsm_preamble_detector_cc_impl.cc
+    sliding_dotprod_32f_x2_32f.cc
+    packet_demux_cc_impl.cc
+    interpolating_spreading_cc_impl.cc )
 
 list(APPEND lpwan_libs
     ${Boost_LIBRARIES}

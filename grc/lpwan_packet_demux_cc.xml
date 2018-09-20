@@ -1,0 +1,60 @@
+<block>
+  <name>Packet Demux</name>
+  <key>lpwan_packet_demux_cc</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.packet_demux_cc($tag_key, $frame_length_samples, $payload_length_samples, $code, $sf, $sps, $pulse, $reset, $delta_phi)</make>
+  <param>
+    <name>Frame start tag key</name>
+    <key>tag_key</key>
+    <type>string</type>
+  </param>
+  <param>
+    <name>Frame length (samples)</name>
+    <key>frame_length_samples</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Payload length (samples)</name>
+    <key>payload_length_samples</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Spreading code</name>
+    <key>code</key>
+    <type>real_vector</type>
+  </param>
+  <param>
+    <name>Spreading factor</name>
+    <key>sf</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Oversampling factor</name>
+    <key>sps</key>
+    <type>int</type>
+  </param>
+  <param>
+    <name>Pulse</name>
+    <key>pulse</key>
+    <type>real_vector</type>
+  </param>
+  <param>
+    <name>Reset after each symbol</name>
+    <key>reset</key>
+    <type>bool</type>
+  </param>
+  <param>
+    <name>Phase increments</name>
+    <key>delta_phi</key>
+    <type>real_vector</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

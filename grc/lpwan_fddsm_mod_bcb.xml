@@ -1,0 +1,31 @@
+<block>
+  <name>FD-DSM Modulator</name>
+  <key>lpwan_fddsm_mod_bcb</key>
+  <category>[LPWAN]</category>
+  <import>import lpwan</import>
+  <make>lpwan.fddsm_mod_bcb($bps, $packet_len_bytes)</make>
+  <param>
+    <name>bits per symbol matrix (2x2)</name>
+    <key>bps</key>
+    <value>2</value>
+    <type>int</type>
+  </param>
+  <param>
+    <name>packet length (bytes)</name>
+    <key>packet_len_bytes</key>
+    <value>32</value>
+    <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+  <source>
+    <name>ant_out</name>
+    <type>byte</type>
+  </source>
+  <source>
+    <name>sym_out</name>
+    <type>complex</type>
+  </source>
+</block>

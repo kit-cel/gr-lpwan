@@ -27,11 +27,14 @@ list(APPEND python_sources
     dsss_const.py
     dsss_phy.py
     dsss_mod.py
+    SpaRSe_utils.py
 )
 GR_PYTHON_INSTALL(
     FILES ${python_sources}
     dsss_preamble_search_cc.py
-    message_counter.py DESTINATION ${GR_PYTHON_DIR}/lpwan
+    message_counter.py
+    error_rate_calculation.py
+    SpaRSe_synchronization_cc.py DESTINATION ${GR_PYTHON_DIR}/lpwan
     COMPONENT "lpwan_python"
 )
 
@@ -56,5 +59,10 @@ GR_ADD_TEST(qa_dsss_despread_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}
 GR_ADD_TEST(qa_dsss_normalize_ff ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_normalize_ff.py)
 GR_ADD_TEST(qa_dsss_fragmentation ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_fragmentation.py)
 GR_ADD_TEST(qa_dsss_snr_estimator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_snr_estimator.py)
-GR_ADD_TEST(qa_partial_repeat_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_partial_repeat_cc.py)
-GR_ADD_TEST(qa_dsss_dummy_packet_despreader_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_dsss_dummy_packet_despreader_cc.py)
+GR_ADD_TEST(qa_fddsm_mod_bcb ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_mod_bcb.py)
+GR_ADD_TEST(qa_fddsm_soft_demod_bpsk_cf ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_soft_demod_bpsk_cf.py)
+GR_ADD_TEST(qa_fddsm_preamble_detector_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_fddsm_preamble_detector_cc.py)
+GR_ADD_TEST(qa_packet_demux_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_packet_demux_cc.py)
+GR_ADD_TEST(qa_sliding_dotprod_32f_x2_32f ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_sliding_dotprod_32f_x2_32f.py)
+GR_ADD_TEST(qa_interpolating_spreading_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_interpolating_spreading_cc.py)
+GR_ADD_TEST(qa_SpaRSe_synchronization_cc ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_SpaRSe_synchronization_cc.py)

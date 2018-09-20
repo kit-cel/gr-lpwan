@@ -36,8 +36,17 @@
 #include "lpwan/dsss_snr_estimator.h"
 #include "lpwan/dsss_fragmentation.h"
 #include "lpwan/dsss_filter_crc_packets.h"
-#include "lpwan/partial_repeat_cc.h"
+#include "lpwan/fddsm_mod_bcb.h"
+#include "lpwan/fddsm_soft_demod_bpsk_cf.h"
+#include "lpwan/fddsm_modulator_kernel.h"
+#include "lpwan/fddsm_demodulator_kernel.h"
+#include "lpwan/fddsm_preamble_detector_cc.h"
+#include "lpwan/sliding_dotprod_32f_x2_32f.h"
+#include "lpwan/packet_demux_cc.h"
+#include "lpwan/interpolating_spreading_cc.h"
 %}
+
+%include "lpwan/dsss_codes.h"
 
 %include "lpwan/dsss_interleaver_bb.h"
 GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_interleaver_bb);
@@ -68,7 +77,18 @@ GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_snr_estimator);
 GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_fragmentation);
 %include "lpwan/dsss_filter_crc_packets.h"
 GR_SWIG_BLOCK_MAGIC2(lpwan, dsss_filter_crc_packets);
+%include "lpwan/fddsm_mod_bcb.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_mod_bcb);
+%include "lpwan/fddsm_soft_demod_bpsk_cf.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_soft_demod_bpsk_cf);
+%include "lpwan/fddsm_modulator_kernel.h"
+%include "lpwan/fddsm_demodulator_kernel.h"
+%include "lpwan/sliding_dotprod_32f_x2_32f.h"
+%include "lpwan/fddsm_preamble_detector_cc.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, fddsm_preamble_detector_cc);
+%include "lpwan/sliding_dotprod_32f_x2_32f.h"
 
-%include "lpwan/partial_repeat_cc.h"
-GR_SWIG_BLOCK_MAGIC2(lpwan, partial_repeat_cc);
-
+%include "lpwan/packet_demux_cc.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, packet_demux_cc);
+%include "lpwan/interpolating_spreading_cc.h"
+GR_SWIG_BLOCK_MAGIC2(lpwan, interpolating_spreading_cc);
