@@ -16,3 +16,4 @@ repo: https://github.com/kit-cel/gr-lpwan.git
 #website: <module_website>
 #icon: <icon_url>
 ---
+This is a GNU Radio out-of-tree module and contains an implementation of the new LECIM DSSS PHY layer of IEEE802.15.4.
